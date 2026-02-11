@@ -1,4 +1,7 @@
 import { Scene } from 'phaser';
+import { GameMap } from "../map/GameMap.js"
+import { Player } from "../characters/Player.js"
+import { NPC } from "../characters/NPC.js"
 
 // Import your matrices (same as your JS variables)
 import {
@@ -14,7 +17,7 @@ import {
   l_House_Decorations,
   l_Characters,
   collisions
-} from "./mapData/index.js";
+} from "../map/mapData/index.js";
 
 export class MainMenu extends Scene {
   constructor() {
@@ -25,7 +28,8 @@ export class MainMenu extends Scene {
   }
 
   create() {
-    const TILE = 16;
+    const mapTile = 16;
+    const charTile = 24;
 
     const layersData = {
       l_Terrain,
@@ -55,77 +59,14 @@ export class MainMenu extends Scene {
       l_Characters: "characters"
     };
 
-
     // Render layers
-    this.tileLayers = {};
-    const toPhaserData = (m) => m.map(row => row.map(v => (v === 0 ? -1 : v - 1)));
-
-    for (const [layerName, matrix] of Object.entries(layersData)) {
-      const map = this.make.tilemap({
-          data: toPhaserData(matrix),
-          tileWidth: TILE,
-          tileHeight: TILE,
-      });
-      
-      const tilesetKey = tilesets[layerName];
-      const tileset = map.addTilesetImage(tilesetKey, null, TILE, TILE);
-
-      const layer = map.createLayer(0, tileset, 0, 0);
-      this.tileLayers[layerName] = layer;
-    }
-
-    this.textures.get("characters").add(
-      "char0",
-      0,
-      0, 0,
-      16, 16
-    );
-
-    this.textures.get("characters").add(
-      "char1",
-      0,
-      0, 16,
-      16, 16
-    );
-
-    // PLAYER
-    this.player = this.physics.add.sprite(100, 100, tilesets.l_Characters, "char0");
-
-    this.npc = this.physics.add.sprite(200, 200, tilesets.l_Characters, "char1");
-    this.npc.setCollideWorldBounds(true)
-
-    this.time.addEvent({
-    delay: 1000,
-    loop: true,
-    callback: () => {
-
-        const randomDirection = Phaser.Math.Between(0, 3);
-        const speed = 100;  // Movement speed
-
-        switch (randomDirection) {
-            case 0:
-                this.npc.setVelocityY(-speed); // Move up
-                break;
-            case 1:
-                this.npc.setVelocityY(speed); // Move down
-                break;
-            case 2:
-                this.npc.setVelocityX(-speed); // Move left
-                break;
-            case 3:
-                this.npc.setVelocityX(speed); // Move right
-                break;
-        }
-    }
-});
-
-    this.player.setCollideWorldBounds(true);
+    const gameMap = new GameMap(this, layersData, tilesets, mapTile);
 
     // COLLISIONS: create a collision tilemap layer from collisions matrix
     const collisionMap = this.make.tilemap({
       data: collisions,
-      tileWidth: TILE,
-      tileHeight: TILE
+      tileWidth: mapTile,
+      tileHeight: mapTile
     });
 
     const dummyTileset = collisionMap.addTilesetImage("terrain");
@@ -138,30 +79,30 @@ export class MainMenu extends Scene {
     // Make collision layer invisible
     collisionLayer.setAlpha(0);
 
-    this.physics.add.collider(this.player, collisionLayer);
-    this.physics.add.collider(this.npc, collisionLayer)
 
-    // INPUT
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.keys = this.input.keyboard.addKeys("W,A,S,D");
+    // PLAYER
+    this.player = new Player(this, "char0", tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
+
+    // NPC
+    this.npc = new NPC(this, "char1", tilesets.l_Characters, 1, charTile, 60, collisionLayer, 200, 200);
+
+    this.npc2 = new NPC(this, "char2", tilesets.l_Characters, 2, charTile, 60, collisionLayer, 500, 500);
+
+    this.npc2 = new NPC(this, "char3", tilesets.l_Characters, 3, charTile, 60, collisionLayer, 300, 500);
+
+    this.physics.add.collider(
+      this.player.player,
+      this.npc.npc,
+      () => console.log("collision"),
+      undefined,
+      this
+    );
 
     // CAMERA
     // this.cameras.main.startFollow(this.player);
   }
 
   update() {
-    const speed = 120;
-    const left = this.cursors.left.isDown || this.keys.A.isDown;
-    const right = this.cursors.right.isDown || this.keys.D.isDown;
-    const up = this.cursors.up.isDown || this.keys.W.isDown;
-    const down = this.cursors.down.isDown || this.keys.S.isDown;
-
-    this.player.setVelocity(0);
-
-    if (left) this.player.setVelocityX(-speed);
-    else if (right) this.player.setVelocityX(speed);
-
-    if (up) this.player.setVelocityY(-speed);
-    else if (down) this.player.setVelocityY(speed);
+    this.player.playerMovement()
   }
 }
