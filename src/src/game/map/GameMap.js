@@ -1,9 +1,10 @@
 export class GameMap {
 
-    constructor(scene, layersData, tilesets, tileSize) {
+    constructor(scene, layersData, tilesets, tilesetDepth, tileSize) {
         this.scene = scene;
         this.layersData = layersData;
         this.tilesets = tilesets;
+        this.tilesetDepth = tilesetDepth
         this.tileLayers = {};
         this.tileSize = tileSize;
 
@@ -29,6 +30,9 @@ export class GameMap {
             const tileset = map.addTilesetImage(tilesetKey, null, this.tileSize, this.tileSize);
 
             const layer = map.createLayer(0, tileset, 0, 0);
+
+            layer.setDepth(this.tilesetDepth[layerName]);
+
             this.tileLayers[layerName] = layer;
         }
 

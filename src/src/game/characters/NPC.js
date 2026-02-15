@@ -13,6 +13,11 @@ export class NPC {
         this.xNpcPos = xNpcPos;
         this.yNpcPos = yNpcPos;
 
+        this.playerInteraction = false;
+        this.interactionRange = this.tileSize * 1.5;
+        this.interactionZone = null;
+        this.interactKey = this.scene.input.keyboard.addKey('E');
+
         this.create();
         this.npcMovement();
     }
@@ -35,6 +40,11 @@ export class NPC {
         this.npc.body.setOffset((this.tileSize - hitboxWidth) / 2, (this.tileSize - hitboxHeight) / 2);
 
         this.scene.physics.add.collider(this.npc, this.collisionLayer);
+
+        this.interactionZone = this.scene.add.zone(this.xNpcPos, this.yNpcPos, this.interactionRange, this.interactionRange);
+        this.scene.physics.add.existing(this.interactionZone);
+        this.interactionZone.body.setAllowGravity(false);
+        this.interactionZone.body.setImmovable(true);
        
         this.animKeys = {
             up: `${this.npcName}-walk-up`,
@@ -57,10 +67,14 @@ export class NPC {
         });
     }
 
+    setPlayerInteraction(playerInteraction) {
+        this.playerInteraction = playerInteraction;
+    }
+
 
     npcMovement() {
         this.scene.time.addEvent({
-        delay: 2000,
+        delay: Phaser.Math.Between(2000, 4000),
         loop: true,
             callback: () => {
 
@@ -103,5 +117,19 @@ export class NPC {
                 }
             }
         });
+    }
+
+    NPCInteraction() {
+        // Keep interaction zone centered on NPC
+        if (this.interactionZone) {
+            this.interactionZone.setPosition(this.npc.x, this.npc.y);
+        }
+
+        if (this.playerInteraction && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
+            // this.npc.interact({ player: this.player.player, scene: this });
+            console.log(`Interaction with ${this.npcName}`);
+        }
+
+        this.playerInteraction = false;
     }
 }

@@ -59,8 +59,22 @@ export class MainMenu extends Scene {
       l_Characters: "characters"
     };
 
+    const tilesets_depth = {
+      l_Terrain: 0,
+      l_Front_Renders: 1,
+      l_Trees_1: 10,
+      l_Trees_2: 10,
+      l_Trees_3: 10,
+      l_Trees_4: 10,
+      l_Landscape_Decorations: 0,
+      l_Landscape_Decorations_2: 0,
+      l_Houses: 9,
+      l_House_Decorations: 10,
+      l_Characters: 8
+    };
+
     // Render layers
-    const gameMap = new GameMap(this, layersData, tilesets, mapTile);
+    const gameMap = new GameMap(this, layersData, tilesets, tilesets_depth, mapTile);
 
     // COLLISIONS: create a collision tilemap layer from collisions matrix
     const collisionMap = this.make.tilemap({
@@ -88,21 +102,52 @@ export class MainMenu extends Scene {
 
     this.npc2 = new NPC(this, "char2", tilesets.l_Characters, 2, charTile, 60, collisionLayer, 500, 500);
 
-    this.npc2 = new NPC(this, "char3", tilesets.l_Characters, 3, charTile, 60, collisionLayer, 300, 500);
+    this.npc3 = new NPC(this, "char3", tilesets.l_Characters, 3, charTile, 60, collisionLayer, 300, 500);
 
     this.physics.add.collider(
       this.player.player,
       this.npc.npc,
-      () => console.log("collision"),
+      () => { return },
       undefined,
       this
     );
+
+    // this.physics.add.overlap(this.player.player, this.npc.interactionZone, () => {
+    //   this.npc.setPlayerInteraction(true);
+    //   this.player.setInteraction(true);
+    // });
+
+    // this.physics.add.overlap(this.player.player, this.npc2.interactionZone, () => {
+    //   this.npc2.setPlayerInteraction(true);
+    //   this.player.setInteraction(true);
+    // });
+
+    // this.physics.add.overlap(this.player.player, this.npc3.interactionZone, () => {
+    //   this.npc3.setInteraction(true);
+    //   this.player.setInteraction(true);
+    // });
 
     // CAMERA
     // this.cameras.main.startFollow(this.player);
   }
 
   update() {
-    this.player.playerMovement()
+    // Check overlaps each tick so flags clear immediately when leaving zones.
+    const overlap1 = this.physics.overlap(this.player.player, this.npc.interactionZone);
+    const overlap2 = this.physics.overlap(this.player.player, this.npc2.interactionZone);
+    const overlap3 = this.physics.overlap(this.player.player, this.npc3.interactionZone);
+
+    this.npc.setPlayerInteraction(overlap1);
+    this.npc2.setPlayerInteraction(overlap2);
+    this.npc3.setPlayerInteraction(overlap3);
+
+    const anyOverlap = overlap1 || overlap2 || overlap3;
+    this.player.setInteraction(anyOverlap);
+
+    this.player.playerMovement();
+    this.player.playerInteraction();
+    this.npc.NPCInteraction();
+    this.npc2.NPCInteraction();
+    this.npc3.NPCInteraction();
   }
 }

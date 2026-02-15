@@ -14,6 +14,9 @@ export class Player {
         this.keys = this.scene.input.keyboard.addKeys("W,A,S,D");
         this.collisionLayer = collisionLayer;
 
+        this.interaction = false;
+        this.interactionIcon = null;
+
         this.create()
     }
 
@@ -36,6 +39,11 @@ export class Player {
 
 
         this.scene.physics.add.collider(this.player, this.collisionLayer);
+
+        this.interactionIcon = this.scene.add
+            .sprite(this.xPlayerPos, this.yPlayerPos - this.tileSize, "exclamationMark", this.sourceIndex)
+            .setVisible(false)
+            .setDepth(1000);
     
         if (!this.scene.anims.exists("walk-up")) {
             this.scene.anims.create({
@@ -92,5 +100,23 @@ export class Player {
         } else if (!left && !right) {
             this.player.anims.stop();
         }
+
+        // this.playerInteraction();
+    }
+
+    setInteraction(interaction) {
+        this.interaction = interaction;
+    }
+
+    playerInteraction() {
+        this.updateInteractionIcon();
+        this.interaction = false;
+    }
+
+    updateInteractionIcon() {
+        if (!this.interactionIcon) return;
+
+        this.interactionIcon.setPosition(this.player.x, this.player.y - this.tileSize);
+        this.interactionIcon.setVisible(this.interaction);
     }
 }

@@ -20,6 +20,11 @@ export class Boot extends Scene
             frameWidth: 24,
             frameHeight: 24
         });
+        
+        this.load.spritesheet("exclamationMark", "../../../assets/exclamationmark.png", {
+            frameWidth: 17,
+            frameHeight: 17
+        });
     }
 
     create ()
