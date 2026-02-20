@@ -25,6 +25,11 @@ export class Boot extends Scene
             frameWidth: 17,
             frameHeight: 17
         });
+
+        this.load.spritesheet("characters_face", "../../../assets/characters/CGabrielFaces48x48.png", {
+            frameWidth: 48,
+            frameHeight: 48
+        });
     }
 
     create ()

@@ -104,10 +104,12 @@ export class MainMenu extends Scene {
 
     this.npc3 = new NPC(this, "char3", tilesets.l_Characters, 3, charTile, 60, collisionLayer, 300, 500);
 
+    
+
     this.physics.add.collider(
       this.player.player,
       this.npc.npc,
-      () => { return },
+      () => {  },
       undefined,
       this
     );
@@ -131,8 +133,21 @@ export class MainMenu extends Scene {
     // this.cameras.main.startFollow(this.player);
   }
 
+  pauseScene(overlap) {
+    if (overlap) {
+      this.cameras.main.fade(150, 0, 0, 0, false, (_, progress) => {
+        if (progress === 1) {
+          console.log("yo");
+        }
+      });
+      
+    } else {
+
+     this.cameras.main.resetFX();
+    }
+  }
+
   update() {
-    // Check overlaps each tick so flags clear immediately when leaving zones.
     const overlap1 = this.physics.overlap(this.player.player, this.npc.interactionZone);
     const overlap2 = this.physics.overlap(this.player.player, this.npc2.interactionZone);
     const overlap3 = this.physics.overlap(this.player.player, this.npc3.interactionZone);
@@ -145,9 +160,12 @@ export class MainMenu extends Scene {
     this.player.setInteraction(anyOverlap);
 
     this.player.playerMovement();
+
     this.player.playerInteraction();
     this.npc.NPCInteraction();
     this.npc2.NPCInteraction();
     this.npc3.NPCInteraction();
+
+    // this.pauseScene(anyOverlap);
   }
 }

@@ -71,6 +71,8 @@ export class Player {
                 repeat: -1
             });
         }
+
+        // this.player.setAlpha(0.5);
     }
 
     playerMovement() {

@@ -120,14 +120,15 @@ export class NPC {
     }
 
     NPCInteraction() {
-        // Keep interaction zone centered on NPC
         if (this.interactionZone) {
             this.interactionZone.setPosition(this.npc.x, this.npc.y);
         }
 
         if (this.playerInteraction && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
-            // this.npc.interact({ player: this.player.player, scene: this });
-            console.log(`Interaction with ${this.npcName}`);
+            // this.scene.cameras.main.setAlpha(0.2);
+            this.scene.scene.pause(this.scene.scene.key);
+            this.scene.scene.launch('Dialogue', { npc: this.npcName, npcSourceIndex: 8, playerSourceIndex: 0});
+            this.scene.scene.bringToTop('Dialogue');
         }
 
         this.playerInteraction = false;

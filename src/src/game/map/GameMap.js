@@ -34,6 +34,8 @@ export class GameMap {
             layer.setDepth(this.tilesetDepth[layerName]);
 
             this.tileLayers[layerName] = layer;
+
+           // layer.setAlpha(0.3);
         }
 
     }
