@@ -1,12 +1,13 @@
 import Phaser from "phaser";
 
 export class NPC {
-    constructor(scene, npcName, spriteKey, sourceIndex, tileSize, speed, collisionLayer, xNpcPos, yNpcPos) {
+    constructor(scene, npcName, charactersData, spriteKey, tileSize, speed, collisionLayer, xNpcPos, yNpcPos) {
         this.scene = scene;
         this.npc = null;
         this.npcName = npcName;
+        this.charactersData = charactersData;
         this.spriteKey = spriteKey;
-        this.sourceIndex = this.calculateSourceIndex(sourceIndex);
+        this.sourceIndex = this.calculateSourceIndex(charactersData[this.npcName].spriteSourceIndex);
         this.tileSize = tileSize;
         this.speed = speed;
         this.collisionLayer = collisionLayer;
@@ -20,6 +21,19 @@ export class NPC {
 
         this.create();
         this.npcMovement();
+    }
+
+    canMoveTo(dx, dy) {
+        if (!this.npc || !this.npc.body) return false;
+
+        const targetX = this.npc.x + dx;
+        const targetY = this.npc.y + dy;
+
+        const bounds = this.scene.physics.world.bounds;
+        if (!bounds.contains(targetX, targetY)) return false;
+
+        const tile = this.collisionLayer.getTileAtWorldXY(targetX, targetY);
+        return !(tile && tile.collides);
     }
 
     calculateSourceIndex(characterIndex) {
@@ -77,43 +91,33 @@ export class NPC {
         delay: Phaser.Math.Between(2000, 4000),
         loop: true,
             callback: () => {
+                const step = this.collisionLayer?.tilemap?.tileWidth || this.tileSize;
 
-                const randomDirection = Phaser.Math.Between(0, 3);
+                const directions = Phaser.Utils.Array.Shuffle([
+                    { dx: 0, dy: -step, velocity: { x: 0, y: -this.speed }, anim: this.animKeys.up, flipX: false },
+                    { dx: 0, dy: step,  velocity: { x: 0, y: this.speed },  anim: this.animKeys.down, flipX: false },
+                    { dx: -step, dy: 0, velocity: { x: -this.speed, y: 0 }, anim: this.animKeys.right, flipX: true },
+                    { dx: step, dy: 0,  velocity: { x: this.speed, y: 0 },  anim: this.animKeys.right, flipX: false },
+                ]);
 
                 this.npc.setVelocity(0);
-                let moved = false;
 
-                switch (randomDirection) {
-                    case 0:
-                        this.npc.setVelocityY(-this.speed); // Move up
-                        this.npc.anims.play(this.animKeys.up, true);
-                        moved = true;
-                        break;
-                    case 1:
-                        this.npc.setVelocityY(this.speed); // Move down
-                        this.npc.anims.play(this.animKeys.down, true);
-                        moved = true;
-                        break;
-                    case 2:
-                        this.npc.setVelocityX(-this.speed); // Move left
-                        this.npc.anims.play(this.animKeys.right, true);
-                        this.npc.setFlipX(true);
-                        moved = true;
-                        break;
-                    case 3:
-                        this.npc.setVelocityX(this.speed); // Move right
-                        this.npc.anims.play(this.animKeys.right, true);
-                        this.npc.setFlipX(false);
-                        moved = true;
-                }
+                const nextMove = directions.find(dir => this.canMoveTo(dir.dx, dir.dy));
 
-                if (moved) {
+                if (nextMove) {
+                    this.npc.setVelocity(nextMove.velocity.x, nextMove.velocity.y);
+                    this.npc.anims.play(nextMove.anim, true);
+                    this.npc.setFlipX(nextMove.flipX);
+
                     this.scene.time.delayedCall(500, () => {
                         if (!this.npc || !this.npc.body) return;
                         this.npc.setVelocity(0);
                         this.npc.anims.stop();
                         this.npc.setFrame(this.sourceIndex + 21);
                     });
+                } else {
+                    this.npc.anims.stop();
+                    this.npc.setFrame(this.sourceIndex + 21);
                 }
             }
         });
@@ -127,7 +131,7 @@ export class NPC {
         if (this.playerInteraction && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
             // this.scene.cameras.main.setAlpha(0.2);
             this.scene.scene.pause(this.scene.scene.key);
-            this.scene.scene.launch('Dialogue', { npc: this.npcName, npcSourceIndex: 8, playerSourceIndex: 0});
+            this.scene.scene.launch('Dialogue', { npc: this.npcName, npcSourceIndex: this.charactersData[this.npcName].faceSourceIndex, playerSourceIndex: this.charactersData[this.scene.player.playerName].faceSourceIndex});
             this.scene.scene.bringToTop('Dialogue');
         }
 

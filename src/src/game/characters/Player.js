@@ -1,11 +1,11 @@
 export class Player {
-    constructor(scene, playerName, spriteKey, sourceIndex, tileSize, speed, collisionLayer, xPlayerPos, yPlayerPos) {
+    constructor(scene, playerName, charactersData, spriteKey, tileSize, speed, collisionLayer, xPlayerPos, yPlayerPos) {
         this.scene = scene;
         this.player = null;
         this.playerName = playerName;
         this.spriteKey = spriteKey;
         this.tileSize = tileSize;
-        this.sourceIndex = this.calculateSourceIndex(sourceIndex);
+        this.sourceIndex = this.calculateSourceIndex(charactersData[this.playerName].spriteSourceIndex);
         this.xPlayerPos = xPlayerPos;
         this.yPlayerPos = yPlayerPos;
 

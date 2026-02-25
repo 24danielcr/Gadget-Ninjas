@@ -30,6 +30,9 @@ export class Boot extends Scene
             frameWidth: 48,
             frameHeight: 48
         });
+
+    //     this.load.json('characters_data', new URL('../characters/data/characters.json', import.meta.url).href);
+        this.load.json('characters_data', '/assets/characters/data/characters.json');
     }
 
     create ()

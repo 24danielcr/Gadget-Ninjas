@@ -73,6 +73,8 @@ export class MainMenu extends Scene {
       l_Characters: 8
     };
 
+    const charactersData = this.cache.json.get("characters_data")
+    
     // Render layers
     const gameMap = new GameMap(this, layersData, tilesets, tilesets_depth, mapTile);
 
@@ -95,14 +97,15 @@ export class MainMenu extends Scene {
 
 
     // PLAYER
-    this.player = new Player(this, "char0", tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
+    this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
+    //this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
 
     // NPC
-    this.npc = new NPC(this, "char1", tilesets.l_Characters, 1, charTile, 60, collisionLayer, 200, 200);
+    this.npc = new NPC(this, "theo_brook", charactersData.characters,  tilesets.l_Characters, charTile, 60, collisionLayer, 200, 200);
 
-    this.npc2 = new NPC(this, "char2", tilesets.l_Characters, 2, charTile, 60, collisionLayer, 500, 500);
+    this.npc2 = new NPC(this, "talia_carter", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 500, 500);
 
-    this.npc3 = new NPC(this, "char3", tilesets.l_Characters, 3, charTile, 60, collisionLayer, 300, 500);
+    this.npc3 = new NPC(this, "archer_solen", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 300, 500);
 
     
 

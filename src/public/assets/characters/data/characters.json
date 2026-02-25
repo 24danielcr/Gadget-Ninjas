@@ -1,0 +1,144 @@
+{
+    "characters": {
+        "charles": {
+            "faceSourceIndex": 11,
+            "spriteSourceIndex": 4
+        },
+        "alicia": {
+            "faceSourceIndex": 17,
+            "spriteSourceIndex": 10
+        },
+        "bob": {
+            "faceSourceIndex": 13,
+            "spriteSourceIndex": 6
+        },
+        "theo_brook": {
+            "faceSourceIndex": 8,
+            "spriteSourceIndex": 1
+        },
+        "luna_reed": {
+            "faceSourceIndex": 9,
+            "spriteSourceIndex": 2
+        },
+        "jasper_fern": {
+            "faceSourceIndex": 10,
+            "spriteSourceIndex": 3
+        },
+        "roy_ashwood": {
+            "faceSourceIndex": 49,
+            "spriteSourceIndex": 42
+        },
+        "eli_carter": {
+            "faceSourceIndex": 12,
+            "spriteSourceIndex": 5
+        },
+        "ivy_grant": {
+            "faceSourceIndex": 14,
+            "spriteSourceIndex": 7
+        },
+        "amara_bennet": {
+            "faceSourceIndex": 48,
+            "spriteSourceIndex": 41
+        },
+        "zoe_porter": {
+            "faceSourceIndex": 15,
+            "spriteSourceIndex": 8
+        },
+        "hazel_pike": {
+            "faceSourceIndex": 16,
+            "spriteSourceIndex": 10
+        },
+        "talia_carter": {
+            "faceSourceIndex": 19,
+            "spriteSourceIndex": 12
+        },
+        "lisa_frost": {
+            "faceSourceIndex": 19,
+            "spriteSourceIndex": 13
+        },
+        "archer_solen": {
+            "faceSourceIndex": 20,
+            "spriteSourceIndex": 14
+        },
+        "jax_knox": {
+            "faceSourceIndex": 21,
+            "spriteSourceIndex": 14
+        },
+        "nolan_lock": {
+            "faceSourceIndex": 22,
+            "spriteSourceIndex": 15
+        },
+        "corin_crest": {
+            "faceSourceIndex": 23,
+            "spriteSourceIndex": 16
+        },
+        "sylas_star": {
+            "faceSourceIndex": 24,
+            "spriteSourceIndex": 17
+        },
+        "lucas_miles": {
+            "faceSourceIndex": 25,
+            "spriteSourceIndex": 18
+        },
+        "sofia_ford": {
+            "faceSourceIndex": 26,
+            "spriteSourceIndex": 19
+        },
+        "layla_kim": {
+            "faceSourceIndex": 26,
+            "spriteSourceIndex": 19
+        },
+        "hannah_blue": {
+            "faceSourceIndex": 27,
+            "spriteSourceIndex": 20
+        },
+        "chloe_green": {
+            "faceSourceIndex": 28,
+            "spriteSourceIndex": 21
+        },
+        "aria_price": {
+            "faceSourceIndex": 29,
+            "spriteSourceIndex": 22
+        },
+        "nixi_spark": {
+            "faceSourceIndex": 30,
+            "spriteSourceIndex": 23
+        },
+        "john_bolt": {
+            "faceSourceIndex": 37,
+            "spriteSourceIndex": 30
+        },
+        "maria_cross": {
+            "faceSourceIndex": 38,
+            "spriteSourceIndex": 31
+        },
+        "wren_moss": {
+            "faceSourceIndex": 39,
+            "spriteSourceIndex": 32
+        },
+        "taro_ember": {
+            "faceSourceIndex": 41,
+            "spriteSourceIndex": 34
+        },
+        "fenn_lux": {
+            "faceSourceIndex": 42,
+            "spriteSourceIndex": 35
+        },
+        "kiko_flux": {
+            "faceSourceIndex": 43,
+            "spriteSourceIndex": 36
+        },
+        "priya_flux": {
+            "faceSourceIndex": 44,
+            "spriteSourceIndex": 37
+        },
+        "daniel_moon": {
+            "faceSourceIndex": 45,
+            "spriteSourceIndex": 38
+        },
+        "fernanda_valle": {
+            "faceSourceIndex": 46,
+            "spriteSourceIndex": 39
+        }
+    }
+}
