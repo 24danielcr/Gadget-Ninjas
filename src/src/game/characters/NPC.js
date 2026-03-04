@@ -1,11 +1,12 @@
 import Phaser from "phaser";
 
 export class NPC {
-    constructor(scene, npcName, charactersData, spriteKey, tileSize, speed, collisionLayer, xNpcPos, yNpcPos) {
+    constructor(scene, npcName, charactersData, characterPositions, spriteKey, tileSize, speed, collisionLayer, xNpcPos, yNpcPos, allowMovement) {
         this.scene = scene;
         this.npc = null;
         this.npcName = npcName;
         this.charactersData = charactersData;
+        this.characterPositions = characterPositions;
         this.spriteKey = spriteKey;
         this.sourceIndex = this.calculateSourceIndex(charactersData[this.npcName].spriteSourceIndex);
         this.tileSize = tileSize;
@@ -13,11 +14,10 @@ export class NPC {
         this.collisionLayer = collisionLayer;
         this.xNpcPos = xNpcPos;
         this.yNpcPos = yNpcPos;
+        // this.interactionRange = this.tileSize * 1.5;
+        // this.interactionZone = null;
 
-        this.playerInteraction = false;
-        this.interactionRange = this.tileSize * 1.5;
-        this.interactionZone = null;
-        this.interactKey = this.scene.input.keyboard.addKey('E');
+        this.allowMovement = allowMovement;
 
         this.create();
         this.npcMovement();
@@ -45,7 +45,7 @@ export class NPC {
     }
 
     create() {
-        this.npc = this.scene.physics.add.sprite(this.xNpcPos, this.yNpcPos, this.spriteKey, this.sourceIndex);
+        this.npc = this.scene.physics.add.sprite(this.xNpcPos, this.yNpcPos, this.spriteKey, this.sourceIndex + this.characterPositions['down-stand']);
         this.npc.setCollideWorldBounds(true);
 
         const hitboxWidth = this.tileSize * 0.6;
@@ -55,20 +55,31 @@ export class NPC {
 
         this.scene.physics.add.collider(this.npc, this.collisionLayer);
 
-        this.interactionZone = this.scene.add.zone(this.xNpcPos, this.yNpcPos, this.interactionRange, this.interactionRange);
-        this.scene.physics.add.existing(this.interactionZone);
-        this.interactionZone.body.setAllowGravity(false);
-        this.interactionZone.body.setImmovable(true);
+        // this.interactionZone = this.scene.add.zone(this.xNpcPos, this.yNpcPos, this.interactionRange, this.interactionRange);
+        // this.scene.physics.add.existing(this.interactionZone);
+        // this.interactionZone.body.setAllowGravity(false);
+        // this.interactionZone.body.setImmovable(true);
        
         this.animKeys = {
-            up: `${this.npcName}-walk-up`,
-            down: `${this.npcName}-walk-down`,
-            right: `${this.npcName}-walk-right`
+            up: `${this.npcName}-up-walk`,
+            down: `${this.npcName}-down-walk`,
+            right: `${this.npcName}-right-walk`
         };
 
-        this.ensureAnim(this.animKeys.up, this.sourceIndex + 0, this.sourceIndex + 2);
-        this.ensureAnim(this.animKeys.down, this.sourceIndex + 20, this.sourceIndex + 22);
-        this.ensureAnim(this.animKeys.right, this.sourceIndex + 10, this.sourceIndex + 12);
+        this.idleFrames = {
+            up: this.frame("up-stand"),
+            down: this.frame("down-stand"),
+            right: this.frame("right-stand")
+        };
+
+        this.ensureAnim(this.animKeys.up, this.frame("up-walk-left"), this.frame("up-walk-right"));
+        this.ensureAnim(this.animKeys.down, this.frame("down-walk-left"), this.frame("down-walk-right"));
+        this.ensureAnim(this.animKeys.right, this.frame("right-walk-left"), this.frame("right-walk-right"));
+    }
+
+    frame(positionKey) {
+        const offset = this.characterPositions?.[positionKey] ?? 0;
+        return this.sourceIndex + offset;
     }
 
     ensureAnim(key, start, end) {
@@ -81,60 +92,44 @@ export class NPC {
         });
     }
 
-    setPlayerInteraction(playerInteraction) {
-        this.playerInteraction = playerInteraction;
-    }
-
 
     npcMovement() {
-        this.scene.time.addEvent({
-        delay: Phaser.Math.Between(2000, 4000),
-        loop: true,
-            callback: () => {
-                const step = this.collisionLayer?.tilemap?.tileWidth || this.tileSize;
+            this.scene.time.addEvent({
+            delay: Phaser.Math.Between(2000, 4000),
+            loop: true,
+                callback: () => {
+                    if (this.allowMovement) {
 
-                const directions = Phaser.Utils.Array.Shuffle([
-                    { dx: 0, dy: -step, velocity: { x: 0, y: -this.speed }, anim: this.animKeys.up, flipX: false },
-                    { dx: 0, dy: step,  velocity: { x: 0, y: this.speed },  anim: this.animKeys.down, flipX: false },
-                    { dx: -step, dy: 0, velocity: { x: -this.speed, y: 0 }, anim: this.animKeys.right, flipX: true },
-                    { dx: step, dy: 0,  velocity: { x: this.speed, y: 0 },  anim: this.animKeys.right, flipX: false },
-                ]);
+                        const step = this.collisionLayer?.tilemap?.tileWidth || this.tileSize;
 
-                this.npc.setVelocity(0);
+                        const directions = Phaser.Utils.Array.Shuffle([
+                            { dx: 0, dy: -step, velocity: { x: 0, y: -this.speed }, anim: this.animKeys.up, flipX: false, idle: this.idleFrames.up },
+                            { dx: 0, dy: step,  velocity: { x: 0, y: this.speed },  anim: this.animKeys.down, flipX: false, idle: this.idleFrames.down },
+                            { dx: -step, dy: 0, velocity: { x: -this.speed, y: 0 }, anim: this.animKeys.right, flipX: true, idle: this.idleFrames.right },
+                            { dx: step, dy: 0,  velocity: { x: this.speed, y: 0 },  anim: this.animKeys.right, flipX: false, idle: this.idleFrames.right },
+                        ]);
 
-                const nextMove = directions.find(dir => this.canMoveTo(dir.dx, dir.dy));
-
-                if (nextMove) {
-                    this.npc.setVelocity(nextMove.velocity.x, nextMove.velocity.y);
-                    this.npc.anims.play(nextMove.anim, true);
-                    this.npc.setFlipX(nextMove.flipX);
-
-                    this.scene.time.delayedCall(500, () => {
-                        if (!this.npc || !this.npc.body) return;
                         this.npc.setVelocity(0);
-                        this.npc.anims.stop();
-                        this.npc.setFrame(this.sourceIndex + 21);
-                    });
-                } else {
-                    this.npc.anims.stop();
-                    this.npc.setFrame(this.sourceIndex + 21);
+
+                        const nextMove = directions.find(dir => this.canMoveTo(dir.dx, dir.dy));
+
+                        if (nextMove) {
+                            this.npc.setVelocity(nextMove.velocity.x, nextMove.velocity.y);
+                            this.npc.anims.play(nextMove.anim, true);
+                            this.npc.setFlipX(nextMove.flipX);
+
+                            this.scene.time.delayedCall(500, () => {
+                                if (!this.npc || !this.npc.body) return;
+                                this.npc.setVelocity(0);
+                                this.npc.anims.stop();
+                                this.npc.setFrame(nextMove.idle);
+                            });
+                        } else {
+                            this.npc.anims.stop();
+                            this.npc.setFrame(this.idleFrames.down);
+                        }
+                    }
                 }
-            }
-        });
-    }
-
-    NPCInteraction() {
-        if (this.interactionZone) {
-            this.interactionZone.setPosition(this.npc.x, this.npc.y);
-        }
-
-        if (this.playerInteraction && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
-            // this.scene.cameras.main.setAlpha(0.2);
-            this.scene.scene.pause(this.scene.scene.key);
-            this.scene.scene.launch('Dialogue', { npc: this.npcName, npcSourceIndex: this.charactersData[this.npcName].faceSourceIndex, playerSourceIndex: this.charactersData[this.scene.player.playerName].faceSourceIndex});
-            this.scene.scene.bringToTop('Dialogue');
-        }
-
-        this.playerInteraction = false;
+            });
     }
 }

@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { GameMap } from "../map/GameMap.js"
 import { Player } from "../characters/Player.js"
 import { NPC } from "../characters/NPC.js"
+import { InteractionManager } from "../InteractionManager.js"
 
 // Import your matrices (same as your JS variables)
 import {
@@ -73,7 +74,9 @@ export class MainMenu extends Scene {
       l_Characters: 8
     };
 
-    const charactersData = this.cache.json.get("characters_data")
+    const charactersData = this.cache.json.get("characters_data");
+    this.charactersData = charactersData?.characters;
+    const charactersPositions = this.cache.json.get("characters_positions");
     
     // Render layers
     const gameMap = new GameMap(this, layersData, tilesets, tilesets_depth, mapTile);
@@ -97,17 +100,24 @@ export class MainMenu extends Scene {
 
 
     // PLAYER
-    this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
+    this.player = new Player(this, "charles", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
     //this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
 
     // NPC
-    this.npc = new NPC(this, "theo_brook", charactersData.characters,  tilesets.l_Characters, charTile, 60, collisionLayer, 200, 200);
+    this.npc = new NPC(this, "theo_brook", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 284, 72, true);
+    this.npc2 = new NPC(this, "luna_reed", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 246, 68, true);
 
-    this.npc2 = new NPC(this, "talia_carter", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 500, 500);
+    this.npc3 = new NPC(this, "jasper_fern", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 142, 395, false);
 
-    this.npc3 = new NPC(this, "archer_solen", charactersData.characters, tilesets.l_Characters, charTile, 60, collisionLayer, 300, 500);
+    this.npc4 = new NPC(this, "bob", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 391, 43, false);
 
-    
+    this.npc5 = new NPC(this, "roy_ashwood", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 103, 330, false);
+
+    this.npc6 = new NPC(this, "ivy_grant", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 377, 217, false);
+    this.npc7 = new NPC(this, "eli_carter", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 404, 217, false);
+
+    this.npc8 = new NPC(this, "amara_bennet", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 345, 402, false);
+    this.npc9 = new NPC(this, "zoe_porter", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 360, 402, false);
 
     this.physics.add.collider(
       this.player.player,
@@ -116,6 +126,34 @@ export class MainMenu extends Scene {
       undefined,
       this
     );
+
+    this.interactionManager = new InteractionManager(this, this.player, this.charactersData);
+    [
+      // this.npc,
+      // this.npc2,
+      this.npc3,
+      this.npc4,
+      this.npc5,
+      this.npc6,
+      this.npc7,
+      this.npc8,
+      this.npc9
+    ].forEach(npc => this.interactionManager.addNPC(npc));
+
+    const duoZone = this.add.zone(265, 70, 80, 80);
+    this.interactionManager.addGroupInteraction({
+      name: "theo_luna_duo",
+      participants: [this.npc, this.npc2],
+      zone: duoZone,
+      repeatable: true,
+      dialogueNpcName: "theo_brook"
+    });
+
+      this.input.on('pointermove', (pointer) => {
+        // pointer.x / pointer.y are canvas coordinates
+        // pointer.worldX / worldY give world coordinates with cameras
+        console.log(`x=${pointer.x}, y=${pointer.y}`);
+      });
 
     // this.physics.add.overlap(this.player.player, this.npc.interactionZone, () => {
     //   this.npc.setPlayerInteraction(true);
@@ -151,23 +189,12 @@ export class MainMenu extends Scene {
   }
 
   update() {
-    const overlap1 = this.physics.overlap(this.player.player, this.npc.interactionZone);
-    const overlap2 = this.physics.overlap(this.player.player, this.npc2.interactionZone);
-    const overlap3 = this.physics.overlap(this.player.player, this.npc3.interactionZone);
-
-    this.npc.setPlayerInteraction(overlap1);
-    this.npc2.setPlayerInteraction(overlap2);
-    this.npc3.setPlayerInteraction(overlap3);
-
-    const anyOverlap = overlap1 || overlap2 || overlap3;
-    this.player.setInteraction(anyOverlap);
+    this.interactionManager.update();
+    // this.player.setInteraction(anyOverlap);
 
     this.player.playerMovement();
 
-    this.player.playerInteraction();
-    this.npc.NPCInteraction();
-    this.npc2.NPCInteraction();
-    this.npc3.NPCInteraction();
+    // this.player.playerInteraction();
 
     // this.pauseScene(anyOverlap);
   }

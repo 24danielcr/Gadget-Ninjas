@@ -49,16 +49,16 @@
             "spriteSourceIndex": 10
         },
         "talia_carter": {
-            "faceSourceIndex": 19,
-            "spriteSourceIndex": 12
+            "faceSourceIndex": 18,
+            "spriteSourceIndex": 11
         },
         "lisa_frost": {
             "faceSourceIndex": 19,
-            "spriteSourceIndex": 13
+            "spriteSourceIndex": 12
         },
         "archer_solen": {
             "faceSourceIndex": 20,
-            "spriteSourceIndex": 14
+            "spriteSourceIndex": 13
         },
         "jax_knox": {
             "faceSourceIndex": 21,
