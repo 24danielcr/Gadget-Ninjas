@@ -14,19 +14,19 @@ export class Boot extends Scene
 
         // this.load.image('background', 'assets/bg.png');
 
-        this.load.image("terrain", "../../../assets/terrain.png");
-        this.load.image("decorations", "../../../assets/decorations.png");
-        this.load.spritesheet("characters", "../../../assets/characters/CGabrielChars24x24.png", {
+        this.load.image("terrain", "/assets/images/terrain.png");
+        this.load.image("decorations", "/assets/images/decorations.png");
+        this.load.spritesheet("characters", "/assets/characters/CGabrielChars24x24.png", {
             frameWidth: 24,
             frameHeight: 24
         });
-        
-        this.load.spritesheet("exclamationMark", "../../../assets/exclamationmark.png", {
+
+        this.load.spritesheet("exclamationMark", "/assets/images/exclamationmark.png", {
             frameWidth: 17,
             frameHeight: 17
         });
 
-        this.load.spritesheet("characters_face", "../../../assets/characters/CGabrielFaces48x48.png", {
+        this.load.spritesheet("characters_face", "/assets/characters/CGabrielFaces48x48.png", {
             frameWidth: 48,
             frameHeight: 48
         });
