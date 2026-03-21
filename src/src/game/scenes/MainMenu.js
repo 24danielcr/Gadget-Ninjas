@@ -74,9 +74,11 @@ export class MainMenu extends Scene {
       l_Characters: 8
     };
 
-    const charactersData = this.cache.json.get("characters_data");
-    this.charactersData = charactersData?.characters;
+    const charactersData = this.cache.json.get("characters_data")?.characters;
+    
     const charactersPositions = this.cache.json.get("characters_positions");
+
+    const missions = this.cache.json.get("missions")?.missions;
     
     // Render layers
     const gameMap = new GameMap(this, layersData, tilesets, tilesets_depth, mapTile);
@@ -100,24 +102,24 @@ export class MainMenu extends Scene {
 
 
     // PLAYER
-    this.player = new Player(this, "charles", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
+    this.player = new Player(this, "charles", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
     //this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
 
     // NPC
-    this.npc = new NPC(this, "theo_brook", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 284, 72, true);
-    this.npc2 = new NPC(this, "luna_reed", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 246, 68, true);
+    this.npc = new NPC(this, "theo_brook", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 284, 72, true);
+    this.npc2 = new NPC(this, "luna_reed", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 246, 68, true);
 
-    this.npc3 = new NPC(this, "jasper_fern", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 142, 395, false);
+    this.npc3 = new NPC(this, "jasper_fern", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 142, 395, false);
 
-    this.npc4 = new NPC(this, "bob", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 391, 43, false);
+    this.npc4 = new NPC(this, "bob", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 391, 43, false);
 
-    this.npc5 = new NPC(this, "roy_ashwood", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 103, 330, false);
+    this.npc5 = new NPC(this, "roy_ashwood", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 103, 330, false);
 
-    this.npc6 = new NPC(this, "ivy_grant", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 377, 217, false);
-    this.npc7 = new NPC(this, "eli_carter", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 404, 217, false);
+    this.npc6 = new NPC(this, "ivy_grant", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 377, 217, false);
+    this.npc7 = new NPC(this, "eli_carter", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 404, 217, false);
 
-    this.npc8 = new NPC(this, "amara_bennet", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 345, 402, false);
-    this.npc9 = new NPC(this, "zoe_porter", charactersData.characters, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 360, 402, false);
+    this.npc8 = new NPC(this, "amara_bennet", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 345, 402, false);
+    this.npc9 = new NPC(this, "zoe_porter", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 360, 402, false);
 
     this.physics.add.collider(
       this.player.player,
@@ -127,7 +129,7 @@ export class MainMenu extends Scene {
       this
     );
 
-    this.interactionManager = new InteractionManager(this, this.player, this.charactersData);
+    this.interactionManager = new InteractionManager(this, this.player, charactersData, missions);
     [
       // this.npc,
       // this.npc2,
@@ -140,13 +142,44 @@ export class MainMenu extends Scene {
       this.npc9
     ].forEach(npc => this.interactionManager.addNPC(npc));
 
-    const duoZone = this.add.zone(265, 70, 80, 80);
-    this.interactionManager.addGroupInteraction({
+    this.interactionManager.addInteraction({
       name: "theo_luna_duo",
       participants: [this.npc, this.npc2],
-      zone: duoZone,
+      zone: this.add.zone(265, 70, 80, 80),
       repeatable: true,
-      dialogueNpcName: "theo_brook"
+      dialogueName: "webcam"
+    });
+
+    this.interactionManager.addInteraction({
+      name: "jasper_fern_solo",
+      participants: [this.npc3],
+      zone: this.add.zone(141, 398, 40, 40),
+      repeatable: true,
+      dialogueName: "headphones"
+    });
+
+    this.interactionManager.addInteraction({
+      name: "roy_ashwood_solo",
+      participants: [this.npc5],
+      zone: this.add.zone(106, 337, 40, 40),
+      repeatable: true,
+      dialogueName: "smart_watch"
+    });
+
+    this.interactionManager.addInteraction({
+      name: "eli_ivy_duo",
+      participants: [this.npc6, this.npc7],
+      zone: this.add.zone(392, 219, 40, 40),
+      repeatable: true,
+      dialogueName: "printer"
+    });
+
+    this.interactionManager.addInteraction({
+      name: "amara_zoe_duo",
+      participants: [this.npc8, this.npc9],
+      zone: this.add.zone(351, 410, 40, 40),
+      repeatable: true,
+      dialogueName: "digital_camera"
     });
 
       this.input.on('pointermove', (pointer) => {

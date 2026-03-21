@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
 
 export class InteractionManager {
-  constructor(scene, player, charactersData) {
+  constructor(scene, player, charactersData, missions) {
     this.scene = scene;
     this.player = player;
     this.charactersData = charactersData;
+    this.missions = missions;
     this.npcs = [];
     this.groups = [];
     this.interactKey = scene.input.keyboard.addKey('E');
@@ -12,16 +13,16 @@ export class InteractionManager {
   }
 
   addNPC(npc) {
-    const range = npc.interactionRange || (npc.tileSize ? npc.tileSize * 1.5 : 32);
-    const zone = this.scene.add.zone(npc.npc.x, npc.npc.y, range, range);
-    this.scene.physics.add.existing(zone);
-    zone.body.setAllowGravity(false);
-    zone.body.setImmovable(true);
-    npc.interactionZone = zone;
+    // const range = npc.interactionRange || (npc.tileSize ? npc.tileSize * 1.5 : 32);
+    // const zone = this.scene.add.zone(npc.npc.x, npc.npc.y, range, range);
+    // this.scene.physics.add.existing(zone);
+    // zone.body.setAllowGravity(false);
+    // zone.body.setImmovable(true);
+    // npc.interactionZone = zone;
     this.npcs.push(npc);
   }
 
-  addGroupInteraction({ name, participants, zone, repeatable = false, dialogueNpcName }) {
+  addInteraction({ name, participants, zone, repeatable = false, dialogueName }) {
     if (!zone.body) {
       this.scene.physics.add.existing(zone);
       zone.body.setAllowGravity(false);
@@ -33,21 +34,24 @@ export class InteractionManager {
       participants,
       zone,
       repeatable,
-      dialogueNpcName,
+      dialogueName,
       consumed: false
     });
   }
 
-  launchDialogue(npcName) {
-    const npcData = this.charactersData?.[npcName];
-    const playerData = this.charactersData?.[this.player.playerName];
+  launchDialogue(group) {
+    const npcData = this.charactersData?.[group.participants[0].npcName];
+    // const playerData = this.charactersData?.[this.player.playerName];
     const npcSourceIndex = npcData?.faceSourceIndex ?? 0;
-    const playerSourceIndex = playerData?.faceSourceIndex ?? 0;
+
+    const mission = this.missions[group.dialogueName];
+    // const playerSourceIndex = playerData?.faceSourceIndex ?? 0;
+
     this.scene.scene.pause(this.scene.scene.key);
     this.scene.scene.launch('Dialogue', {
-      npc: npcName,
+      group,
       npcSourceIndex,
-      playerSourceIndex
+      mission
     });
     this.scene.scene.bringToTop('Dialogue');
   }
@@ -82,33 +86,34 @@ export class InteractionManager {
       anyOverlap = true;
 
       if (!dialogueTriggered && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
-        const npcName = group.dialogueNpcName ?? group.participants?.[0]?.npcName;
-        if (npcName) {
-          this.launchDialogue(npcName);
-          dialogueTriggered = true;
-          if (!group.repeatable) {
-            group.consumed = true;
-          }
-        }
+        this.launchDialogue(group);
+        // const npcName = group.dialogueName ?? group.participants?.[0]?.npcName;
+        // if (npcName) {
+        //   this.launchDialogue(npcName);
+        //   dialogueTriggered = true;
+        //   if (!group.repeatable) {
+        //     group.consumed = true;
+        //   }
+        // }
       }
     });
 
-    this.npcs.forEach(npc => {
-      if (npc.interactionZone) {
-        npc.interactionZone.setPosition(npc.npc.x, npc.npc.y);
-      }
+    // this.npcs.forEach(npc => {
+    //   if (npc.interactionZone) {
+    //     npc.interactionZone.setPosition(npc.npc.x, npc.npc.y);
+    //   }
 
-      const overlap = this.scene.physics.overlap(this.player.player, npc.interactionZone);
-      if (overlap && !dialogueTriggered) {
-        anyOverlap = true;
-        npcToTalk = npc;
-      }
-    });
+    //   const overlap = this.scene.physics.overlap(this.player.player, npc.interactionZone);
+    //   if (overlap && !dialogueTriggered) {
+    //     anyOverlap = true;
+    //     npcToTalk = npc;
+    //   }
+    // });
 
-    if (!dialogueTriggered && npcToTalk && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
-      this.launchDialogue(npcToTalk.npcName);
-      dialogueTriggered = true;
-    }
+    // if (!dialogueTriggered && npcToTalk && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
+    //   this.launchDialogue(npcToTalk.npcName);
+    //   dialogueTriggered = true;
+    // }
 
     this.updateIcon(anyOverlap && !dialogueTriggered);
     return anyOverlap && !dialogueTriggered;

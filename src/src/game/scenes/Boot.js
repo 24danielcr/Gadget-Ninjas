@@ -34,6 +34,7 @@ export class Boot extends Scene
     //     this.load.json('characters_data', new URL('../characters/data/characters.json', import.meta.url).href);
         this.load.json('characters_data', '/assets/characters/data/characters.json');
         this.load.json('characters_positions', '/assets/characters/data/positions.json');
+        this.load.json('missions', '/assets/characters/data/missions.json');
     }
 
     create ()
