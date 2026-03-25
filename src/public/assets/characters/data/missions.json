@@ -419,5 +419,121 @@
                 { "speaker": "daniel_moon", "text": "Simple things still work well." }
             ]
         }
+    },
+    "bob_introductions": {
+        "webcam": [
+            { "speaker": "bob", "text": "Psst! Hey, you! Yes, you. Come here, I've got a mission for you." },
+            { "speaker": "player", "choices": ["A mission? I'm in!", "Is this going to be dangerous?", "Do I get paid for this?"] },
+            { "speaker": "bob", "text": "See those two over there? Theo Brook and Luna Reed? Luna's showing off some new gadget." },
+            { "speaker": "player", "choices": ["Ooh, what is it?", "Should I just go ask her?", "I'm already on my way!"] },
+            { "speaker": "bob", "text": "That's exactly what I need you to find out! Go listen in on their conversation and report back to me." },
+            { "speaker": "player", "choices": ["On it, boss!", "This feels a little sneaky...", "What do I get if I figure it out?"] },
+            { "speaker": "bob", "text": "The satisfaction of a job well done! Now go, go, go!" }
+        ],
+        "headphones": [
+            { "speaker": "bob", "text": "Alright, superstar. See that person over there? Jasper Fern." },
+            { "speaker": "player", "choices": ["What about them?", "They look like they're in their own world.", "Are those things on their ears?"] },
+            { "speaker": "bob", "text": "Exactly! They've got something on their ears and haven't heard a single word I've said to them all morning." },
+            { "speaker": "player", "choices": ["That's kind of rude.", "Honestly, goals.", "Maybe they just don't like you, Bob."] },
+            { "speaker": "bob", "text": "Ha! Probably! But I need you to go find out what that gadget is and what it does. Good luck getting their attention!" }
+        ],
+        "smart_watch": [
+            { "speaker": "bob", "text": "Quick question — do you know what time it is?" },
+            { "speaker": "player", "choices": ["I have no idea.", "Time for you to get a watch?", "Why, are you late for something?"] },
+            { "speaker": "bob", "text": "Well Roy Ashwood always knows! And I've never seen them pull out a phone. Go ask them and pay attention to how they check the time." },
+            { "speaker": "player", "choices": ["Ooh, mysterious.", "Maybe they just have really good instincts.", "I'll go find out!"] },
+            { "speaker": "bob", "text": "It's not instincts — it's on their wrist! Now go find out what it is. You've got this." }
+        ],
+        "printer": [
+            { "speaker": "bob", "text": "Okay, so. Eli Carter's dog ate their homework last night." },
+            { "speaker": "player", "choices": ["Classic excuse... wait, it's real?", "Oh no! Poor Eli.", "That dog has great taste."] },
+            { "speaker": "bob", "text": "Very real! Eli is talking to Ivy Grant about how to fix the situation. There's a gadget that can save the day." },
+            { "speaker": "player", "choices": ["A gadget that reverses dog digestion?", "I think I know where this is going.", "I'm listening..."] },
+            { "speaker": "bob", "text": "Go eavesdrop — I mean, go listen in on their conversation and find out what gadget comes to the rescue!" }
+        ],
+        "digital_camera": [
+            { "speaker": "bob", "text": "I just spotted Amara Bennet pointing something at Zoe Porter and yelling 'say cheese!'" },
+            { "speaker": "player", "choices": ["Are they okay?", "Is that a threat?", "Ooh, are they taking pictures?"] },
+            { "speaker": "bob", "text": "Pictures, yes! But with what exactly? Go check it out — and see if that gadget can do anything besides snap photos!" },
+            { "speaker": "player", "choices": ["I love a good mystery.", "What's in it for me?", "Already gone!"] },
+            { "speaker": "bob", "text": "The thrill of knowledge! That's what's in it for you. Now scoot!" }
+        ],
+        "computer_mouse": [
+            { "speaker": "bob", "text": "Okay, this one is personal. My nephew just got a brand new desktop computer." },
+            { "speaker": "player", "choices": ["Nice! Lucky kid.", "Let me guess — something's missing?", "Is it a good one?"] },
+            { "speaker": "bob", "text": "Something IS missing! He can't even use it. Go listen to Hazel Pike and Talia Carter — they're talking about the exact same problem." },
+            { "speaker": "player", "choices": ["What a coincidence!", "Is your nephew Hazel or Talia?", "I'll go find out what's missing!"] },
+            { "speaker": "bob", "text": "Not a coincidence — I planned this whole mission! Now go find out what gadget my nephew is desperately missing!" }
+        ],
+        "tablet": [
+            { "speaker": "bob", "text": "You know what I find fascinating? Some gadgets can do like five different things." },
+            { "speaker": "player", "choices": ["Like a Swiss Army knife?", "Sounds suspicious.", "I can also do five things!"] },
+            { "speaker": "bob", "text": "Ha! Go talk to Lisa Frost and Archer Solen. Archer has one of those multi-tasking gadgets and uses it for everything." },
+            { "speaker": "player", "choices": ["Everything? Like cooking?", "I'm on it!", "What are they using it for right now?"] },
+            { "speaker": "bob", "text": "Find out for yourself — that's the whole point of the mission! Go, go, go!" }
+        ],
+        "microphone": [
+            { "speaker": "bob", "text": "Did you hear that? Someone's testing something over there." },
+            { "speaker": "player", "choices": ["Testing... 1, 2, 3?", "Testing what exactly?", "I didn't hear anything."] },
+            { "speaker": "bob", "text": "That's Jax Knox! He's got some gadget that makes his voice super loud. Go find out what it is!" },
+            { "speaker": "player", "choices": ["A megaphone?", "I could use one of those.", "On my way!"] },
+            { "speaker": "bob", "text": "Maybe! Only one way to find out. Go talk to Jax and Nolan Lock and get the full story!" }
+        ],
+        "monitor": [
+            { "speaker": "bob", "text": "I walked past Sylas Star's desk today and thought they had a TV sitting on it." },
+            { "speaker": "player", "choices": ["A TV on a desk? Fancy.", "Was it playing cartoons?", "Maybe they do?"] },
+            { "speaker": "bob", "text": "Corin Crest thought the exact same thing! Go listen to them figure it out together. Turns out it's a different gadget entirely." },
+            { "speaker": "player", "choices": ["A very small TV?", "Ooh, I wonder what it is.", "I'll go check it out!"] },
+            { "speaker": "bob", "text": "Bigger than small, smaller than a TV! Now go — your curiosity awaits." }
+        ],
+        "smart_tv": [
+            { "speaker": "bob", "text": "It's raining outside today. Perfect day to stay in and watch something, right?" },
+            { "speaker": "player", "choices": ["Agreed, 100%.", "I'd rather go splash in puddles.", "What does this have to do with a mission?"] },
+            { "speaker": "bob", "text": "Lucas Miles and Sofia Ford had the same idea! They're turning on some kind of TV. But it's not just any TV..." },
+            { "speaker": "player", "choices": ["A 3D TV?", "A TV with feelings?", "A smart TV?"] },
+            { "speaker": "bob", "text": "Go find out exactly what makes it so special! I'd check myself but... I'm very busy. Extremely busy." }
+        ],
+        "calculator": [
+            { "speaker": "bob", "text": "Quick, what's 347 multiplied by 82?" },
+            { "speaker": "player", "choices": ["...28,454?", "My brain just crashed.", "Can I use a calculator?"] },
+            { "speaker": "bob", "text": "Layla Kim had the same problem with her math homework! Go listen to her and Hannah Blue figure it out." },
+            { "speaker": "player", "choices": ["I feel Layla's pain deeply.", "Is the answer a calculator?", "On my way!"] },
+            { "speaker": "bob", "text": "Find out what gadget saves the day — and whether it ever makes mistakes. Numbers don't lie!" }
+        ],
+        "mp3_player_earphones": [
+            { "speaker": "bob", "text": "I keep hearing music but I can't find the speakers anywhere. Am I going crazy?" },
+            { "speaker": "player", "choices": ["Probably a little, yeah.", "Maybe it's all in your head, Bob.", "It's coming from over there!"] },
+            { "speaker": "bob", "text": "It's coming from Aria Price! She's got some gadget playing music and things in her ears too. Go investigate!" },
+            { "speaker": "player", "choices": ["A tiny private concert?", "I love a music mystery.", "I'll track it down!"] },
+            { "speaker": "bob", "text": "Two gadgets for the price of one today! The one playing the music AND the things in her ears. Go find out what both do!" }
+        ],
+        "router": [
+            { "speaker": "bob", "text": "Have you ever had the internet just... stop? Right in the middle of something important?" },
+            { "speaker": "player", "choices": ["Once during a really good video. Devastating.", "Never, I'm very lucky.", "Every single day, Bob."] },
+            { "speaker": "bob", "text": "Nixi Spark is going through that right now! And John Bolt seems to know exactly which gadget is responsible." },
+            { "speaker": "player", "choices": ["The villain of the household!", "Is it a secret gadget?", "I'll go find out what it is!"] },
+            { "speaker": "bob", "text": "Go listen in! This gadget affects every device in the building. Very important stuff — don't let Nixi down!" }
+        ],
+        "laptop": [
+            { "speaker": "bob", "text": "Can you type an essay without a desk?" },
+            { "speaker": "player", "choices": ["Sounds very uncomfortable.", "Challenge accepted.", "Is that a riddle, Bob?"] },
+            { "speaker": "bob", "text": "Fenn Lux can! They brought a gadget to the library that lets them do computer stuff from anywhere. Go find out what it is!" },
+            { "speaker": "player", "choices": ["A magic typewriter?", "Ooh, I think I know!", "I'm heading there now!"] },
+            { "speaker": "bob", "text": "Go confirm your hunch with Taro Ember and Fenn Lux. And no peeking at what Fenn is typing!" }
+        ],
+        "smart_phone": [
+            { "speaker": "bob", "text": "You ever notice how some people are always looking down at something in their hand?" },
+            { "speaker": "player", "choices": ["Are you talking about me?", "I thought they were checking for ants.", "Yeah, what are they always looking at?"] },
+            { "speaker": "bob", "text": "That's Priya Flux! Always got that device with them. Go talk to Kiko Flux and Priya — find out what it is and everything it can do." },
+            { "speaker": "player", "choices": ["A magic rectangle?", "I'll go ask them!", "Is it more than just calling people?"] },
+            { "speaker": "bob", "text": "Much, much more! That's exactly what you need to find out. Off you go!" }
+        ],
+        "cell_phone": [
+            { "speaker": "bob", "text": "Not every gadget has to be brand new to be useful, you know." },
+            { "speaker": "player", "choices": ["Like you, Bob?", "Deep thought for a Tuesday.", "What are you getting at?"] },
+            { "speaker": "bob", "text": "Ha! Fernanda Valle travels a lot and uses a very old, simple gadget to stay in touch. Daniel Moon just asked them about it." },
+            { "speaker": "player", "choices": ["Old school! I respect it.", "How old are we talking?", "What does it do?"] },
+            { "speaker": "bob", "text": "Go find out! Sometimes the simplest tools do exactly what you need — nothing more, nothing less." }
+        ]
     }
 }

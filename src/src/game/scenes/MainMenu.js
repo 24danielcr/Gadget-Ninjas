@@ -3,6 +3,7 @@ import { GameMap } from "../map/GameMap.js"
 import { Player } from "../characters/Player.js"
 import { NPC } from "../characters/NPC.js"
 import { InteractionManager } from "../InteractionManager.js"
+import { MissionManager } from '../MissionManager.js';
 
 // Import your matrices (same as your JS variables)
 import {
@@ -76,9 +77,11 @@ export class MainMenu extends Scene {
 
     const charactersData = this.cache.json.get("characters_data")?.characters;
     
-    const charactersPositions = this.cache.json.get("characters_positions");
+    const charactersPositions = this.cache.json.get("characters_positions")?.positions;
 
-    const missions = this.cache.json.get("missions")?.missions;
+    const missions = this.cache.json.get("missions");
+
+    const missionsOrder = this.cache.json.get("missions_order")?.missions_order;
     
     // Render layers
     const gameMap = new GameMap(this, layersData, tilesets, tilesets_depth, mapTile);
@@ -102,24 +105,24 @@ export class MainMenu extends Scene {
 
 
     // PLAYER
-    this.player = new Player(this, "charles", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
+    this.player = new Player(this, "charles", charactersData, charactersPositions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
     //this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
 
     // NPC
-    this.npc = new NPC(this, "theo_brook", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 284, 72, true);
-    this.npc2 = new NPC(this, "luna_reed", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 246, 68, true);
+    this.npc = new NPC(this, "theo_brook", charactersData, charactersPositions, tilesets.l_Characters, charTile, 60, collisionLayer, 284, 72, true);
+    this.npc2 = new NPC(this, "luna_reed", charactersData, charactersPositions, tilesets.l_Characters, charTile, 60, collisionLayer, 246, 68, true);
 
-    this.npc3 = new NPC(this, "jasper_fern", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 60, collisionLayer, 142, 395, false);
+    this.npc3 = new NPC(this, "jasper_fern", charactersData, charactersPositions, tilesets.l_Characters, charTile, 60, collisionLayer, 142, 395, false);
 
-    this.npc4 = new NPC(this, "bob", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 391, 43, false);
+    this.npc4 = new NPC(this, "bob", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 391, 43, false);
 
-    this.npc5 = new NPC(this, "roy_ashwood", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 103, 330, false);
+    this.npc5 = new NPC(this, "roy_ashwood", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 103, 330, false);
 
-    this.npc6 = new NPC(this, "ivy_grant", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 377, 217, false);
-    this.npc7 = new NPC(this, "eli_carter", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 404, 217, false);
+    this.npc6 = new NPC(this, "ivy_grant", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 377, 217, false);
+    this.npc7 = new NPC(this, "eli_carter", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 404, 217, false);
 
-    this.npc8 = new NPC(this, "amara_bennet", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 345, 402, false);
-    this.npc9 = new NPC(this, "zoe_porter", charactersData, charactersPositions.positions, tilesets.l_Characters, charTile, 40, collisionLayer, 360, 402, false);
+    this.npc8 = new NPC(this, "amara_bennet", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 345, 402, false);
+    this.npc9 = new NPC(this, "zoe_porter", charactersData, charactersPositions, tilesets.l_Characters, charTile, 40, collisionLayer, 360, 402, false);
 
     this.physics.add.collider(
       this.player.player,
@@ -129,18 +132,30 @@ export class MainMenu extends Scene {
       this
     );
 
-    this.interactionManager = new InteractionManager(this, this.player, charactersData, missions);
+    this.missionManager = new MissionManager(missionsOrder['world_one']);
+    // this.missionManager.assignNextMission();
+
+    this.interactionManager = new InteractionManager(this, this.player, charactersData, missions, this.missionManager);
     [
       // this.npc,
       // this.npc2,
       this.npc3,
-      this.npc4,
+      // this.npc4,
       this.npc5,
       this.npc6,
       this.npc7,
       this.npc8,
       this.npc9
     ].forEach(npc => this.interactionManager.addNPC(npc));
+
+    this.interactionManager.addInteraction({
+      name: "bob_mission_giver",
+      participants: [this.npc4],
+      zone: this.add.zone(391, 52, 80, 80),
+      repeatable: true,
+      dialogueName: "mission_giver",
+      isMissionGiver: true
+    });
 
     this.interactionManager.addInteraction({
       name: "theo_luna_duo",

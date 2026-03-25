@@ -1,15 +1,20 @@
 import Phaser from 'phaser';
+import { EventBus } from './EventBus.js';
 
 export class InteractionManager {
-  constructor(scene, player, charactersData, missions) {
+  constructor(scene, player, charactersData, missions, missionManager) {
     this.scene = scene;
     this.player = player;
     this.charactersData = charactersData;
     this.missions = missions;
+    this.missionManager = missionManager;
     this.npcs = [];
     this.groups = [];
     this.interactKey = scene.input.keyboard.addKey('E');
     this.interactionIcon = null;
+
+    EventBus.on('mission-accepted', () => { this.missionManager.assignNextMission(); });
+    EventBus.on('mission-complete', (missionKey) => { this.missionManager.completeMission(missionKey); });
   }
 
   addNPC(npc) {
@@ -22,7 +27,7 @@ export class InteractionManager {
     this.npcs.push(npc);
   }
 
-  addInteraction({ name, participants, zone, repeatable = false, dialogueName }) {
+  addInteraction({ name, participants, zone, repeatable, dialogueName, isMissionGiver = false }) {
     if (!zone.body) {
       this.scene.physics.add.existing(zone);
       zone.body.setAllowGravity(false);
@@ -35,23 +40,34 @@ export class InteractionManager {
       zone,
       repeatable,
       dialogueName,
+      isMissionGiver,
       consumed: false
     });
   }
 
   launchDialogue(group) {
     const npcData = this.charactersData?.[group.participants[0].npcName];
-    // const playerData = this.charactersData?.[this.player.playerName];
     const npcSourceIndex = npcData?.faceSourceIndex ?? 0;
 
-    const mission = this.missions[group.dialogueName];
-    // const playerSourceIndex = playerData?.faceSourceIndex ?? 0;
+    let mission, missionKey;
+    if (group.isMissionGiver) {
+      const nextKey = this.missionManager.missionOrder.find(
+        m => !this.missionManager.completedMissions.has(m)
+      );
+      mission = { dialogue: this.missions['bob_introductions'][nextKey] };
+      missionKey = nextKey;
+    } else {
+      mission = this.missions['missions'][group.dialogueName];
+      missionKey = group.dialogueName;
+    }
 
     this.scene.scene.pause(this.scene.scene.key);
     this.scene.scene.launch('Dialogue', {
       group,
       npcSourceIndex,
-      mission
+      mission,
+      isMissionGiver: group.isMissionGiver,
+      missionKey
     });
     this.scene.scene.bringToTop('Dialogue');
   }
@@ -75,18 +91,22 @@ export class InteractionManager {
     this.ensureIcon();
     let anyOverlap = false;
     let dialogueTriggered = false;
-    let npcToTalk = null;
 
     this.groups.forEach(group => {
       if (group.consumed) return;
 
       const overlap = this.scene.physics.overlap(this.player.player, group.zone);
-      if (!overlap) return;
+      const allowed = group.isMissionGiver
+        ? this.missionManager.isMissionGiverAvailable()
+        : this.missionManager.isAvailable(group.dialogueName);
+
+      if (!overlap || !allowed) return;
 
       anyOverlap = true;
 
       if (!dialogueTriggered && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
         this.launchDialogue(group);
+        dialogueTriggered = true;
         // const npcName = group.dialogueName ?? group.participants?.[0]?.npcName;
         // if (npcName) {
         //   this.launchDialogue(npcName);

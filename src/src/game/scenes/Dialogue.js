@@ -1,4 +1,5 @@
 import Phaser, { Scene } from 'phaser';
+import { EventBus } from '../EventBus.js';
 
 export class Dialogue extends Scene {
     constructor() {
@@ -12,6 +13,9 @@ export class Dialogue extends Scene {
         this.npcSourceIndex = data?.npcSourceIndex ?? '-1';
         this.mission = data?.mission ?? '-1';
         this.playerSourceIndex = data?.playerSourceIndex ?? '0';
+        this.isMissionGiver = data?.isMissionGiver ?? false;
+        this.missionKey = data?.missionKey ?? null;
+
         this.interactKey = this.input.keyboard.addKey('E');
     }
 
@@ -29,11 +33,25 @@ export class Dialogue extends Scene {
                 this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
                 this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
                 this.playText.setText('Play Conversation');
+
+                if (this.isMissionGiver) {
+                    EventBus.emit('mission-accepted');
+                    console.log('Mission Accepted!');
+                } else if (this.missionKey) {
+                    EventBus.emit('mission-complete', this.missionKey);
+                    console.log('Mission Completed!');
+                }
+
                 return;
             }
 
             const line = lines[this.currentLineIndex];
-            console.log(`${line["speaker"]}: ${line["text"]}`);
+
+            if (line["speaker"] === "player" && line["choices"]) {
+                console.log(`player options:\n${line["choices"].map((c, i) => `  ${i + 1}. ${c}`).join('\n')}`);
+            } else {
+                console.log(`${line["speaker"]}: ${line["text"]}`);
+            }
             this.currentLineIndex++;
 
             this.conversationTimer = this.time.delayedCall(2000, showLine);
