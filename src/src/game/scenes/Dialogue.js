@@ -15,6 +15,7 @@ export class Dialogue extends Scene {
         this.playerSourceIndex = data?.playerSourceIndex ?? '0';
         this.isMissionGiver = data?.isMissionGiver ?? false;
         this.missionKey = data?.missionKey ?? null;
+        this.quizPhase = data?.quizPhase ?? null;
 
         this.interactKey = this.input.keyboard.addKey('E');
     }
@@ -25,7 +26,15 @@ export class Dialogue extends Scene {
 
 
     playConversation() {
-        const lines = this.mission['dialogue'];
+        if (this.quizPhase) {
+            this.playQuiz();
+        } else {
+            this.playDialogue();
+        }
+    }
+
+    playDialogue() {
+        const lines = this.mission["dialogue"];
 
         const showLine = () => {
             if (this.currentLineIndex >= lines.length) {
@@ -37,9 +46,9 @@ export class Dialogue extends Scene {
                 if (this.isMissionGiver) {
                     EventBus.emit('mission-accepted');
                     console.log('Mission Accepted!');
-                } else if (this.missionKey) {
-                    EventBus.emit('mission-complete', this.missionKey);
-                    console.log('Mission Completed!');
+                } else {
+                    EventBus.emit('mission-npc-talked');
+                    console.log('Mission Quiz Accepted!');
                 }
 
                 return;
@@ -54,10 +63,42 @@ export class Dialogue extends Scene {
             }
             this.currentLineIndex++;
 
-            this.conversationTimer = this.time.delayedCall(2000, showLine);
+            this.conversationTimer = this.time.delayedCall(500, showLine);
         };
 
         showLine();
+    }
+
+    playQuiz() {
+        const questions = this.mission['questions'];
+
+        const showQuestion = () => {
+            if (this.currentLineIndex >= questions.length) {
+                this.currentLineIndex = 0;
+
+                if (this.missionKey) {
+                    EventBus.emit('mission-complete', this.missionKey);
+                    console.log('Mission Completed!');
+                }
+
+                return;
+            }
+
+            const question = questions[this.currentLineIndex];
+            console.log(question["text"]);
+
+            const options = [question["correct"], ...question["incorrect"]];
+            Phaser.Utils.Array.Shuffle(options);
+
+            console.log(`options:\n${options.map((c, i) => `  ${i + 1}. ${c}`).join('\n')}`);
+
+            this.currentLineIndex++;
+            
+            // Remove timer for future
+            this.conversationTimer = this.time.delayedCall(500, showQuestion);
+        };
+
+        showQuestion();
     }
 
     stopConversation() {

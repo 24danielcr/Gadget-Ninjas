@@ -105,7 +105,7 @@ export class MainMenu extends Scene {
 
 
     // PLAYER
-    this.player = new Player(this, "charles", charactersData, charactersPositions, tilesets.l_Characters, charTile, 60, collisionLayer, 100, 100);
+    this.player = new Player(this, "charles", charactersData, charactersPositions, tilesets.l_Characters, charTile, 120, collisionLayer, 100, 100);
     //this.player = new Player(this, "charles", charactersData.characters, tilesets.l_Characters, 0, charTile, 60, collisionLayer, 100, 100);
 
     // NPC
@@ -197,11 +197,11 @@ export class MainMenu extends Scene {
       dialogueName: "digital_camera"
     });
 
-      this.input.on('pointermove', (pointer) => {
-        // pointer.x / pointer.y are canvas coordinates
-        // pointer.worldX / worldY give world coordinates with cameras
-        console.log(`x=${pointer.x}, y=${pointer.y}`);
-      });
+      // this.input.on('pointermove', (pointer) => {
+      //   // pointer.x / pointer.y are canvas coordinates
+      //   // pointer.worldX / worldY give world coordinates with cameras
+      //   console.log(`x=${pointer.x}, y=${pointer.y}`);
+      // });
 
     // this.physics.add.overlap(this.player.player, this.npc.interactionZone, () => {
     //   this.npc.setPlayerInteraction(true);

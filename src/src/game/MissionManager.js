@@ -1,5 +1,13 @@
 export class MissionManager {
     constructor(missionOrder) {
+
+        this.states = Object.freeze({
+            idle: "idle",
+            active: "active",
+            awaiting_quiz: "awaiting_quiz"
+        });
+
+        this.currentState = this.states.idle;
         this.missionOrder = missionOrder;
         this.currentMission = null;
         this.completedMissions = new Set();
@@ -10,23 +18,34 @@ export class MissionManager {
 
         if (next) {
             this.currentMission = next
+            this.currentState = this.states.active;
         }
 
         return next ?? null;
     }
 
     isAvailable(mission) {
-        return this.currentMission === mission;
+        return (this.currentState === this.states.active || this.currentState === this.states.awaiting_quiz) && this.currentMission === mission;
     }
 
     completeMission(mission) {
         if (this.isAvailable(mission)) {
             this.completedMissions.add(mission);
             this.currentMission = null;
+
+            this.currentState = this.states.idle;
         }
     }
 
     isMissionGiverAvailable() {
-        return this.currentMission === null && this.missionOrder.some(m => !this.completedMissions.has(m));
+        return this.currentState === this.states.idle || this.currentState === this.states.awaiting_quiz;
+    }
+
+    markNpcTalked() {
+        this.currentState = this.states.awaiting_quiz;
+    }
+
+    isInQuizPhase() {
+        return this.currentState === this.states.awaiting_quiz;
     }
 }

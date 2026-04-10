@@ -14,6 +14,7 @@ export class InteractionManager {
     this.interactionIcon = null;
 
     EventBus.on('mission-accepted', () => { this.missionManager.assignNextMission(); });
+    EventBus.on('mission-npc-talked', () => {this.missionManager.markNpcTalked()});
     EventBus.on('mission-complete', (missionKey) => { this.missionManager.completeMission(missionKey); });
   }
 
@@ -49,13 +50,19 @@ export class InteractionManager {
     const npcData = this.charactersData?.[group.participants[0].npcName];
     const npcSourceIndex = npcData?.faceSourceIndex ?? 0;
 
-    let mission, missionKey;
+    let mission, missionKey, quizPhase;
     if (group.isMissionGiver) {
       const nextKey = this.missionManager.missionOrder.find(
-        m => !this.missionManager.completedMissions.has(m)
-      );
-      mission = { dialogue: this.missions['bob_introductions'][nextKey] };
-      missionKey = nextKey;
+          m => !this.missionManager.completedMissions.has(m)
+        );
+        missionKey = nextKey;
+
+        quizPhase = this.missionManager.isInQuizPhase();
+      if (quizPhase) {
+        mission = this.missions['missions'][this.missionManager.currentMission];
+      } else {
+        mission = { dialogue: this.missions['bob_introductions'][nextKey] };
+      }
     } else {
       mission = this.missions['missions'][group.dialogueName];
       missionKey = group.dialogueName;
@@ -67,7 +74,8 @@ export class InteractionManager {
       npcSourceIndex,
       mission,
       isMissionGiver: group.isMissionGiver,
-      missionKey
+      missionKey,
+      quizPhase
     });
     this.scene.scene.bringToTop('Dialogue');
   }
