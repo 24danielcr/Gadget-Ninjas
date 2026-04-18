@@ -47,8 +47,12 @@ export class InteractionManager {
   }
 
   launchDialogue(group) {
-    const npcData = this.charactersData?.[group.participants[0].npcName];
-    const npcSourceIndex = npcData?.faceSourceIndex ?? 0;
+    // const npcData = this.charactersData?.[group.participants[0].npcName];
+    // const npcSourceIndexes = npcData?.faceSourceIndex ?? 0;
+
+    const npcSourceIndexes = group.participants.map(p =>                                                                                                                         
+        this.charactersData?.[p.npcName]?.faceSourceIndex ?? 0                                                                                                                     
+    );
 
     let mission, missionKey, quizPhase;
     if (group.isMissionGiver) {
@@ -71,7 +75,7 @@ export class InteractionManager {
     this.scene.scene.pause(this.scene.scene.key);
     this.scene.scene.launch('Dialogue', {
       group,
-      npcSourceIndex,
+      npcSourceIndexes,
       mission,
       isMissionGiver: group.isMissionGiver,
       missionKey,
