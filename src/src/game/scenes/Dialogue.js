@@ -39,6 +39,10 @@ export class Dialogue extends Scene {
         const showLine = () => {
             if (this.currentLineIndex >= lines.length) {
                 this.currentLineIndex = 0;
+                // Restore all face sprites to full brightness when conversation ends
+                const allSprites = [...(this.npcFaceSprites || [])];
+                if (this.playerFace) allSprites.push(this.playerFace);
+                allSprites.forEach(sprite => sprite.setAlpha(1));
                 this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
                 this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
                 this.playText.setText('Play Conversation');
@@ -56,17 +60,106 @@ export class Dialogue extends Scene {
 
             const line = lines[this.currentLineIndex];
 
+            this.highlightSpeaker(line["speaker"]);
+
             if (line["speaker"] === "player" && line["choices"]) {
-                console.log(`player options:\n${line["choices"].map((c, i) => `  ${i + 1}. ${c}`).join('\n')}`);
+                // Pause auto-advance and show clickable choice buttons
+                this.currentLineIndex++;
+                this.showChoices(line["choices"], (chosenText) => {
+                    console.log(`player chose: ${chosenText}`);
+                    showLine();
+                });
             } else {
                 console.log(`${line["speaker"]}: ${line["text"]}`);
+                this.currentLineIndex++;
+                this.conversationTimer = this.time.delayedCall(500, showLine);
             }
-            this.currentLineIndex++;
-
-            this.conversationTimer = this.time.delayedCall(500, showLine);
         };
 
         showLine();
+    }
+
+    showChoices(choices, onChosen) {
+        this.clearChoiceUI();
+        this.choiceElements = [];
+
+        this.dialoguePanel.setVisible(false);
+        this.playButton.setVisible(false).setAlpha(0).disableInteractive();
+        this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
+        this.playText.setVisible(false);
+
+        const w = this.scale.width, h = this.scale.height;
+        const padX = 20;
+        const panelX = padX;
+        const panelY = h - 220;
+        const panelW = w - padX * 2;
+        const colGap = 8;
+        const rowGap = 4;
+        const btnW = choices.length <= 2 ? (panelW - colGap) / 2 : (panelW - colGap) / 2;
+        const btnH = 40;
+        const cols = 2;
+
+        // Label above choices
+        const label = this.add.text(w / 2, panelY - 18, 'What do you say?', {
+            fontFamily: 'Arial', fontSize: '13px', color: '#cccccc', fontStyle: 'italic'
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
+        this.choiceElements.push(label);
+
+        choices.forEach((choice, i) => {
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            const bx = panelX + col * (btnW + colGap);
+            const by = panelY + row * (btnH + rowGap);
+
+            const btnBg = this.add.graphics().setScrollFactor(0).setDepth(2);
+            const drawBtn = (fill, stroke, strokeAlpha = 1) => {
+                btnBg.clear();
+                btnBg.fillStyle(fill, 1);
+                btnBg.fillRoundedRect(bx, by, btnW, btnH, 8);
+                btnBg.lineStyle(2, stroke, strokeAlpha);
+                btnBg.strokeRoundedRect(bx, by, btnW, btnH, 8);
+            };
+            drawBtn(0x1a3a2a, 0x44aa88, 0.8);
+            this.choiceElements.push(btnBg);
+
+            btnBg.setInteractive(new Phaser.Geom.Rectangle(bx, by, btnW, btnH), Phaser.Geom.Rectangle.Contains);
+
+            const btnText = this.add.text(bx + btnW / 2, by + btnH / 2, choice, {
+                fontFamily: 'Arial', fontSize: '11px', color: '#ffffff',
+                wordWrap: { width: btnW - 12 }, align: 'center'
+            }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
+            this.choiceElements.push(btnText);
+
+            btnBg.on('pointerover', () => {
+                this.input.setDefaultCursor('pointer');
+                drawBtn(0x2a5a3a, 0x66ddaa);
+            });
+            btnBg.on('pointerout', () => {
+                this.input.setDefaultCursor('default');
+                drawBtn(0x1a3a2a, 0x44aa88, 0.8);
+            });
+            btnBg.on('pointerdown', () => {
+                drawBtn(0x22aa66, 0x44ffaa);
+                this.choiceElements.forEach(el => el.disableInteractive && el.disableInteractive());
+                this.input.setDefaultCursor('default');
+                this.time.delayedCall(300, () => {
+                    this.clearChoiceUI(true);
+                    onChosen(choice);
+                });
+            });
+        });
+    }
+
+    clearChoiceUI(restoreButtons = false) {
+        if (this.choiceElements) {
+            this.choiceElements.forEach(el => el.destroy());
+            this.choiceElements = [];
+        }
+        this.dialoguePanel.setVisible(true);
+        this.playText.setVisible(true);
+        if (restoreButtons) {
+            this.pauseButton.setVisible(true).setAlpha(1).setInteractive(this.pauseHitArea, Phaser.Geom.Rectangle.Contains);
+        }
     }
 
     playQuiz() {
@@ -205,11 +298,21 @@ export class Dialogue extends Scene {
         }
     }
 
+    highlightSpeaker(speakerName) {
+        // Dim all face sprites, then brighten the active speaker's sprite
+        const allSprites = [...(this.npcFaceSprites || [])];
+        if (this.playerFace) allSprites.push(this.playerFace);
+        allSprites.forEach(sprite => sprite.setAlpha(0.4));
+        const active = this.speakerSpriteMap?.[speakerName];
+        if (active) active.setAlpha(1);
+    }
+
     stopConversation() {
         if (this.conversationTimer) {
             this.conversationTimer.destroy();
             this.conversationTimer = null;
         }
+        this.clearChoiceUI();
     }
 
     create() {
@@ -217,6 +320,7 @@ export class Dialogue extends Scene {
         this.conversationTimer = null;
         this.pendingEvent = null;
         this.quizElements = [];
+        this.choiceElements = [];
 
         const w = this.scale.width, h = this.scale.height;
             this.dim = this.add.rectangle(0, 0, w, h, 0x000000, 0.5)
@@ -313,16 +417,23 @@ export class Dialogue extends Scene {
         this.pauseButton.off();
         this.pauseButton.setAlpha(0);
     
+        // Build NPC face sprites and a name→sprite map for speaker highlighting
+        this.npcFaceSprites = [];
+        this.speakerSpriteMap = {};
         let npcFaceX = 112;
-        for (const npcSourceIndex of this.npcSourceIndexes) {
-            this.add.sprite(npcFaceX, 180, "characters_face", npcSourceIndex).setScale(2);
+        const participants = Array.isArray(this.group?.participants) ? this.group.participants : [];
+        for (let i = 0; i < this.npcSourceIndexes.length; i++) {
+            const sprite = this.add.sprite(npcFaceX, 180, "characters_face", this.npcSourceIndexes[i]).setScale(2);
+            this.npcFaceSprites.push(sprite);
+            if (participants[i]?.npcName) {
+                this.speakerSpriteMap[participants[i].npcName] = sprite;
+            }
             npcFaceX += 95;
         }
 
-        // this.npcFace = this.add.sprite(112, 180, "characters_face", this.npcSourceIndex);
-        // this.npcFace.setScale(2);
         this.playerFace = this.add.sprite(336, 180, "characters_face", this.playerSourceIndex);
         this.playerFace.setScale(2);
+        this.speakerSpriteMap['player'] = this.playerFace;
 
     }
 

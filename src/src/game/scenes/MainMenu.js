@@ -4,6 +4,8 @@ import { Player } from "../characters/Player.js"
 import { NPC } from "../characters/NPC.js"
 import { InteractionManager } from "../InteractionManager.js"
 import { MissionManager } from '../MissionManager.js';
+import { MissionHud } from '../MissionHud.js';
+import { EventBus } from '../EventBus.js';
 
 // Import your matrices (same as your JS variables)
 import {
@@ -197,11 +199,18 @@ export class MainMenu extends Scene {
       dialogueName: "digital_camera"
     });
 
-      // this.input.on('pointermove', (pointer) => {
-      //   // pointer.x / pointer.y are canvas coordinates
-      //   // pointer.worldX / worldY give world coordinates with cameras
-      //   console.log(`x=${pointer.x}, y=${pointer.y}`);
-      // });
+    this.MissionHud = new MissionHud(this, this.missionManager, missions);
+
+    EventBus.once('all-missions-complete', () => {
+      this.scene.stop('Dialogue');
+      this.scene.start('GameOver');
+    });
+
+      this.input.on('pointermove', (pointer) => {
+        // pointer.x / pointer.y are canvas coordinates
+        // pointer.worldX / worldY give world coordinates with cameras
+        console.log(`x=${pointer.x}, y=${pointer.y}`);
+      });
 
     // this.physics.add.overlap(this.player.player, this.npc.interactionZone, () => {
     //   this.npc.setPlayerInteraction(true);

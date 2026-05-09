@@ -1,3 +1,5 @@
+import { EventBus } from './EventBus.js';
+
 export class MissionManager {
     constructor(missionOrder) {
 
@@ -32,8 +34,11 @@ export class MissionManager {
         if (this.isAvailable(mission)) {
             this.completedMissions.add(mission);
             this.currentMission = null;
-
             this.currentState = this.states.idle;
+
+            if (this.completedMissions.size === this.missionOrder.length) {
+                EventBus.emit('all-missions-complete');
+            }
         }
     }
 
