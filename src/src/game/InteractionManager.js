@@ -13,18 +13,16 @@ export class InteractionManager {
     this.interactKey = scene.input.keyboard.addKey('E');
     this.interactionIcon = null;
 
-    EventBus.on('mission-accepted', () => { this.missionManager.assignNextMission(); });
-    EventBus.on('mission-npc-talked', () => {this.missionManager.markNpcTalked()});
-    EventBus.on('mission-complete', (missionKey) => { this.missionManager.completeMission(missionKey); });
+    this._onMissionAccepted  = () => this.missionManager.assignNextMission();
+    this._onMissionNpcTalked = () => this.missionManager.markNpcTalked();
+    this._onMissionComplete  = (missionKey) => this.missionManager.completeMission(missionKey);
+
+    EventBus.on('mission-accepted',   this._onMissionAccepted);
+    EventBus.on('mission-npc-talked', this._onMissionNpcTalked);
+    EventBus.on('mission-complete',   this._onMissionComplete);
   }
 
   addNPC(npc) {
-    // const range = npc.interactionRange || (npc.tileSize ? npc.tileSize * 1.5 : 32);
-    // const zone = this.scene.add.zone(npc.npc.x, npc.npc.y, range, range);
-    // this.scene.physics.add.existing(zone);
-    // zone.body.setAllowGravity(false);
-    // zone.body.setImmovable(true);
-    // npc.interactionZone = zone;
     this.npcs.push(npc);
   }
 
@@ -47,9 +45,6 @@ export class InteractionManager {
   }
 
   launchDialogue(group) {
-    // const npcData = this.charactersData?.[group.participants[0].npcName];
-    // const npcSourceIndexes = npcData?.faceSourceIndex ?? 0;
-
     const npcSourceIndexes = group.participants.map(p =>                                                                                                                         
         this.charactersData?.[p.npcName]?.faceSourceIndex ?? 0                                                                                                                     
     );
@@ -119,35 +114,16 @@ export class InteractionManager {
       if (!dialogueTriggered && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
         this.launchDialogue(group);
         dialogueTriggered = true;
-        // const npcName = group.dialogueName ?? group.participants?.[0]?.npcName;
-        // if (npcName) {
-        //   this.launchDialogue(npcName);
-        //   dialogueTriggered = true;
-        //   if (!group.repeatable) {
-        //     group.consumed = true;
-        //   }
-        // }
       }
     });
 
-    // this.npcs.forEach(npc => {
-    //   if (npc.interactionZone) {
-    //     npc.interactionZone.setPosition(npc.npc.x, npc.npc.y);
-    //   }
-
-    //   const overlap = this.scene.physics.overlap(this.player.player, npc.interactionZone);
-    //   if (overlap && !dialogueTriggered) {
-    //     anyOverlap = true;
-    //     npcToTalk = npc;
-    //   }
-    // });
-
-    // if (!dialogueTriggered && npcToTalk && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
-    //   this.launchDialogue(npcToTalk.npcName);
-    //   dialogueTriggered = true;
-    // }
-
     this.updateIcon(anyOverlap && !dialogueTriggered);
     return anyOverlap && !dialogueTriggered;
+  }
+
+  destroy() {
+    EventBus.off('mission-accepted',   this._onMissionAccepted);
+    EventBus.off('mission-npc-talked', this._onMissionNpcTalked);
+    EventBus.off('mission-complete',   this._onMissionComplete);
   }
 }

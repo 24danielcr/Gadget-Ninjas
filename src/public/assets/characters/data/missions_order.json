@@ -1,5 +1,5 @@
 {
     "missions_order": {
-        "world_one": ["webcam", "headphones", "smart_watch", "printer", "digital_camera"]
+        "world_one": ["webcam"]
     }
 }

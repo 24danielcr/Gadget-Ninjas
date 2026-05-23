@@ -45,9 +45,13 @@ export class MissionHud {
 
         this.changeMissionHudText();
 
-        EventBus.on('mission-accepted',   () => this.changeMissionHudText());
-        EventBus.on('mission-npc-talked', () => this.changeMissionHudText());
-        EventBus.on('mission-complete',   () => this.changeMissionHudText());
+        this._onMissionAccepted  = () => this.changeMissionHudText();
+        this._onMissionNpcTalked = () => this.changeMissionHudText();
+        this._onMissionComplete  = () => this.changeMissionHudText();
+
+        EventBus.on('mission-accepted',   this._onMissionAccepted);
+        EventBus.on('mission-npc-talked', this._onMissionNpcTalked);
+        EventBus.on('mission-complete',   this._onMissionComplete);
     }
 
     changeMissionHudText() {
@@ -139,5 +143,15 @@ export class MissionHud {
     toggle(state) {
         this.expanded = !this.expanded;
         this.redrawPanel(state);
+    }
+
+    destroy() {
+        EventBus.off('mission-accepted',   this._onMissionAccepted);
+        EventBus.off('mission-npc-talked', this._onMissionNpcTalked);
+        EventBus.off('mission-complete',   this._onMissionComplete);
+        if (this.blinkTween) {
+            this.blinkTween.stop();
+            this.blinkTween = null;
+        }
     }
 }

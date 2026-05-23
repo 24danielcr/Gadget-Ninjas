@@ -18,7 +18,7 @@ export class GameMap {
 
     create() {
         for (const [layerName, matrix] of Object.entries(this.layersData)) {
-            
+
             const map = this.scene.make.tilemap({
                 data: this.toPhaserData(matrix),
                 tileWidth: this.tileSize,
@@ -34,8 +34,6 @@ export class GameMap {
             layer.setDepth(this.tilesetDepth[layerName]);
 
             this.tileLayers[layerName] = layer;
-
-           // layer.setAlpha(0.3);
         }
 
     }

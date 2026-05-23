@@ -7,8 +7,6 @@ export class Dialogue extends Scene {
     }
 
     init(data) {
-        // this.npcName = data?.npc ?? 'unknown';
-        // this.npcSourceIndex = data?.npcSourceIndex ?? '-1';
         this.group = data?.group ?? '-1';
         this.npcSourceIndexes = Array.isArray(data?.npcSourceIndexes) ? data.npcSourceIndexes : 0;
         this.mission = data?.mission ?? '-1';
@@ -39,7 +37,6 @@ export class Dialogue extends Scene {
         const showLine = () => {
             if (this.currentLineIndex >= lines.length) {
                 this.currentLineIndex = 0;
-                // Restore all face sprites to full brightness when conversation ends
                 const allSprites = [...(this.npcFaceSprites || [])];
                 if (this.playerFace) allSprites.push(this.playerFace);
                 allSprites.forEach(sprite => sprite.setAlpha(1));
@@ -63,7 +60,6 @@ export class Dialogue extends Scene {
             this.highlightSpeaker(line["speaker"]);
 
             if (line["speaker"] === "player" && line["choices"]) {
-                // Pause auto-advance and show clickable choice buttons
                 this.currentLineIndex++;
                 this.showChoices(line["choices"], (chosenText) => {
                     console.log(`player chose: ${chosenText}`);
@@ -99,7 +95,6 @@ export class Dialogue extends Scene {
         const btnH = 40;
         const cols = 2;
 
-        // Label above choices
         const label = this.add.text(w / 2, panelY - 18, 'What do you say?', {
             fontFamily: 'Arial', fontSize: '13px', color: '#cccccc', fontStyle: 'italic'
         }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
@@ -218,7 +213,6 @@ export class Dialogue extends Scene {
         const btnH = 40;
         const btnStartY = panelY + qHeight + 4;
 
-        // Question box
         const qBg = this.add.graphics().setScrollFactor(0).setDepth(1);
         qBg.fillStyle(0x1a1a1a, 0.95);
         qBg.fillRoundedRect(panelX, panelY, panelW, qHeight, 10);
@@ -299,7 +293,6 @@ export class Dialogue extends Scene {
     }
 
     highlightSpeaker(speakerName) {
-        // Dim all face sprites, then brighten the active speaker's sprite
         const allSprites = [...(this.npcFaceSprites || [])];
         if (this.playerFace) allSprites.push(this.playerFace);
         allSprites.forEach(sprite => sprite.setAlpha(0.4));
@@ -417,7 +410,6 @@ export class Dialogue extends Scene {
         this.pauseButton.off();
         this.pauseButton.setAlpha(0);
     
-        // Build NPC face sprites and a name→sprite map for speaker highlighting
         this.npcFaceSprites = [];
         this.speakerSpriteMap = {};
         let npcFaceX = 112;
@@ -443,11 +435,10 @@ export class Dialogue extends Scene {
                 EventBus.emit(this.pendingEvent);
                 this.pendingEvent = null;
             }
-            // Stop this overlay and resume the Game scene
-            const mainMenu = this.scene.get('MainMenu')
-            mainMenu.cameras.main.setAlpha(1);
+            const gameScreen = this.scene.get('GameScreen')
+            gameScreen.cameras.main.setAlpha(1);
             this.scene.stop('Dialogue');
-            mainMenu.scene.resume();
+            gameScreen.scene.resume();
         }
     }
 

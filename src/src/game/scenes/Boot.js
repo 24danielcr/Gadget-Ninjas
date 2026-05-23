@@ -9,11 +9,6 @@ export class Boot extends Scene
 
     preload ()
     {
-        //  The Boot Scene is typically used to load in any assets you require for your Preloader, such as a game logo or background.
-        //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
-
-        // this.load.image('background', 'assets/bg.png');
-
         this.load.image("terrain", "/assets/images/terrain.png");
         this.load.image("decorations", "/assets/images/decorations.png");
         this.load.spritesheet("characters", "/assets/characters/CGabrielChars24x24.png", {
@@ -31,7 +26,6 @@ export class Boot extends Scene
             frameHeight: 48
         });
 
-    //     this.load.json('characters_data', new URL('../characters/data/characters.json', import.meta.url).href);
         this.load.json('characters_data', '/assets/characters/data/characters.json');
         this.load.json('characters_positions', '/assets/characters/data/positions.json');
         this.load.json('missions', '/assets/characters/data/missions.json');
@@ -40,9 +34,6 @@ export class Boot extends Scene
 
     create ()
     {
-         // const player = this.physics.add.sprite(100, 100, "player");
-         // player.setCollideWorldBounds(true);
-
          this.scene.start('Preloader');
     }
 }

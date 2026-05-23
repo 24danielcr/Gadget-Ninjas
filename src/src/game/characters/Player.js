@@ -36,7 +36,6 @@ export class Player {
             repeat: -1
         });
     }
-        // this.player.setAlpha(0.5);
 
     playerMovement() {
         const left = this.cursors.left.isDown || this.keys.A.isDown;
@@ -74,8 +73,6 @@ export class Player {
             this.player.setFrame(idle);
             this.player.setFlipX(this.lastFacing === "left");
         }
-
-        // this.playerInteraction();
     }
 
     create() {

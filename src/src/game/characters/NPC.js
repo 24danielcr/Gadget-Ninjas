@@ -14,9 +14,6 @@ export class NPC {
         this.collisionLayer = collisionLayer;
         this.xNpcPos = xNpcPos;
         this.yNpcPos = yNpcPos;
-        // this.interactionRange = this.tileSize * 1.5;
-        // this.interactionZone = null;
-
         this.allowMovement = allowMovement;
 
         this.create();
@@ -55,11 +52,6 @@ export class NPC {
 
         this.scene.physics.add.collider(this.npc, this.collisionLayer);
 
-        // this.interactionZone = this.scene.add.zone(this.xNpcPos, this.yNpcPos, this.interactionRange, this.interactionRange);
-        // this.scene.physics.add.existing(this.interactionZone);
-        // this.interactionZone.body.setAllowGravity(false);
-        // this.interactionZone.body.setImmovable(true);
-       
         this.animKeys = {
             up: `${this.npcName}-up-walk`,
             down: `${this.npcName}-down-walk`,

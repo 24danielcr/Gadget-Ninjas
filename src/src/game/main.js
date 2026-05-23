@@ -2,12 +2,11 @@ import { Boot } from './scenes/Boot';
 import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
+import { GameScreen } from './scenes/GameScreen';
 import { Dialogue } from './scenes/Dialogue';
 import Phaser, { Physics } from 'phaser';
 import { Preloader } from './scenes/Preloader';
 
-// Find out more information about the Game Config at:
-// https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
 const config = {
     type: Phaser.AUTO,
     width: 448,
@@ -23,11 +22,11 @@ const config = {
         mode: Phaser.Scale.NONE,
         zoom: 2,
     },
-   // backgroundColor: '#024af8',
     scene: [
         Boot,
         Preloader,
         MainMenu,
+        GameScreen,
         Game,
         GameOver,
         Dialogue,
