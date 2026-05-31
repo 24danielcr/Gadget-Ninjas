@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
+import { MissionManager } from '../MissionManager.js';
 
 export class GameOver extends Scene
 {
@@ -143,6 +144,7 @@ export class GameOver extends Scene
 
     changeScene ()
     {
+        MissionManager.clearProgress();
         this.scene.start('GameScreen');
     }
 }
