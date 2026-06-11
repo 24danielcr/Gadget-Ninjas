@@ -17,12 +17,12 @@
                 }
             ],
             "dialogue": [
-                { "speaker": "theo_brook", "text": "Hey Luna Reed! What is that in your hand?" },
-                { "speaker": "luna_reed", "text": "Oh hey Theo Brook! It's my new webcam!" },
-                { "speaker": "theo_brook", "text": "Why do you need a webcam?" },
-                { "speaker": "luna_reed", "text": "I recently purchased a desktop computer! I can connect it via USB to my computer and video chat with my friends. I can also record myself cooking in my pot to show everyone my recipes!" },
-                { "speaker": "theo_brook", "text": "That's really cool! I have a laptop with a built-in camera, so I don't need a webcam. Let's video chat sometime!" },
-                { "speaker": "luna_reed", "text": "Let's do it! I'm gonna take my webcam home. I'll call you Theo Brook!" }
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_1", "text": "Hey Luna Reed! What is that in your hand?" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_1", "text": "Oh hey Theo Brook! It's my new webcam!" },
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_2", "text": "Why do you need a webcam?" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_2", "text": "I recently purchased a desktop computer! I can connect it via USB to my computer and video chat with my friends. I can also record myself cooking in my pot to show everyone my recipes!" },
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_3", "text": "That's really cool! I have a laptop with a built-in camera, so I don't need a webcam. Let's video chat sometime!" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_3", "text": "Let's do it! I'm gonna take my webcam home. I'll call you Theo Brook!" }
             ]
         },
         "headphones": {
@@ -45,15 +45,15 @@
                 { "speaker": "player", "text": "Oh hello Jasper Fern!" },
                 { "speaker": "jasper_fern", "text": "...", "action": "Doesn't answer — Jasper Fern is listening to music through headphones, facing the opposite way" },
                 { "speaker": "player", "text": "Hello? Can you hear me?", "action": "Player taps Jasper Fern on the shoulder" },
-                { "speaker": "jasper_fern", "text": "Oh hi! You scared me!", "action": "Jumps startled and turns around" },
-                { "speaker": "player", "text": "I'm sorry, I greeted you but you didn't hear me." },
-                { "speaker": "jasper_fern", "text": "Don't worry, it's because of my brand new headphones!" },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_1", "text": "Oh hi! You scared me!" },
+                { "speaker": "player", "text": "I'm sorry, I said hello but you didn't hear me." },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_2", "text": "Don't worry, it's because of my brand new headphones!" },
                 { "speaker": "player", "text": "Oh cool! I'm sorry I don't know what headphones are or what they do." },
-                { "speaker": "jasper_fern", "text": "I can explain it to you! Headphones are used to listen to music, podcasts and take calls!" },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_3", "text": "I can explain it to you! Headphones are used to listen to music, podcasts and take calls!" },
                 { "speaker": "player", "text": "Really!? Headphones can do all of that? Can I call my mom from them?" },
-                { "speaker": "jasper_fern", "text": "*Chuckles* Well not exactly, you need another gadget like a computer, MP3 player or a phone to connect your headphones and choose what you want to listen to through them." },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_4", "text": "*Chuckles* Well not exactly, you need another gadget like a computer, MP3 player or a phone to connect your headphones and choose what you want to listen to through them." },
                 { "speaker": "player", "text": "I understand now. Can I borrow your headphones to listen to some music?" },
-                { "speaker": "jasper_fern", "text": "Sure!", "action": "Music starts playing" }
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_5", "text": "Sure!", "action": "Music starts playing" }
             ]
         },
         "smart_watch": {
@@ -74,11 +74,11 @@
             ],
             "dialogue": [
                 { "speaker": "player", "text": "Excuse me, do you know what time it is?" },
-                { "speaker": "roy_ashwood", "text": "It is 2 o'clock in the afternoon." },
-                { "speaker": "player", "text": "How are you able to always know the time?" },
-                { "speaker": "roy_ashwood", "text": "I check my smart watch on my wrist!" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_1", "text": "It is 2 o'clock in the afternoon." },
+                { "speaker": "player", "text": "How do you always know the time?" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_2", "text": "I check my smart watch on my wrist!" },
                 { "speaker": "player", "text": "Can it only tell time?" },
-                { "speaker": "roy_ashwood", "text": "No, it also shows text messages I receive on my phone and the number of my steps during the day!" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_3", "text": "No, it also shows text messages I receive on my phone and the number of my steps during the day!" },
                 { "speaker": "player", "text": "Very interesting, thank you for telling me the time!" }
             ]
         },
@@ -99,13 +99,14 @@
                 }
             ],
             "dialogue": [
-                { "speaker": "eli_carter", "text": "My dog ate my homework last night." },
-                { "speaker": "ivy_grant", "text": "That sounds funny, but is also not good. What are you going to do now?" },
-                { "speaker": "eli_carter", "text": "My dad says I need to print my homework again before class starts." },
-                { "speaker": "ivy_grant", "text": "You need to use a printer then." },
-                { "speaker": "eli_carter", "text": "What does a printer do exactly? It prints documents and photos from your computer or phone onto paper. You can also scan papers to make more copies of them!" },
-                { "speaker": "ivy_grant", "text": "I've heard my dad use the printer at home. It's really loud!" },
-                { "speaker": "eli_carter", "text": "Yes, it makes some noise, but it works very well." }
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_1", "text": "My dog ate my homework last night." },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_1", "text": "That sounds funny, but is also not good. What are you going to do now?" },
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_2", "text": "My dad says I need to print my homework again before class starts." },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_2", "text": "You need to use a printer then." },
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_3", "text": "What does a printer do exactly?" },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_3", "text": "It prints documents and photos from your computer or phone onto paper. You can also scan papers to make more copies of them!"},
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_4", "text": "I've heard my dad use the printer at home. It's really loud!" },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_4", "text": "Yes, it makes some noise, but it works very well." }
             ]
         },
         "digital_camera": {
@@ -125,15 +126,15 @@
                 }
             ],
             "dialogue": [
-                { "speaker": "amara_bennet", "text": "Smile and don't move!" },
-                { "speaker": "zoe_porter", "text": "My hair looks messy, I feel nervous." },
-                { "speaker": "amara_bennet", "text": "Don't worry you look great! Now say cheese!" },
-                { "speaker": "zoe_porter", "text": "Cheese!" },
-                { "speaker": "amara_bennet", "text": "The picture turned out great thanks to my digital camera!" },
-                { "speaker": "zoe_porter", "text": "You're right I look great! What else can the digital camera do?" },
-                { "speaker": "amara_bennet", "text": "I can also record videos with it." },
-                { "speaker": "zoe_porter", "text": "Oh no! The battery on my phone is almost empty." },
-                { "speaker": "amara_bennet", "text": "That's okay, my camera still has power." }
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_1", "text": "Smile and don't move!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_1", "text": "My hair looks messy, I feel nervous." },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_2", "text": "Don't worry you look great! Now say cheese!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_2", "text": "Cheese!" },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_3", "text": "The picture turned out great thanks to my digital camera!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_3", "text": "You're right I look great! What else can the digital camera do?" },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_4", "text": "I can also record videos with it." },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_4", "text": "Oh no! The battery on my phone is almost empty." },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_5", "text": "That's okay, my camera still has power." }
             ]
         },
         "computer_mouse": {
@@ -232,7 +233,7 @@
                 { "speaker": "corin_crest", "text": "Why is there a TV on your desk?" },
                 { "speaker": "sylas_star", "text": "It's not a TV, it's a monitor for my computer." },
                 { "speaker": "corin_crest", "text": "What do you see on it?" },
-                { "speaker": "sylas_star", "text": "I see video games, videos and school work!" },
+                { "speaker": "sylas_star", "text": " I see video games, videos, school work and more!" },
                 { "speaker": "corin_crest", "text": "I think I prefer TV's to see my shows, and bigger desks!" }
             ]
         },
@@ -257,7 +258,7 @@
                 { "speaker": "sofia_ford", "text": "Yes, let's turn on the smart TV!" },
                 { "speaker": "lucas_miles", "text": "Why is it called a smart TV?" },
                 { "speaker": "sofia_ford", "text": "Because it is connected to the internet!" },
-                { "speaker": "lucas_miles", "text": "Netflix shows and movies and YouTube videos!" },
+                { "speaker": "lucas_miles", "text": "Oh, so we can watch Netflix shows, movies and YouTube videos!" },
                 { "speaker": "sofia_ford", "text": "How about we make some popcorn?" },
                 { "speaker": "lucas_miles", "text": "That is a great idea!" }
             ]
@@ -282,7 +283,7 @@
                 { "speaker": "layla_kim", "text": "This math homework is taking forever. I don't have enough fingers to count!" },
                 { "speaker": "hannah_blue", "text": "The teacher let us use a calculator!" },
                 { "speaker": "layla_kim", "text": "Cool! What is a calculator?" },
-                { "speaker": "hannah_blue", "text": "It can help us with numbers and calculations!" },
+                { "speaker": "hannah_blue", "text": "It's a device that helps us with calculations and numbers" },
                 { "speaker": "layla_kim", "text": "Does it ever make a mistake?" },
                 { "speaker": "hannah_blue", "text": "No, it is very accurate." }
             ]
@@ -312,7 +313,7 @@
                 { "speaker": "chloe_green", "text": "I hear music, but I don't see speakers anywhere!" },
                 { "speaker": "aria_price", "text": "I'm using my MP3 player!" },
                 { "speaker": "chloe_green", "text": "Could you turn it down a little?" },
-                { "speaker": "aria_price", "text": "I will use my earphones, I'll be able to hear it even louder without disturbing you." },
+                { "speaker": "aria_price", "text": "Sure! I will just use my earphones; I'll be able to hear it even louder without disturbing you." },
                 { "speaker": "chloe_green", "text": "Can earphones work with other devices?" },
                 { "speaker": "aria_price", "text": "Yes, phones, tablets and computers too." },
                 { "speaker": "chloe_green", "text": "I prefer quiet places, like the library!" }
@@ -337,9 +338,9 @@
             "dialogue": [
                 { "speaker": "nixi_spark", "text": "Oh no! The internet stopped working while I was watching a video." },
                 { "speaker": "john_bolt", "text": "Let me check the router in the corner." },
-                { "speaker": "nixi_spark", "text": "You should restart it! Always works and it sends internet to all our devices again." },
-                { "speaker": "john_bolt", "text": "Let's hope it does, if not we're going to be really bored." },
-                { "speaker": "nixi_spark", "text": "We could go to the park!" },
+                { "speaker": "nixi_spark", "text": " A router? What device is that?" },
+                { "speaker": "john_bolt", "text": "It's the device that gives internet to other devices. I'm going to restart it, that always works." },
+                { "speaker": "nixi_spark", "text": "Oh, I hope it does! If not, we're going to be really bored. Or...we could go to the park!" },
                 { "speaker": "john_bolt", "text": "*grunts*" }
             ]
         },
@@ -364,7 +365,7 @@
                 { "speaker": "fenn_lux", "text": "Yes, I have to type up an essay." },
                 { "speaker": "taro_ember", "text": "How are you going to do that if your desktop computer is at home?" },
                 { "speaker": "fenn_lux", "text": "I brought my laptop! It is easy to carry because it's so light." },
-                { "speaker": "taro_ember", "text": "I don't like reading books, I prefer the arcade!" },
+                { "speaker": "taro_ember", "text": " I wish I had a laptop. I don't like reading books here; I prefer the arcade!" },
                 { "speaker": "fenn_lux", "text": "Me too, but I need to do my homework." }
             ]
         },
@@ -388,7 +389,7 @@
                 { "speaker": "kiko_flux", "text": "You always have that device with you." },
                 { "speaker": "priya_flux", "text": "Yes, it's my smartphone." },
                 { "speaker": "kiko_flux", "text": "What do you use it for most?" },
-                { "speaker": "priya_flux", "text": "I message my friends and watch videos." },
+                { "speaker": "priya_flux", "text": " I mainly use it to message my friends and watch videos." },
                 { "speaker": "kiko_flux", "text": "Can you also search the internet?" },
                 { "speaker": "priya_flux", "text": "Yes, I use it for many things." }
             ]
@@ -413,9 +414,9 @@
                 { "speaker": "daniel_moon", "text": "How do you contact people when you travel?" },
                 { "speaker": "fernanda_valle", "text": "I use my old cell phone." },
                 { "speaker": "daniel_moon", "text": "Is it a smartphone?" },
-                { "speaker": "fernanda_valle", "text": "No, it's very simple and old." },
+                { "speaker": "fernanda_valle", "text": "No, it's a simpler and older version of a smartphone." },
                 { "speaker": "daniel_moon", "text": "What can it do?" },
-                { "speaker": "fernanda_valle", "text": "It can call and send messages only." },
+                { "speaker": "fernanda_valle", "text": "It can only call and send messages." },
                 { "speaker": "daniel_moon", "text": "Simple things still work well." }
             ]
         }
@@ -432,7 +433,7 @@
         ],
         "headphones": [
             { "speaker": "bob", "text": "Alright, superstar. See that person over there? Jasper Fern." },
-            { "speaker": "player", "choices": ["What about them?", "They look like they're in their own world.", "Are those things on their ears?"] },
+            { "speaker": "player", "choices": ["What about them?", "They look like they're in their own world.", "They look like they're wearing something on their ears."] },
             { "speaker": "bob", "text": "Exactly! They've got something on their ears and haven't heard a single word I've said to them all morning." },
             { "speaker": "player", "choices": ["That's kind of rude.", "Honestly, goals.", "Maybe they just don't like you, Bob."] },
             { "speaker": "bob", "text": "Ha! Probably! But I need you to go find out what that gadget is and what it does. Good luck getting their attention!" }

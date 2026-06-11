@@ -32,47 +32,119 @@ export class Dialogue extends Scene {
     }
 
     playDialogue() {
-        const lines = this.mission["dialogue"];
+        this.dialogueLines = this.mission["dialogue"];
+        this.showNextLine();
+    }
 
-        const showLine = () => {
-            if (this.currentLineIndex >= lines.length) {
-                this.currentLineIndex = 0;
-                const allSprites = [...(this.npcFaceSprites || [])];
-                if (this.playerFace) allSprites.push(this.playerFace);
-                allSprites.forEach(sprite => sprite.setAlpha(1));
-                this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
-                this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
-                this.playText.setText('Play Conversation');
+    showNextLine() {
+        const lines = this.dialogueLines;
 
-                if (this.isMissionGiver) {
-                    this.pendingEvent = 'mission-accepted';
-                    console.log('Mission Accepted! (pending close)');
-                } else {
-                    this.pendingEvent = 'mission-npc-talked';
-                    console.log('Mission NPC Talked! (pending close)');
-                }
+        if (this.currentLineIndex >= lines.length) {
+            this.finishDialogue();
+            return;
+        }
 
-                return;
-            }
+        const line = lines[this.currentLineIndex];
 
-            const line = lines[this.currentLineIndex];
+        this.highlightSpeaker(line["speaker"]);
 
-            this.highlightSpeaker(line["speaker"]);
-
-            if (line["speaker"] === "player" && line["choices"]) {
+        // Player decision points are shown as buttons, not spoken.
+        if (line["speaker"] === "player" && line["choices"]) {
+            this.hideSubtitle();
+            this.showChoices(line["choices"], (chosenText) => {
+                console.log(`player chose: ${chosenText}`);
                 this.currentLineIndex++;
-                this.showChoices(line["choices"], (chosenText) => {
-                    console.log(`player chose: ${chosenText}`);
-                    showLine();
-                });
-            } else {
-                console.log(`${line["speaker"]}: ${line["text"]}`);
-                this.currentLineIndex++;
-                this.conversationTimer = this.time.delayedCall(500, showLine);
-            }
+                this.showNextLine();
+            });
+            return;
+        }
+
+        const advance = () => {
+            this.currentSound = null;
+            this.currentLineIndex++;
+            this.conversationTimer = this.time.delayedCall(400, () => this.showNextLine());
         };
 
-        showLine();
+        // Lines with a voiceline are heard, not read. Everything else (the
+        // player's spoken lines and silent beats) is shown as on-screen text.
+        if (line["audio"] && this.cache.audio.exists(line["audio"])) {
+            this.hideSubtitle();
+            this.currentSound = this.sound.add(line["audio"]);
+            this.currentSound.once('complete', advance);
+            this.currentSound.play();
+        } else {
+            this.showSubtitle(line["text"]);
+            const text = line["text"] ?? '';
+            const readMs = Phaser.Math.Clamp(text.length * 70, 1500, 7000);
+            this.currentLineIndex++;
+            this.conversationTimer = this.time.delayedCall(readMs, () => {
+                this.hideSubtitle();
+                this.showNextLine();
+            });
+        }
+    }
+
+    finishDialogue() {
+        this.currentLineIndex = 0;
+        this.isPaused = false;
+        this.hideSubtitle();
+
+        const allSprites = [...(this.npcFaceSprites || [])];
+        if (this.playerFace) allSprites.push(this.playerFace);
+        allSprites.forEach(sprite => sprite.setAlpha(1));
+        this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
+        this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
+        this.playText.setText('Play Conversation');
+
+        if (this.isMissionGiver) {
+            this.pendingEvent = 'mission-accepted';
+            console.log('Mission Accepted! (pending close)');
+        } else {
+            this.pendingEvent = 'mission-npc-talked';
+            console.log('Mission NPC Talked! (pending close)');
+        }
+    }
+
+    showSubtitle(text) {
+        if (!text) {
+            this.hideSubtitle();
+            return;
+        }
+        this.subtitleText.setText(text).setVisible(true);
+        const bounds = this.subtitleText.getBounds();
+        const pad = 8;
+        this.subtitleBg.clear();
+        this.subtitleBg.fillStyle(0x000000, 0.7);
+        this.subtitleBg.fillRoundedRect(
+            bounds.x - pad, bounds.y - pad,
+            bounds.width + pad * 2, bounds.height + pad * 2, 6
+        );
+        this.subtitleBg.setVisible(true);
+    }
+
+    hideSubtitle() {
+        if (this.subtitleText) this.subtitleText.setVisible(false);
+        if (this.subtitleBg) this.subtitleBg.clear().setVisible(false);
+    }
+
+    pauseConversation() {
+        this.isPaused = true;
+        if (this.currentSound && this.currentSound.isPlaying) {
+            this.currentSound.pause();
+        }
+        if (this.conversationTimer) {
+            this.conversationTimer.paused = true;
+        }
+    }
+
+    resumeConversation() {
+        this.isPaused = false;
+        if (this.currentSound && this.currentSound.isPaused) {
+            this.currentSound.resume();
+        }
+        if (this.conversationTimer) {
+            this.conversationTimer.paused = false;
+        }
     }
 
     showChoices(choices, onChosen) {
@@ -305,12 +377,20 @@ export class Dialogue extends Scene {
             this.conversationTimer.destroy();
             this.conversationTimer = null;
         }
+        if (this.currentSound) {
+            this.currentSound.stop();
+            this.currentSound.destroy();
+            this.currentSound = null;
+        }
+        this.hideSubtitle();
         this.clearChoiceUI();
     }
 
     create() {
         this.currentLineIndex = 0;
         this.conversationTimer = null;
+        this.currentSound = null;
+        this.isPaused = false;
         this.pendingEvent = null;
         this.quizElements = [];
         this.choiceElements = [];
@@ -383,7 +463,11 @@ export class Dialogue extends Scene {
 
             this.playText.setText('Pause Conversation');
 
-            this.playConversation();
+            if (this.isPaused) {
+                this.resumeConversation();
+            } else {
+                this.playConversation();
+            }
         });
 
         this.pauseButton = this.add.graphics()
@@ -404,7 +488,7 @@ export class Dialogue extends Scene {
 
             this.playText.setText('Resume Conversation');
 
-            this.stopConversation();
+            this.pauseConversation();
         });
 
         this.pauseButton.off();
@@ -427,6 +511,12 @@ export class Dialogue extends Scene {
         this.playerFace.setScale(2);
         this.speakerSpriteMap['player'] = this.playerFace;
 
+        // Subtitle for lines without a voiceline (player's spoken lines, silent beats).
+        this.subtitleBg = this.add.graphics().setScrollFactor(0).setDepth(2).setVisible(false);
+        this.subtitleText = this.add.text(w / 2, 120, '', {
+            fontFamily: 'Arial', fontSize: '13px', color: '#ffffff',
+            align: 'center', wordWrap: { width: w - 96 }
+        }).setOrigin(0.5, 1).setScrollFactor(0).setDepth(3).setVisible(false);
     }
 
     close() {
@@ -435,6 +525,7 @@ export class Dialogue extends Scene {
                 EventBus.emit(this.pendingEvent);
                 this.pendingEvent = null;
             }
+            this.stopConversation();
             const gameScreen = this.scene.get('GameScreen')
             gameScreen.cameras.main.setAlpha(1);
             this.scene.stop('Dialogue');
