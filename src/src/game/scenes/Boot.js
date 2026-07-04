@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import { preloadMusic } from '../BackgroundMusic';
 
 export class Boot extends Scene
 {
@@ -30,6 +31,8 @@ export class Boot extends Scene
         this.load.json('characters_positions', '/assets/characters/data/positions.json');
         this.load.json('missions', '/assets/characters/data/missions.json');
         this.load.json('missions_order', '/assets/characters/data/missions_order.json');
+
+        preloadMusic(this);
     }
 
     create ()

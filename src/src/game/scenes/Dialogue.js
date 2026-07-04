@@ -1,5 +1,6 @@
 import Phaser, { Scene } from 'phaser';
 import { EventBus } from '../EventBus.js';
+import { pauseMusic, resumeMusic } from '../BackgroundMusic.js';
 
 export class Dialogue extends Scene {
     constructor() {
@@ -387,6 +388,8 @@ export class Dialogue extends Scene {
     }
 
     create() {
+        pauseMusic();
+
         this.currentLineIndex = 0;
         this.conversationTimer = null;
         this.currentSound = null;
@@ -526,6 +529,7 @@ export class Dialogue extends Scene {
                 this.pendingEvent = null;
             }
             this.stopConversation();
+            resumeMusic();
             const gameScreen = this.scene.get('GameScreen')
             gameScreen.cameras.main.setAlpha(1);
             this.scene.stop('Dialogue');

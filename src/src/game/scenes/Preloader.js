@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import { startMusic } from '../BackgroundMusic';
 
 export class Preloader extends Scene
 {
@@ -31,6 +32,7 @@ export class Preloader extends Scene
 
     create ()
     {
+        startMusic(this);
         this.scene.start('MainMenu');
     }
 }
