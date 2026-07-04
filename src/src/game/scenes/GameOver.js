@@ -1,6 +1,7 @@
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 import { MissionManager } from '../MissionManager.js';
+import { playSfx } from '../SoundEffects.js';
 
 export class GameOver extends Scene
 {
@@ -11,6 +12,8 @@ export class GameOver extends Scene
 
     create ()
     {
+        playSfx(this, 'open_menu');
+
         const w = this.scale.width;
         const h = this.scale.height;
 
@@ -144,6 +147,7 @@ export class GameOver extends Scene
 
     changeScene ()
     {
+        playSfx(this, 'play_playagain');
         MissionManager.clearProgress();
         this.scene.start('GameScreen');
     }

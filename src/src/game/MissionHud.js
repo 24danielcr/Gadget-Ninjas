@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { EventBus } from './EventBus'
 import { RegexHelper } from '../RegexHelper';
+import { playSfx } from './SoundEffects';
 
 const regexHelper = new RegexHelper();
 
@@ -141,6 +142,7 @@ export class MissionHud {
     }
 
     toggle(state) {
+        playSfx(this.scene, 'open_close_mission_button');
         this.expanded = !this.expanded;
         this.redrawPanel(state);
     }

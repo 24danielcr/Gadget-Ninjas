@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { preloadMusic } from '../BackgroundMusic';
+import { preloadSoundEffects } from '../SoundEffects';
 
 export class Boot extends Scene
 {
@@ -33,6 +34,7 @@ export class Boot extends Scene
         this.load.json('missions_order', '/assets/characters/data/missions_order.json');
 
         preloadMusic(this);
+        preloadSoundEffects(this);
     }
 
     create ()

@@ -1,6 +1,7 @@
 import Phaser, { Scene } from 'phaser';
 import { EventBus } from '../EventBus.js';
 import { pauseMusic, resumeMusic } from '../BackgroundMusic.js';
+import { playSfx } from '../SoundEffects.js';
 
 export class Dialogue extends Scene {
     constructor() {
@@ -207,6 +208,7 @@ export class Dialogue extends Scene {
                 drawBtn(0x1a3a2a, 0x44aa88, 0.8);
             });
             btnBg.on('pointerdown', () => {
+                playSfx(this, 'menu_button_press');
                 drawBtn(0x22aa66, 0x44ffaa);
                 this.choiceElements.forEach(el => el.disableInteractive && el.disableInteractive());
                 this.input.setDefaultCursor('default');
@@ -340,6 +342,7 @@ export class Dialogue extends Scene {
                 drawBtn(0x2a2a4a, 0x8888cc, 0.8);
             });
             btnBg.on('pointerdown', () => {
+                playSfx(this, 'menu_button_press');
                 if (option === correctAnswer) {
                     drawBtn(0x22aa44, 0x44ff88);
                     feedback.setText('Correct!').setColor('#44ff88');
@@ -389,6 +392,7 @@ export class Dialogue extends Scene {
 
     create() {
         pauseMusic();
+        playSfx(this, 'open_dialogue');
 
         this.currentLineIndex = 0;
         this.conversationTimer = null;
@@ -461,6 +465,7 @@ export class Dialogue extends Scene {
         this.playButton.on('pointerover', () => this.input.setDefaultCursor('pointer'));
         this.playButton.on('pointerout', () => this.input.setDefaultCursor('default'));
         this.playButton.on('pointerdown', () => {
+            playSfx(this, 'menu_button_press');
             this.playButton.setVisible(false).setAlpha(0).disableInteractive();
             this.pauseButton.setVisible(true).setAlpha(1).setInteractive(this.pauseHitArea, Phaser.Geom.Rectangle.Contains);
 
@@ -486,6 +491,7 @@ export class Dialogue extends Scene {
         this.pauseButton.on('pointerover', () => this.input.setDefaultCursor('pointer'));
         this.pauseButton.on('pointerout', () => this.input.setDefaultCursor('default'));
         this.pauseButton.on('pointerdown', () => {
+            playSfx(this, 'menu_button_press');
             this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
             this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
 
@@ -528,6 +534,7 @@ export class Dialogue extends Scene {
                 EventBus.emit(this.pendingEvent);
                 this.pendingEvent = null;
             }
+            playSfx(this, 'close_dialogue');
             this.stopConversation();
             resumeMusic();
             const gameScreen = this.scene.get('GameScreen')

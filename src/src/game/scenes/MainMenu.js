@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
+import { playSfx } from '../SoundEffects';
 
 export class MainMenu extends Scene {
     constructor() {
@@ -7,6 +8,8 @@ export class MainMenu extends Scene {
     }
 
     create() {
+        playSfx(this, 'open_menu');
+
         const w = this.scale.width;
         const h = this.scale.height;
 
@@ -99,6 +102,7 @@ export class MainMenu extends Scene {
         });
         btnBg.on('pointerdown', () => {
             this.input.setDefaultCursor('default');
+            playSfx(this, 'close_menu');
             this.scene.start('GameScreen');
         });
 
@@ -124,6 +128,7 @@ export class MainMenu extends Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.enterKey)) {
+            playSfx(this, 'close_menu');
             this.scene.start('GameScreen');
         }
     }
