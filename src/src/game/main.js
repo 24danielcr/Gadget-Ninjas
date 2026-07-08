@@ -4,6 +4,7 @@ import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
 import { GameScreen } from './scenes/GameScreen';
 import { Dialogue } from './scenes/Dialogue';
+import { PauseMenu } from './scenes/PauseMenu';
 import Phaser, { Physics } from 'phaser';
 import { Preloader } from './scenes/Preloader';
 
@@ -30,6 +31,7 @@ const config = {
         Game,
         GameOver,
         Dialogue,
+        PauseMenu,
     ]
 };
 

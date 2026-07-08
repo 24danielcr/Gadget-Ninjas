@@ -6,6 +6,7 @@ import { InteractionManager } from "../InteractionManager.js"
 import { MissionManager } from '../MissionManager.js';
 import { MissionHud } from '../MissionHud.js';
 import { EventBus } from '../EventBus.js';
+import Phaser from 'phaser';
 
 import {
   l_Terrain,
@@ -185,6 +186,8 @@ export class GameScreen extends Scene {
       dialogueName: "digital_camera"
     });
 
+    this.escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
     this.MissionHud = new MissionHud(this, this.missionManager, missions);
 
     this.events.once('shutdown', () => {
@@ -213,6 +216,12 @@ export class GameScreen extends Scene {
   }
 
   update() {
+    if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
+      this.scene.pause();
+      this.scene.launch('PauseMenu');
+      return;
+    }
+
     this.interactionManager.update();
     this.player.playerMovement();
   }

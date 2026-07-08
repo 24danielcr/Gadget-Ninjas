@@ -2,6 +2,7 @@ import Phaser, { Scene } from 'phaser';
 import { EventBus } from '../EventBus.js';
 import { pauseMusic, resumeMusic } from '../BackgroundMusic.js';
 import { playSfx } from '../SoundEffects.js';
+import { registerVoiceline, clearVoiceline } from '../Voicelines.js';
 
 export class Dialogue extends Scene {
     constructor() {
@@ -18,6 +19,7 @@ export class Dialogue extends Scene {
         this.quizPhase = data?.quizPhase ?? null;
 
         this.interactKey = this.input.keyboard.addKey('E');
+        this.escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     }
 
     preload() {
@@ -62,6 +64,7 @@ export class Dialogue extends Scene {
         }
 
         const advance = () => {
+            clearVoiceline(this.currentSound);
             this.currentSound = null;
             this.currentLineIndex++;
             this.conversationTimer = this.time.delayedCall(400, () => this.showNextLine());
@@ -72,6 +75,7 @@ export class Dialogue extends Scene {
         if (line["audio"] && this.cache.audio.exists(line["audio"])) {
             this.hideSubtitle();
             this.currentSound = this.sound.add(line["audio"]);
+            registerVoiceline(this.currentSound);
             this.currentSound.once('complete', advance);
             this.currentSound.play();
         } else {
@@ -382,6 +386,7 @@ export class Dialogue extends Scene {
             this.conversationTimer = null;
         }
         if (this.currentSound) {
+            clearVoiceline(this.currentSound);
             this.currentSound.stop();
             this.currentSound.destroy();
             this.currentSound = null;
@@ -390,9 +395,28 @@ export class Dialogue extends Scene {
         this.clearChoiceUI();
     }
 
+    openMenu() {
+        if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
+            if (this.currentSound && this.currentSound.isPlaying) {
+                this.currentSound.pause();
+            }
+            this.scene.pause();
+            this.scene.launch('PauseMenu', { resumeScene: 'Dialogue' });
+        }
+    }
+
+    onResume() {
+        if (this.currentSound && this.currentSound.isPaused) {
+            this.currentSound.resume();
+        }
+    }
+
     create() {
         pauseMusic();
         playSfx(this, 'open_dialogue');
+
+        this.events.off('resume', this.onResume, this);
+        this.events.on('resume', this.onResume, this);
 
         this.currentLineIndex = 0;
         this.conversationTimer = null;
@@ -545,6 +569,7 @@ export class Dialogue extends Scene {
     }
 
     update() {
+        this.openMenu();
         this.close();
     }
 }

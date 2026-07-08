@@ -7,8 +7,31 @@ const TRACKS = [
 
 const trackKey = (name) => `music:${name}`;
 
+const STORAGE_KEY = 'gn:musicVolume';
+
 let started = false;
 let currentTrack = null;
+let musicVolume = readStoredVolume();
+
+function readStoredVolume() {
+    const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
+    const value = raw === null ? 0.5 : parseFloat(raw);
+    return Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 0.5;
+}
+
+export function getMusicVolume() {
+    return musicVolume;
+}
+
+export function setMusicVolume(value) {
+    musicVolume = Math.min(1, Math.max(0, value));
+    if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, String(musicVolume));
+    }
+    if (currentTrack) {
+        currentTrack.setVolume(musicVolume);
+    }
+}
 
 export function preloadMusic(scene) {
     for (const name of TRACKS) {
@@ -33,7 +56,7 @@ export function startMusic(scene) {
         }
         lastIndex = index;
 
-        const track = sound.add(trackKey(TRACKS[index]));
+        const track = sound.add(trackKey(TRACKS[index]), { volume: musicVolume });
         currentTrack = track;
         track.once('complete', () => {
             track.destroy();
