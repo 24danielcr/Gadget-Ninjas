@@ -63,6 +63,31 @@ export class Dialogue extends Scene {
             return;
         }
 
+        // The player speaking to the NPC is shown in the same dialogue box style,
+        // and waits for the player to click before continuing so they can read it.
+        if (line["speaker"] === "player") {
+            this.hideSubtitle();
+
+            if (line["audio"] && this.cache.audio.exists(line["audio"])) {
+                this.currentSound = this.sound.add(line["audio"]);
+                registerVoiceline(this.currentSound);
+                this.currentSound.play();
+            }
+
+            this.showPlayerLine(line["text"] ?? '', () => {
+                if (this.currentSound) {
+                    clearVoiceline(this.currentSound);
+                    this.currentSound.stop();
+                    this.currentSound.destroy();
+                    this.currentSound = null;
+                }
+                this.clearPlayerLine(true);
+                this.currentLineIndex++;
+                this.showNextLine();
+            });
+            return;
+        }
+
         const advance = () => {
             clearVoiceline(this.currentSound);
             this.currentSound = null;
@@ -94,6 +119,7 @@ export class Dialogue extends Scene {
         this.currentLineIndex = 0;
         this.isPaused = false;
         this.hideSubtitle();
+        this.clearPlayerLine();
 
         const allSprites = [...(this.npcFaceSprites || [])];
         if (this.playerFace) allSprites.push(this.playerFace);
@@ -163,17 +189,39 @@ export class Dialogue extends Scene {
         this.playText.setVisible(false);
 
         const w = this.scale.width, h = this.scale.height;
-        const padX = 20;
-        const panelX = padX;
-        const panelY = h - 220;
-        const panelW = w - padX * 2;
+        // Match the Play/Pause conversation box: same X, width and top edge.
+        const boxX = 64;
+        const boxW = w - boxX * 2;
         const colGap = 8;
-        const rowGap = 4;
-        const btnW = choices.length <= 2 ? (panelW - colGap) / 2 : (panelW - colGap) / 2;
+        const rowGap = 8;
         const btnH = 40;
-        const cols = 2;
 
-        const label = this.add.text(w / 2, panelY - 18, 'What do you say?', {
+        // A single option shouldn't be trapped in a 2-column grid — it spans
+        // the box; anything more lays out in centered rows of two.
+        const single = choices.length === 1;
+        const cols = single ? 1 : 2;
+        const rows = Math.ceil(choices.length / cols);
+
+        // Dialogue box geometry (top-aligned with the dialogue panel, grows down).
+        const innerPadX = 12;
+        const padTop = 10;
+        const labelH = 22;
+        const padBottom = 12;
+        const usableW = boxW - innerPadX * 2;
+        const btnW = single ? usableW : (usableW - colGap) / 2;
+        const boxH = padTop + labelH + rows * btnH + (rows - 1) * rowGap + padBottom;
+        const boxY = h - 220;
+        const btnStartY = boxY + padTop + labelH;
+
+        // The dialogue box behind the player's choices.
+        const boxBg = this.add.graphics().setScrollFactor(0).setDepth(1);
+        boxBg.fillStyle(0x1a1a1a, 0.95);
+        boxBg.fillRoundedRect(boxX, boxY, boxW, boxH, 12);
+        boxBg.lineStyle(2, 0xffffff, 0.6);
+        boxBg.strokeRoundedRect(boxX, boxY, boxW, boxH, 12);
+        this.choiceElements.push(boxBg);
+
+        const label = this.add.text(w / 2, boxY + padTop + labelH / 2, 'What do you say?', {
             fontFamily: 'Arial', fontSize: '13px', color: '#cccccc', fontStyle: 'italic'
         }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
         this.choiceElements.push(label);
@@ -181,8 +229,12 @@ export class Dialogue extends Scene {
         choices.forEach((choice, i) => {
             const col = i % cols;
             const row = Math.floor(i / cols);
-            const bx = panelX + col * (btnW + colGap);
-            const by = panelY + row * (btnH + rowGap);
+            // Center each row so a lone last button (or a single choice) is centered.
+            const itemsInRow = Math.min(cols, choices.length - row * cols);
+            const rowW = itemsInRow * btnW + (itemsInRow - 1) * colGap;
+            const rowStartX = boxX + innerPadX + (usableW - rowW) / 2;
+            const bx = rowStartX + col * (btnW + colGap);
+            const by = btnStartY + row * (btnH + rowGap);
 
             const btnBg = this.add.graphics().setScrollFactor(0).setDepth(2);
             const drawBtn = (fill, stroke, strokeAlpha = 1) => {
@@ -232,6 +284,77 @@ export class Dialogue extends Scene {
         this.dialoguePanel.setVisible(true);
         this.playText.setVisible(true);
         if (restoreButtons) {
+            this.pauseButton.setVisible(true).setAlpha(1).setInteractive(this.pauseHitArea, Phaser.Geom.Rectangle.Contains);
+        }
+    }
+
+    showPlayerLine(text, onContinue) {
+        this.clearPlayerLine();
+        this.playerLineElements = [];
+
+        // Take over the bottom bar area while the player speaks, like the choices box.
+        this.dialoguePanel.setVisible(false);
+        this.playButton.setVisible(false).setAlpha(0).disableInteractive();
+        this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
+        this.playText.setVisible(false);
+
+        const w = this.scale.width, h = this.scale.height;
+        // Match the Play/Pause conversation box: same X, width and top edge.
+        const boxX = 64;
+        const boxW = w - boxX * 2;
+        const innerPadX = 12;
+        const padTop = 10;
+        const labelH = 22;
+        const gapAfterBody = 8;
+        const hintH = 16;
+        const padBottom = 10;
+        const usableW = boxW - innerPadX * 2;
+        const boxY = h - 220;
+
+        const body = this.add.text(w / 2, 0, text, {
+            fontFamily: 'Arial', fontSize: '13px', color: '#ffffff',
+            align: 'center', wordWrap: { width: usableW }
+        }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(3);
+
+        const boxH = padTop + labelH + body.height + gapAfterBody + hintH + padBottom;
+        const boxBg = this.add.graphics().setScrollFactor(0).setDepth(1);
+        boxBg.fillStyle(0x1a1a1a, 0.95);
+        boxBg.fillRoundedRect(boxX, boxY, boxW, boxH, 12);
+        boxBg.lineStyle(2, 0xffffff, 0.6);
+        boxBg.strokeRoundedRect(boxX, boxY, boxW, boxH, 12);
+
+        const label = this.add.text(w / 2, boxY + padTop + labelH / 2, 'You', {
+            fontFamily: 'Arial', fontSize: '13px', color: '#cccccc', fontStyle: 'italic'
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
+
+        body.setY(boxY + padTop + labelH);
+
+        const hint = this.add.text(w / 2, boxY + boxH - padBottom - hintH / 2, '▶ Click to continue', {
+            fontFamily: 'Arial', fontSize: '11px', color: '#64ca49'
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
+
+        // The whole box is a click target so the player advances when ready.
+        boxBg.setInteractive(new Phaser.Geom.Rectangle(boxX, boxY, boxW, boxH), Phaser.Geom.Rectangle.Contains);
+        boxBg.on('pointerover', () => this.input.setDefaultCursor('pointer'));
+        boxBg.on('pointerout', () => this.input.setDefaultCursor('default'));
+        boxBg.on('pointerdown', () => {
+            playSfx(this, 'menu_button_press');
+            this.input.setDefaultCursor('default');
+            boxBg.disableInteractive();
+            if (onContinue) onContinue();
+        });
+
+        this.playerLineElements.push(boxBg, label, body, hint);
+    }
+
+    clearPlayerLine(restoreControls = false) {
+        if (this.playerLineElements) {
+            this.playerLineElements.forEach(el => el.destroy());
+            this.playerLineElements = [];
+        }
+        if (restoreControls) {
+            this.dialoguePanel.setVisible(true);
+            this.playText.setVisible(true);
             this.pauseButton.setVisible(true).setAlpha(1).setInteractive(this.pauseHitArea, Phaser.Geom.Rectangle.Contains);
         }
     }
@@ -393,6 +516,7 @@ export class Dialogue extends Scene {
         }
         this.hideSubtitle();
         this.clearChoiceUI();
+        this.clearPlayerLine();
     }
 
     openMenu() {
@@ -425,6 +549,7 @@ export class Dialogue extends Scene {
         this.pendingEvent = null;
         this.quizElements = [];
         this.choiceElements = [];
+        this.playerLineElements = [];
 
         const w = this.scale.width, h = this.scale.height;
             this.dim = this.add.rectangle(0, 0, w, h, 0x000000, 0.5)
