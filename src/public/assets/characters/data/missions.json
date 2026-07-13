@@ -424,39 +424,39 @@
     "bob_introductions": {
         "webcam": [
             { "speaker": "bob", "text": "Psst! Hey, you! Yes, you. Come here, I've got a mission for you." },
-            { "speaker": "player", "choices": ["A mission? I'm in!", "Is this going to be dangerous?", "Do I get paid for this?"] },
+            { "speaker": "player", "choices": ["A mission? I'm in!"] },
             { "speaker": "bob", "text": "See those two over there? Theo Brook and Luna Reed? Luna's showing off some new gadget." },
-            { "speaker": "player", "choices": ["Ooh, what is it?", "Should I just go ask her?", "I'm already on my way!"] },
+            { "speaker": "player", "choices": ["Ooh, what is it?"] },
             { "speaker": "bob", "text": "That's exactly what I need you to find out! Go listen in on their conversation and report back to me." },
-            { "speaker": "player", "choices": ["On it, boss!", "This feels a little sneaky...", "What do I get if I figure it out?"] },
+            { "speaker": "player", "choices": ["What do I get if I figure it out?"] },
             { "speaker": "bob", "text": "The satisfaction of a job well done! Now go, go, go!" }
         ],
         "headphones": [
             { "speaker": "bob", "text": "Alright, superstar. See that person over there? Jasper Fern." },
-            { "speaker": "player", "choices": ["What about them?", "They look like they're in their own world.", "They look like they're wearing something on their ears."] },
+            { "speaker": "player", "choices": ["They look like they're in their own world."] },
             { "speaker": "bob", "text": "Exactly! They've got something on their ears and haven't heard a single word I've said to them all morning." },
-            { "speaker": "player", "choices": ["That's kind of rude.", "Honestly, goals.", "Maybe they just don't like you, Bob."] },
+            { "speaker": "player", "choices": ["Maybe they just don't like you, Bob."] },
             { "speaker": "bob", "text": "Ha! Probably! But I need you to go find out what that gadget is and what it does. Good luck getting their attention!" }
         ],
         "smart_watch": [
             { "speaker": "bob", "text": "Quick question — do you know what time it is?" },
-            { "speaker": "player", "choices": ["I have no idea.", "Time for you to get a watch?", "Why, are you late for something?"] },
+            { "speaker": "player", "choices": ["I have no idea."] },
             { "speaker": "bob", "text": "Well Roy Ashwood always knows! And I've never seen them pull out a phone. Go ask them and pay attention to how they check the time." },
-            { "speaker": "player", "choices": ["Ooh, mysterious.", "Maybe they just have really good instincts.", "I'll go find out!"] },
+            { "speaker": "player", "choices": ["Maybe they just have really good instincts."] },
             { "speaker": "bob", "text": "It's not instincts — it's on their wrist! Now go find out what it is. You've got this." }
         ],
         "printer": [
             { "speaker": "bob", "text": "Okay, so. Eli Carter's dog ate their homework last night." },
-            { "speaker": "player", "choices": ["Classic excuse... wait, it's real?", "Oh no! Poor Eli.", "That dog has great taste."] },
+            { "speaker": "player", "choices": ["Classic excuse... wait, it's real?"] },
             { "speaker": "bob", "text": "Very real! Eli is talking to Ivy Grant about how to fix the situation. There's a gadget that can save the day." },
-            { "speaker": "player", "choices": ["A gadget that reverses dog digestion?", "I think I know where this is going.", "I'm listening..."] },
+            { "speaker": "player", "choices": ["I'm listening..."] },
             { "speaker": "bob", "text": "Go eavesdrop — I mean, go listen in on their conversation and find out what gadget comes to the rescue!" }
         ],
         "digital_camera": [
             { "speaker": "bob", "text": "I just spotted Amara Bennet pointing something at Zoe Porter and yelling 'say cheese!'" },
-            { "speaker": "player", "choices": ["Are they okay?", "Is that a threat?", "Ooh, are they taking pictures?"] },
+            { "speaker": "player", "choices": ["Ooh, are they taking pictures?"] },
             { "speaker": "bob", "text": "Pictures, yes! But with what exactly? Go check it out — and see if that gadget can do anything besides snap photos!" },
-            { "speaker": "player", "choices": ["I love a good mystery.", "What's in it for me?", "Already gone!"] },
+            { "speaker": "player", "choices": ["What's in it for me?"] },
             { "speaker": "bob", "text": "The thrill of knowledge! That's what's in it for you. Now scoot!" }
         ],
         "computer_mouse": [

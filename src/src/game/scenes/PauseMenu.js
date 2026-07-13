@@ -2,6 +2,7 @@ import Phaser, { Scene } from 'phaser';
 import { playSfx, getSfxVolume, setSfxVolume } from '../SoundEffects.js';
 import { getMusicVolume, setMusicVolume } from '../BackgroundMusic.js';
 import { getVoicelineVolume, setVoicelineVolume } from '../Voicelines.js';
+import { MissionManager } from '../MissionManager.js';
 
 export class PauseMenu extends Scene {
     constructor() {
@@ -11,6 +12,7 @@ export class PauseMenu extends Scene {
     init(data) {
         this.resumeScene = data?.resumeScene ?? 'GameScreen';
         this.escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        this.confirmElements = null;
     }
 
     create() {
@@ -25,7 +27,7 @@ export class PauseMenu extends Scene {
             .setDepth(0);
 
         const panelW = w - 100;
-        const panelH = 282;
+        const panelH = 360;
         const panelX = (w - panelW) / 2;
         const panelY = (h - panelH) / 2;
 
@@ -54,7 +56,25 @@ export class PauseMenu extends Scene {
             setVoicelineVolume(value);
         });
 
-        this.createResumeButton(w / 2, panelY + panelH - 34);
+        // Save + Restart row
+        const rowY = panelY + 250;
+        const btnW = (sliderW - 16) / 2;
+        this.createButton(sliderX + btnW / 2, rowY, btnW, 40, 'Save Game', {
+            fillIdle: 0x1a2a3a, strokeIdle: 0x4488aa,
+            fillHover: 0x2a3a5a, strokeHover: 0x66aadd,
+            depth: 2, onClick: () => this.saveGame()
+        });
+        this.createButton(sliderX + btnW + 16 + btnW / 2, rowY, btnW, 40, 'Restart Game', {
+            fillIdle: 0x3a1a1a, strokeIdle: 0xaa4444,
+            fillHover: 0x5a2a2a, strokeHover: 0xdd6666,
+            depth: 2, onClick: () => this.openRestartConfirm()
+        });
+
+        this.createButton(w / 2, panelY + panelH - 34, 160, 40, 'Resume', {
+            fillIdle: 0x1a3a2a, strokeIdle: 0x44aa88,
+            fillHover: 0x2a5a3a, strokeHover: 0x66ddaa,
+            depth: 2, onClick: () => this.closeMenu()
+        });
     }
 
     createSlider(label, x, y, width, initial, onChange, previewOnChange = false) {
@@ -109,13 +129,12 @@ export class PauseMenu extends Scene {
         trackHit.on('pointerdown', (pointer) => apply(pointer.x));
     }
 
-    createResumeButton(cx, cy) {
-        const btnW = 160;
-        const btnH = 40;
+    createButton(cx, cy, btnW, btnH, label, opts) {
         const bx = cx - btnW / 2;
         const by = cy - btnH / 2;
+        const depth = opts.depth ?? 2;
 
-        const btn = this.add.graphics().setScrollFactor(0).setDepth(2);
+        const btn = this.add.graphics().setScrollFactor(0).setDepth(depth);
         const draw = (fill, stroke) => {
             btn.clear();
             btn.fillStyle(fill, 1);
@@ -123,16 +142,102 @@ export class PauseMenu extends Scene {
             btn.lineStyle(2, stroke, 1);
             btn.strokeRoundedRect(bx, by, btnW, btnH, 8);
         };
-        draw(0x1a3a2a, 0x44aa88);
+        draw(opts.fillIdle, opts.strokeIdle);
 
-        this.add.text(cx, cy, 'Resume', {
+        const text = this.add.text(cx, cy, label, {
             fontFamily: 'Arial', fontSize: '16px', color: '#ffffff'
-        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(depth + 1);
 
         btn.setInteractive(new Phaser.Geom.Rectangle(bx, by, btnW, btnH), Phaser.Geom.Rectangle.Contains);
-        btn.on('pointerover', () => { this.input.setDefaultCursor('pointer'); draw(0x2a5a3a, 0x66ddaa); });
-        btn.on('pointerout', () => { this.input.setDefaultCursor('default'); draw(0x1a3a2a, 0x44aa88); });
-        btn.on('pointerdown', () => this.closeMenu());
+        btn.on('pointerover', () => { this.input.setDefaultCursor('pointer'); draw(opts.fillHover, opts.strokeHover); });
+        btn.on('pointerout', () => { this.input.setDefaultCursor('default'); draw(opts.fillIdle, opts.strokeIdle); });
+        btn.on('pointerdown', () => opts.onClick());
+
+        return { btn, text };
+    }
+
+    saveGame() {
+        playSfx(this, 'menu_button_press');
+        const gameScreen = this.scene.get('GameScreen');
+        gameScreen?.missionManager?.save();
+        this.showToast('Progress saved!');
+    }
+
+    showToast(message) {
+        if (this.toast) this.toast.destroy();
+
+        const w = this.scale.width;
+        this.toast = this.add.text(w / 2, 22, message, {
+            fontFamily: 'Arial', fontSize: '16px', color: '#ffffff',
+            backgroundColor: '#1a3a2a', padding: { x: 12, y: 6 }
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(20).setAlpha(0);
+
+        this.tweens.add({
+            targets: this.toast, alpha: 1, duration: 150, yoyo: true, hold: 900,
+            onComplete: () => { this.toast?.destroy(); this.toast = null; }
+        });
+    }
+
+    openRestartConfirm() {
+        if (this.confirmElements) return;
+        playSfx(this, 'menu_button_press');
+
+        const w = this.scale.width, h = this.scale.height;
+        const elements = [];
+
+        elements.push(this.add.rectangle(0, 0, w, h, 0x000000, 0.75)
+            .setOrigin(0).setScrollFactor(0).setDepth(10)
+            .setInteractive());
+
+        const boxW = w - 80, boxH = 170;
+        const boxX = (w - boxW) / 2, boxY = (h - boxH) / 2;
+        const box = this.add.graphics().setScrollFactor(0).setDepth(11);
+        box.fillStyle(0x1a1a1a, 1);
+        box.fillRoundedRect(boxX, boxY, boxW, boxH, 12);
+        box.lineStyle(2, 0xaa4444, 1);
+        box.strokeRoundedRect(boxX, boxY, boxW, boxH, 12);
+        elements.push(box);
+
+        elements.push(this.add.text(w / 2, boxY + 34, 'Restart Game?', {
+            fontFamily: 'Arial', fontSize: '20px', color: '#ffffff', fontStyle: 'bold'
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(12));
+
+        elements.push(this.add.text(w / 2, boxY + 70, 'All progress will be lost.', {
+            fontFamily: 'Arial', fontSize: '14px', color: '#cccccc',
+            align: 'center', wordWrap: { width: boxW - 40 }
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(12));
+
+        const btnY = boxY + boxH - 34;
+        const cancel = this.createButton(w / 2 - 82, btnY, 150, 40, 'Cancel', {
+            fillIdle: 0x2a2a2a, strokeIdle: 0x888888,
+            fillHover: 0x3a3a3a, strokeHover: 0xaaaaaa,
+            depth: 12, onClick: () => this.closeRestartConfirm()
+        });
+        const confirm = this.createButton(w / 2 + 82, btnY, 150, 40, 'Restart', {
+            fillIdle: 0x3a1a1a, strokeIdle: 0xaa4444,
+            fillHover: 0x5a2a2a, strokeHover: 0xdd6666,
+            depth: 12, onClick: () => this.restartGame()
+        });
+        elements.push(cancel.btn, cancel.text, confirm.btn, confirm.text);
+
+        this.confirmElements = elements;
+    }
+
+    closeRestartConfirm() {
+        if (!this.confirmElements) return;
+        playSfx(this, 'menu_button_press');
+        this.input.setDefaultCursor('default');
+        this.confirmElements.forEach(el => el.destroy());
+        this.confirmElements = null;
+    }
+
+    restartGame() {
+        playSfx(this, 'play_playagain');
+        this.input.setDefaultCursor('default');
+        MissionManager.clearProgress();
+        this.scene.stop('Dialogue');
+        this.scene.stop('PauseMenu');
+        this.scene.start('GameScreen');
     }
 
     closeMenu() {
@@ -145,7 +250,11 @@ export class PauseMenu extends Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
-            this.closeMenu();
+            if (this.confirmElements) {
+                this.closeRestartConfirm();
+            } else {
+                this.closeMenu();
+            }
         }
     }
 }
