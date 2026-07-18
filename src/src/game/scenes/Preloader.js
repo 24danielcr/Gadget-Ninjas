@@ -24,7 +24,7 @@ export class Preloader extends Scene
             for (const line of mission.dialogue ?? []) {
                 if (line.audio && !queued.has(line.audio)) {
                     queued.add(line.audio);
-                    this.load.audio(line.audio, `/assets/voicelines/${line.audio}.mp3`);
+                    this.load.audio(line.audio, `${import.meta.env.BASE_URL}assets/voicelines/${line.audio}.mp3`);
                 }
             }
         }
