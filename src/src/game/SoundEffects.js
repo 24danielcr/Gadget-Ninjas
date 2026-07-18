@@ -1,4 +1,4 @@
-const SFX_DIR = '/assets/soundfx';
+const SFX_DIR = import.meta.env.BASE_URL + 'assets/soundfx';
 
 const EFFECTS = [
     'open_dialogue',

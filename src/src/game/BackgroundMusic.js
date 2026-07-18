@@ -1,4 +1,4 @@
-const MUSIC_DIR = '/assets/gamemusic';
+const MUSIC_DIR = import.meta.env.BASE_URL + 'assets/gamemusic';
 const TRACKS = [
     'Kevin MacLeod - Itty Bitty 8 Bit  NO COPYRIGHT 8-bit Music',
     'Kevin MacLeod - Pixelland  NO COPYRIGHT 8-bit Music',
