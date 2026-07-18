@@ -1,0 +1,540 @@
+{
+    "missions": {
+        "webcam": {
+            "title": "Webcam",
+            "participants": ["theo_brook", "luna_reed"],
+            "prompt": "Listen to a conversation between Theo Brook and Luna Reed about webcams. What are they used for? Do all computers or laptops need a webcam?",
+            "questions": [
+                {
+                    "text": "What are webcams used for?",
+                    "correct": "To video chat and record videos",
+                    "incorrect": ["To listen to music", "To print documents", "To tell the time"]
+                },
+                {
+                    "text": "Do all computers or laptops need a webcam?",
+                    "correct": "No, laptops already have a built-in camera",
+                    "incorrect": ["Yes, all computers need one", "Yes, to connect to the internet", "Yes, to type documents"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_1", "text": "Hey Luna Reed! What is that in your hand?" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_1", "text": "Oh hey Theo Brook! It's my new webcam!" },
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_2", "text": "Why do you need a webcam?" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_2", "text": "I recently purchased a desktop computer! I can connect it via USB to my computer and video chat with my friends. I can also record myself cooking in my pot to show everyone my recipes!" },
+                { "speaker": "theo_brook", "audio": "webcam/Theo_Brook_3", "text": "That's really cool! I have a laptop with a built-in camera, so I don't need a webcam. Let's video chat sometime!" },
+                { "speaker": "luna_reed", "audio": "webcam/Luna_Reed_3", "text": "Let's do it! I'm gonna take my webcam home. I'll call you Theo Brook!" }
+            ]
+        },
+        "headphones": {
+            "title": "Headphones",
+            "participants": ["jasper_fern"],
+            "prompt": "Try to talk with Jasper Fern. Why weren't they able to hear you initially? What are headphones used for?",
+            "questions": [
+                {
+                    "text": "Why weren't they able to hear you initially?",
+                    "correct": "They were listening to music through their headphones",
+                    "incorrect": ["They were asleep", "They were talking to someone else", "They were watching a video"]
+                },
+                {
+                    "text": "What are headphones used for?",
+                    "correct": "To listen to music, podcasts and take calls",
+                    "incorrect": ["To record sounds and amplify voices", "To watch videos on a screen", "To send voice messages"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "player", "text": "Oh hello Jasper Fern!" },
+                { "speaker": "jasper_fern", "text": "...", "action": "Doesn't answer — Jasper Fern is listening to music through headphones, facing the opposite way" },
+                { "speaker": "player", "text": "Hello? Can you hear me?", "action": "Player taps Jasper Fern on the shoulder" },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_1", "text": "Oh hi! You scared me!" },
+                { "speaker": "player", "text": "I'm sorry, I said hello but you didn't hear me." },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_2", "text": "Don't worry, it's because of my brand new headphones!" },
+                { "speaker": "player", "text": "Oh cool! I'm sorry I don't know what headphones are or what they do." },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_3", "text": "I can explain it to you! Headphones are used to listen to music, podcasts and take calls!" },
+                { "speaker": "player", "text": "Really!? Headphones can do all of that? Can I call my mom from them?" },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_4", "text": "*Chuckles* Well not exactly, you need another gadget like a computer, MP3 player or a phone to connect your headphones and choose what you want to listen to through them." },
+                { "speaker": "player", "text": "I understand now. Can I borrow your headphones to listen to some music?" },
+                { "speaker": "jasper_fern", "audio": "headphones/Jasper_Fern_5", "text": "Sure!", "action": "Music starts playing" }
+            ]
+        },
+        "smart_watch": {
+            "title": "Smart Watch",
+            "participants": ["roy_ashwood"],
+            "prompt": "Talk to Roy Ashwood, ask for the time. What gadget did Roy Ashwood use to tell the time? Why does Roy Ashwood prefer a smart watch over a classical watch?",
+            "questions": [
+                {
+                    "text": "What gadget did Roy Ashwood use to tell the time?",
+                    "correct": "A smart watch",
+                    "incorrect": ["A cell phone", "A wall clock", "A computer"]
+                },
+                {
+                    "text": "Why does Roy Ashwood prefer a smart watch over a classical watch?",
+                    "correct": "It also shows text messages and counts daily steps",
+                    "incorrect": ["It is cheaper to buy", "It looks more fashionable", "It can make phone calls"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "player", "text": "Excuse me, do you know what time it is?" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_1", "text": "It is 2 o'clock in the afternoon." },
+                { "speaker": "player", "text": "How do you always know the time?" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_2", "text": "I check my smart watch on my wrist!" },
+                { "speaker": "player", "text": "Can it only tell time?" },
+                { "speaker": "roy_ashwood", "audio": "smart_watch/Roy_Ashwood_3", "text": "No, it also shows text messages I receive on my phone and the number of my steps during the day!" },
+                { "speaker": "player", "text": "Very interesting, thank you for telling me the time!" }
+            ]
+        },
+        "printer": {
+            "title": "Printer",
+            "participants": ["eli_carter", "ivy_grant"],
+            "prompt": "Listen to a conversation between Eli Carter and Ivy Grant. What technological gadget were they talking about? What are two things a printer can do?",
+            "questions": [
+                {
+                    "text": "What technological gadget were they talking about?",
+                    "correct": "A printer",
+                    "incorrect": ["A scanner", "A photocopier", "A desktop computer"]
+                },
+                {
+                    "text": "What are two things a printer can do?",
+                    "correct": "Print documents and scan papers",
+                    "incorrect": ["Send emails and take photos", "Store files and play music", "Connect to the internet and record videos"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_1", "text": "My dog ate my homework last night." },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_1", "text": "That sounds funny, but is also not good. What are you going to do now?" },
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_2", "text": "My dad says I need to print my homework again before class starts." },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_2", "text": "You need to use a printer then." },
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_3", "text": "What does a printer do exactly?" },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_3", "text": "It prints documents and photos from your computer or phone onto paper. You can also scan papers to make more copies of them!"},
+                { "speaker": "eli_carter", "audio": "printer/eli_carter_4", "text": "I've heard my dad use the printer at home. It's really loud!" },
+                { "speaker": "ivy_grant", "audio": "printer/ivy_grant_4", "text": "Yes, it makes some noise, but it works very well." }
+            ]
+        },
+        "digital_camera": {
+            "title": "Digital Camera",
+            "participants": ["amara_bennet", "zoe_porter"],
+            "prompt": "Listen to what Amara Bennet and Zoe Porter are doing. What gadget are they using? Does a digital camera have another function?",
+            "questions": [
+                {
+                    "text": "What gadget are they using to take pictures?",
+                    "correct": "A digital camera",
+                    "incorrect": ["A smartphone", "A tablet", "A webcam"]
+                },
+                {
+                    "text": "What else can you do with a digital camera?",
+                    "correct": "Record videos",
+                    "incorrect": ["Send messages", "Browse the internet", "Make phone calls"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_1", "text": "Smile and don't move!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_1", "text": "My hair looks messy, I feel nervous." },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_2", "text": "Don't worry you look great! Now say cheese!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_2", "text": "Cheese!" },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_3", "text": "The picture turned out great thanks to my digital camera!" },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_3", "text": "You're right I look great! What else can the digital camera do?" },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_4", "text": "I can also record videos with it." },
+                { "speaker": "zoe_porter", "audio": "digital_camera/zoe_porter_4", "text": "Oh no! The battery on my phone is almost empty." },
+                { "speaker": "amara_bennet", "audio": "digital_camera/amara_bennet_5", "text": "That's okay, my camera still has power." }
+            ]
+        },
+        "computer_mouse": {
+            "title": "Computer Mouse",
+            "participants": ["hazel_pike", "talia_carter"],
+            "prompt": "Listen to what Hazel Pike and Talia Carter are talking about. What is the gadget Bob's nephew is missing to work their desktop computer? What is the mouse used for?",
+            "questions": [
+                {
+                    "text": "What gadget is Bob's nephew missing to work their desktop computer?",
+                    "correct": "A mouse",
+                    "incorrect": ["A keyboard", "A monitor", "A webcam"]
+                },
+                {
+                    "text": "What is the mouse used for?",
+                    "correct": "To move the cursor and click things on the screen",
+                    "incorrect": ["To type letters and numbers", "To display images on screen", "To connect to the internet"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "hazel_pike", "text": "My sister recently bought a desktop computer! She bought a webcam but forgot to buy a mouse and keyboard!" },
+                { "speaker": "talia_carter", "text": "Why does she need a mouse and keyboard?" },
+                { "speaker": "hazel_pike", "text": "Without the mouse she can't use her computer! She needs it to move the cursor and click things on the screen. Without a keyboard she can't type letters or numbers into her computer." },
+                { "speaker": "player", "text": "*Inside head* One of these gadgets is what Bob's nephew is missing.", "action": "Bob will say what the device his nephew is missing does — that's how the player determines the missing gadget" }
+            ]
+        },
+        "tablet": {
+            "title": "Tablet",
+            "participants": ["lisa_frost", "archer_solen"],
+            "prompt": "Listen to what Lisa Frost and Archer Solen are talking about. What gadget are they talking about? What are two things a tablet can be used for?",
+            "questions": [
+                {
+                    "text": "What gadget are they talking about?",
+                    "correct": "A tablet",
+                    "incorrect": ["A laptop", "A smartphone", "A portable monitor"]
+                },
+                {
+                    "text": "What are two things a tablet can be used for?",
+                    "correct": "Playing video games and reading",
+                    "incorrect": ["Printing documents and scanning photos", "Making phone calls and sending faxes", "Recording music and editing videos"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "lisa_frost", "text": "Hello Archer Solen! Are you reading something or watching a video right now?" },
+                { "speaker": "archer_solen", "text": "Hi, no I'm playing video games with my tablet. I already read and watched videos with it!" },
+                { "speaker": "lisa_frost", "text": "Is it heavy to carry in your bag?" },
+                { "speaker": "archer_solen", "text": "No, it is very light, I take it to school everyday." },
+                { "speaker": "lisa_frost", "text": "I feel a little hungry." },
+                { "speaker": "archer_solen", "text": "Let's use my tablet to navigate the internet and find some ideas for snacks we can make!" }
+            ]
+        },
+        "microphone": {
+            "title": "Microphone",
+            "participants": ["jax_knox", "nolan_lock"],
+            "prompt": "Listen to a conversation between Jax Knox and Nolan Lock. What gadget are they using to record or amplify sound? Does the microphone have another function?",
+            "questions": [
+                {
+                    "text": "What gadget are they using to record or amplify sound?",
+                    "correct": "A microphone",
+                    "incorrect": ["Headphones", "Speakers", "Earphones"]
+                },
+                {
+                    "text": "Does the microphone have another function?",
+                    "correct": "Yes, it can also be used for singing",
+                    "incorrect": ["No, it can only record sounds", "Yes, it can also take pictures", "Yes, it can also connect to the internet"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "jax_knox", "text": "Testing… 1, 2, 3! Can you hear me clearly Nolan Lock?" },
+                { "speaker": "nolan_lock", "text": "Yes, your voice sounds loud and clear." },
+                { "speaker": "jax_knox", "text": "It's all thanks to my new microphone!" },
+                { "speaker": "nolan_lock", "text": "What does it do exactly?" },
+                { "speaker": "jax_knox", "text": "It records sounds and makes voices louder for everyone to hear." },
+                { "speaker": "nolan_lock", "text": "I like singing in the shower at home." },
+                { "speaker": "jax_knox", "text": "You can also use a microphone for singing. Not in the shower though!" }
+            ]
+        },
+        "monitor": {
+            "title": "Monitor",
+            "participants": ["corin_crest", "sylas_star"],
+            "prompt": "Listen to the conversation between Corin Crest and Sylas Star. What device are they talking about? What do they see on this screen?",
+            "questions": [
+                {
+                    "text": "What device are they talking about?",
+                    "correct": "A monitor",
+                    "incorrect": ["A television", "A tablet", "A projector"]
+                },
+                {
+                    "text": "What do they see on this screen?",
+                    "correct": "Video games, videos and school work",
+                    "incorrect": ["Only TV shows and movies", "Text messages and emails", "Photos and social media"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "corin_crest", "text": "Your desk is very organized today." },
+                { "speaker": "sylas_star", "text": "Thanks! I just cleaned it." },
+                { "speaker": "corin_crest", "text": "Why is there a TV on your desk?" },
+                { "speaker": "sylas_star", "text": "It's not a TV, it's a monitor for my computer." },
+                { "speaker": "corin_crest", "text": "What do you see on it?" },
+                { "speaker": "sylas_star", "text": " I see video games, videos, school work and more!" },
+                { "speaker": "corin_crest", "text": "I think I prefer TV's to see my shows, and bigger desks!" }
+            ]
+        },
+        "smart_tv": {
+            "title": "Smart TV",
+            "participants": ["lucas_miles", "sofia_ford"],
+            "prompt": "Listen to the conversation between Lucas Miles and Sofia Ford. What type of TV are they using? Select one thing they can watch on it.",
+            "questions": [
+                {
+                    "text": "What type of TV are they using?",
+                    "correct": "A smart TV",
+                    "incorrect": ["A regular TV", "A computer monitor", "A projector"]
+                },
+                {
+                    "text": "Select one thing they can watch on it.",
+                    "correct": "Netflix shows and movies",
+                    "incorrect": ["Live sports only", "The local news only", "Video game streams only"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "lucas_miles", "text": "It's raining, so staying inside is nice." },
+                { "speaker": "sofia_ford", "text": "Yes, let's turn on the smart TV!" },
+                { "speaker": "lucas_miles", "text": "Why is it called a smart TV?" },
+                { "speaker": "sofia_ford", "text": "Because it is connected to the internet!" },
+                { "speaker": "lucas_miles", "text": "Oh, so we can watch Netflix shows, movies and YouTube videos!" },
+                { "speaker": "sofia_ford", "text": "How about we make some popcorn?" },
+                { "speaker": "lucas_miles", "text": "That is a great idea!" }
+            ]
+        },
+        "calculator": {
+            "title": "Calculator",
+            "participants": ["layla_kim", "hannah_blue"],
+            "prompt": "Listen to the conversation between Layla Kim and Hannah Blue. What device helps them with numbers? Why do they use it?",
+            "questions": [
+                {
+                    "text": "What device helps them with numbers?",
+                    "correct": "A calculator",
+                    "incorrect": ["A computer", "A tablet", "A smartphone"]
+                },
+                {
+                    "text": "Why do they use it?",
+                    "correct": "Because it helps with numbers and is very accurate",
+                    "incorrect": ["Because they forgot their textbook", "Because it checks spelling and grammar", "Because the teacher always requires it"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "layla_kim", "text": "This math homework is taking forever. I don't have enough fingers to count!" },
+                { "speaker": "hannah_blue", "text": "The teacher let us use a calculator!" },
+                { "speaker": "layla_kim", "text": "Cool! What is a calculator?" },
+                { "speaker": "hannah_blue", "text": "It's a device that helps us with calculations and numbers" },
+                { "speaker": "layla_kim", "text": "Does it ever make a mistake?" },
+                { "speaker": "hannah_blue", "text": "No, it is very accurate." }
+            ]
+        },
+        "mp3_player_earphones": {
+            "title": "MP3 Player & Earphones",
+            "participants": ["chloe_green", "aria_price"],
+            "prompt": "Listen to the conversation between Chloe Green and Aria Price. What device do they use to select the music? What device do they use to listen to the music? Are earphones only used with an MP3 player?",
+            "questions": [
+                {
+                    "text": "What device do they use to select the music?",
+                    "correct": "An MP3 player",
+                    "incorrect": ["A smartphone", "A tablet", "A computer"]
+                },
+                {
+                    "text": "What device do they use to listen to the music?",
+                    "correct": "Earphones",
+                    "incorrect": ["Headphones", "Speakers", "A microphone"]
+                },
+                {
+                    "text": "Are earphones only used with an MP3 player?",
+                    "correct": "No, they also work with phones, tablets and computers",
+                    "incorrect": ["Yes, only with MP3 players", "Yes, only with music devices", "No, but only with smartphones"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "chloe_green", "text": "I hear music, but I don't see speakers anywhere!" },
+                { "speaker": "aria_price", "text": "I'm using my MP3 player!" },
+                { "speaker": "chloe_green", "text": "Could you turn it down a little?" },
+                { "speaker": "aria_price", "text": "Sure! I will just use my earphones; I'll be able to hear it even louder without disturbing you." },
+                { "speaker": "chloe_green", "text": "Can earphones work with other devices?" },
+                { "speaker": "aria_price", "text": "Yes, phones, tablets and computers too." },
+                { "speaker": "chloe_green", "text": "I prefer quiet places, like the library!" }
+            ]
+        },
+        "router": {
+            "title": "Router",
+            "participants": ["nixi_spark", "john_bolt"],
+            "prompt": "Listen to the conversation between Nixi Spark and John Bolt. What device gives the internet to other devices? What happens when it is off?",
+            "questions": [
+                {
+                    "text": "What device gives the internet to other devices?",
+                    "correct": "A router",
+                    "incorrect": ["A modem", "A smart TV", "A desktop computer"]
+                },
+                {
+                    "text": "What happens when it is off?",
+                    "correct": "The internet stops working on all devices",
+                    "incorrect": ["All devices turn off too", "The TV stops showing channels", "You can no longer charge your phone"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "nixi_spark", "text": "Oh no! The internet stopped working while I was watching a video." },
+                { "speaker": "john_bolt", "text": "Let me check the router in the corner." },
+                { "speaker": "nixi_spark", "text": " A router? What device is that?" },
+                { "speaker": "john_bolt", "text": "It's the device that gives internet to other devices. I'm going to restart it, that always works." },
+                { "speaker": "nixi_spark", "text": "Oh, I hope it does! If not, we're going to be really bored. Or...we could go to the park!" },
+                { "speaker": "john_bolt", "text": "*grunts*" }
+            ]
+        },
+        "laptop": {
+            "title": "Laptop",
+            "participants": ["taro_ember", "fenn_lux"],
+            "prompt": "Listen to the conversation between Taro Ember and Fenn Lux. What computer do they use? Why is it easy to carry?",
+            "questions": [
+                {
+                    "text": "What computer do they use?",
+                    "correct": "A laptop",
+                    "incorrect": ["A desktop computer", "A tablet", "A smartphone"]
+                },
+                {
+                    "text": "Why is it easy to carry?",
+                    "correct": "Because it is very light",
+                    "incorrect": ["Because it fits in a pocket", "Because it has a carrying handle", "Because it works without electricity"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "taro_ember", "text": "Are you studying in the library again?" },
+                { "speaker": "fenn_lux", "text": "Yes, I have to type up an essay." },
+                { "speaker": "taro_ember", "text": "How are you going to do that if your desktop computer is at home?" },
+                { "speaker": "fenn_lux", "text": "I brought my laptop! It is easy to carry because it's so light." },
+                { "speaker": "taro_ember", "text": " I wish I had a laptop. I don't like reading books here; I prefer the arcade!" },
+                { "speaker": "fenn_lux", "text": "Me too, but I need to do my homework." }
+            ]
+        },
+        "smart_phone": {
+            "title": "Smart Phone",
+            "participants": ["kiko_flux", "priya_flux"],
+            "prompt": "Listen to the conversation between Kiko Flux and Priya Flux. What device is in their hand? Name two things they do with it.",
+            "questions": [
+                {
+                    "text": "What device is in their hand?",
+                    "correct": "A smartphone",
+                    "incorrect": ["A tablet", "A cell phone", "An MP3 player"]
+                },
+                {
+                    "text": "Name two things they do with it.",
+                    "correct": "Message friends and watch videos",
+                    "incorrect": ["Print documents and scan photos", "Play video games and read books", "Listen to music and take pictures"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "kiko_flux", "text": "You always have that device with you." },
+                { "speaker": "priya_flux", "text": "Yes, it's my smartphone." },
+                { "speaker": "kiko_flux", "text": "What do you use it for most?" },
+                { "speaker": "priya_flux", "text": " I mainly use it to message my friends and watch videos." },
+                { "speaker": "kiko_flux", "text": "Can you also search the internet?" },
+                { "speaker": "priya_flux", "text": "Yes, I use it for many things." }
+            ]
+        },
+        "cell_phone": {
+            "title": "Cell Phone",
+            "participants": ["daniel_moon", "fernanda_valle"],
+            "prompt": "Listen to the conversation between Daniel Moon and Fernanda Vale. What device do they use to call people? Is it new or old?",
+            "questions": [
+                {
+                    "text": "What device do they use to call people?",
+                    "correct": "A cell phone",
+                    "incorrect": ["A smartphone", "A landline phone", "A tablet"]
+                },
+                {
+                    "text": "Is it new or old?",
+                    "correct": "It is old and simple",
+                    "incorrect": ["It is new and modern", "It is a smartphone", "It is a smart device with many features"]
+                }
+            ],
+            "dialogue": [
+                { "speaker": "daniel_moon", "text": "How do you contact people when you travel?" },
+                { "speaker": "fernanda_valle", "text": "I use my old cell phone." },
+                { "speaker": "daniel_moon", "text": "Is it a smartphone?" },
+                { "speaker": "fernanda_valle", "text": "No, it's a simpler and older version of a smartphone." },
+                { "speaker": "daniel_moon", "text": "What can it do?" },
+                { "speaker": "fernanda_valle", "text": "It can only call and send messages." },
+                { "speaker": "daniel_moon", "text": "Simple things still work well." }
+            ]
+        }
+    },
+    "bob_introductions": {
+        "webcam": [
+            { "speaker": "bob", "text": "Psst! Hey, you! Yes, you. Come here, I've got a mission for you." },
+            { "speaker": "player", "choices": ["A mission? I'm in!"] },
+            { "speaker": "bob", "text": "See those two over there? Theo Brook and Luna Reed? Luna's showing off some new gadget." },
+            { "speaker": "player", "choices": ["Ooh, what is it?"] },
+            { "speaker": "bob", "text": "That's exactly what I need you to find out! Go listen in on their conversation and report back to me." },
+            { "speaker": "player", "choices": ["What do I get if I figure it out?"] },
+            { "speaker": "bob", "text": "The satisfaction of a job well done! Now go, go, go!" }
+        ],
+        "headphones": [
+            { "speaker": "bob", "text": "Alright, superstar. See that person over there? Jasper Fern." },
+            { "speaker": "player", "choices": ["They look like they're in their own world."] },
+            { "speaker": "bob", "text": "Exactly! They've got something on their ears and haven't heard a single word I've said to them all morning." },
+            { "speaker": "player", "choices": ["Maybe they just don't like you, Bob."] },
+            { "speaker": "bob", "text": "Ha! Probably! But I need you to go find out what that gadget is and what it does. Good luck getting their attention!" }
+        ],
+        "smart_watch": [
+            { "speaker": "bob", "text": "Quick question — do you know what time it is?" },
+            { "speaker": "player", "choices": ["I have no idea."] },
+            { "speaker": "bob", "text": "Well Roy Ashwood always knows! And I've never seen them pull out a phone. Go ask them and pay attention to how they check the time." },
+            { "speaker": "player", "choices": ["Maybe they just have really good instincts."] },
+            { "speaker": "bob", "text": "It's not instincts — it's on their wrist! Now go find out what it is. You've got this." }
+        ],
+        "printer": [
+            { "speaker": "bob", "text": "Okay, so. Eli Carter's dog ate their homework last night." },
+            { "speaker": "player", "choices": ["Classic excuse... wait, it's real?"] },
+            { "speaker": "bob", "text": "Very real! Eli is talking to Ivy Grant about how to fix the situation. There's a gadget that can save the day." },
+            { "speaker": "player", "choices": ["I'm listening..."] },
+            { "speaker": "bob", "text": "Go eavesdrop — I mean, go listen in on their conversation and find out what gadget comes to the rescue!" }
+        ],
+        "digital_camera": [
+            { "speaker": "bob", "text": "I just spotted Amara Bennet pointing something at Zoe Porter and yelling 'say cheese!'" },
+            { "speaker": "player", "choices": ["Ooh, are they taking pictures?"] },
+            { "speaker": "bob", "text": "Pictures, yes! But with what exactly? Go check it out — and see if that gadget can do anything besides snap photos!" },
+            { "speaker": "player", "choices": ["What's in it for me?"] },
+            { "speaker": "bob", "text": "The thrill of knowledge! That's what's in it for you. Now scoot!" }
+        ],
+        "computer_mouse": [
+            { "speaker": "bob", "text": "Okay, this one is personal. My nephew just got a brand new desktop computer." },
+            { "speaker": "player", "choices": ["Nice! Lucky kid.", "Let me guess — something's missing?", "Is it a good one?"] },
+            { "speaker": "bob", "text": "Something IS missing! He can't even use it. Go listen to Hazel Pike and Talia Carter — they're talking about the exact same problem." },
+            { "speaker": "player", "choices": ["What a coincidence!", "Is your nephew Hazel or Talia?", "I'll go find out what's missing!"] },
+            { "speaker": "bob", "text": "Not a coincidence — I planned this whole mission! Now go find out what gadget my nephew is desperately missing!" }
+        ],
+        "tablet": [
+            { "speaker": "bob", "text": "You know what I find fascinating? Some gadgets can do like five different things." },
+            { "speaker": "player", "choices": ["Like a Swiss Army knife?", "Sounds suspicious.", "I can also do five things!"] },
+            { "speaker": "bob", "text": "Ha! Go talk to Lisa Frost and Archer Solen. Archer has one of those multi-tasking gadgets and uses it for everything." },
+            { "speaker": "player", "choices": ["Everything? Like cooking?", "I'm on it!", "What are they using it for right now?"] },
+            { "speaker": "bob", "text": "Find out for yourself — that's the whole point of the mission! Go, go, go!" }
+        ],
+        "microphone": [
+            { "speaker": "bob", "text": "Did you hear that? Someone's testing something over there." },
+            { "speaker": "player", "choices": ["Testing... 1, 2, 3?", "Testing what exactly?", "I didn't hear anything."] },
+            { "speaker": "bob", "text": "That's Jax Knox! He's got some gadget that makes his voice super loud. Go find out what it is!" },
+            { "speaker": "player", "choices": ["A megaphone?", "I could use one of those.", "On my way!"] },
+            { "speaker": "bob", "text": "Maybe! Only one way to find out. Go talk to Jax and Nolan Lock and get the full story!" }
+        ],
+        "monitor": [
+            { "speaker": "bob", "text": "I walked past Sylas Star's desk today and thought they had a TV sitting on it." },
+            { "speaker": "player", "choices": ["A TV on a desk? Fancy.", "Was it playing cartoons?", "Maybe they do?"] },
+            { "speaker": "bob", "text": "Corin Crest thought the exact same thing! Go listen to them figure it out together. Turns out it's a different gadget entirely." },
+            { "speaker": "player", "choices": ["A very small TV?", "Ooh, I wonder what it is.", "I'll go check it out!"] },
+            { "speaker": "bob", "text": "Bigger than small, smaller than a TV! Now go — your curiosity awaits." }
+        ],
+        "smart_tv": [
+            { "speaker": "bob", "text": "It's raining outside today. Perfect day to stay in and watch something, right?" },
+            { "speaker": "player", "choices": ["Agreed, 100%.", "I'd rather go splash in puddles.", "What does this have to do with a mission?"] },
+            { "speaker": "bob", "text": "Lucas Miles and Sofia Ford had the same idea! They're turning on some kind of TV. But it's not just any TV..." },
+            { "speaker": "player", "choices": ["A 3D TV?", "A TV with feelings?", "A smart TV?"] },
+            { "speaker": "bob", "text": "Go find out exactly what makes it so special! I'd check myself but... I'm very busy. Extremely busy." }
+        ],
+        "calculator": [
+            { "speaker": "bob", "text": "Quick, what's 347 multiplied by 82?" },
+            { "speaker": "player", "choices": ["...28,454?", "My brain just crashed.", "Can I use a calculator?"] },
+            { "speaker": "bob", "text": "Layla Kim had the same problem with her math homework! Go listen to her and Hannah Blue figure it out." },
+            { "speaker": "player", "choices": ["I feel Layla's pain deeply.", "Is the answer a calculator?", "On my way!"] },
+            { "speaker": "bob", "text": "Find out what gadget saves the day — and whether it ever makes mistakes. Numbers don't lie!" }
+        ],
+        "mp3_player_earphones": [
+            { "speaker": "bob", "text": "I keep hearing music but I can't find the speakers anywhere. Am I going crazy?" },
+            { "speaker": "player", "choices": ["Probably a little, yeah.", "Maybe it's all in your head, Bob.", "It's coming from over there!"] },
+            { "speaker": "bob", "text": "It's coming from Aria Price! She's got some gadget playing music and things in her ears too. Go investigate!" },
+            { "speaker": "player", "choices": ["A tiny private concert?", "I love a music mystery.", "I'll track it down!"] },
+            { "speaker": "bob", "text": "Two gadgets for the price of one today! The one playing the music AND the things in her ears. Go find out what both do!" }
+        ],
+        "router": [
+            { "speaker": "bob", "text": "Have you ever had the internet just... stop? Right in the middle of something important?" },
+            { "speaker": "player", "choices": ["Once during a really good video. Devastating.", "Never, I'm very lucky.", "Every single day, Bob."] },
+            { "speaker": "bob", "text": "Nixi Spark is going through that right now! And John Bolt seems to know exactly which gadget is responsible." },
+            { "speaker": "player", "choices": ["The villain of the household!", "Is it a secret gadget?", "I'll go find out what it is!"] },
+            { "speaker": "bob", "text": "Go listen in! This gadget affects every device in the building. Very important stuff — don't let Nixi down!" }
+        ],
+        "laptop": [
+            { "speaker": "bob", "text": "Can you type an essay without a desk?" },
+            { "speaker": "player", "choices": ["Sounds very uncomfortable.", "Challenge accepted.", "Is that a riddle, Bob?"] },
+            { "speaker": "bob", "text": "Fenn Lux can! They brought a gadget to the library that lets them do computer stuff from anywhere. Go find out what it is!" },
+            { "speaker": "player", "choices": ["A magic typewriter?", "Ooh, I think I know!", "I'm heading there now!"] },
+            { "speaker": "bob", "text": "Go confirm your hunch with Taro Ember and Fenn Lux. And no peeking at what Fenn is typing!" }
+        ],
+        "smart_phone": [
+            { "speaker": "bob", "text": "You ever notice how some people are always looking down at something in their hand?" },
+            { "speaker": "player", "choices": ["Are you talking about me?", "I thought they were checking for ants.", "Yeah, what are they always looking at?"] },
+            { "speaker": "bob", "text": "That's Priya Flux! Always got that device with them. Go talk to Kiko Flux and Priya — find out what it is and everything it can do." },
+            { "speaker": "player", "choices": ["A magic rectangle?", "I'll go ask them!", "Is it more than just calling people?"] },
+            { "speaker": "bob", "text": "Much, much more! That's exactly what you need to find out. Off you go!" }
+        ],
+        "cell_phone": [
+            { "speaker": "bob", "text": "Not every gadget has to be brand new to be useful, you know." },
+            { "speaker": "player", "choices": ["Like you, Bob?", "Deep thought for a Tuesday.", "What are you getting at?"] },
+            { "speaker": "bob", "text": "Ha! Fernanda Valle travels a lot and uses a very old, simple gadget to stay in touch. Daniel Moon just asked them about it." },
+            { "speaker": "player", "choices": ["Old school! I respect it.", "How old are we talking?", "What does it do?"] },
+            { "speaker": "bob", "text": "Go find out! Sometimes the simplest tools do exactly what you need — nothing more, nothing less." }
+        ]
+    }
+}

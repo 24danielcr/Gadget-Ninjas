@@ -1,0 +1,836 @@
+================================================================================
+                         GADGET NINJAS — ALL MISSIONS
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 1 — WEBCAM
+Participants: Theo Brook & Luna Reed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Psst! Hey, you! Yes, you. Come here, I've got a mission for you.
+Player: (a) A mission? I'm in!
+        (b) Is this going to be dangerous?
+        (c) Do I get paid for this?
+Bob:    See those two over there? Theo Brook and Luna Reed? Luna's showing off
+        some new gadget.
+Player: (a) Ooh, what is it?
+        (b) Should I just go ask her?
+        (c) I'm already on my way!
+Bob:    That's exactly what I need you to find out! Go listen in on their
+        conversation and report back to me.
+Player: (a) On it, boss!
+        (b) This feels a little sneaky...
+        (c) What do I get if I figure it out?
+Bob:    The satisfaction of a job well done! Now go, go, go!
+
+MISSION PROMPT
+--------------
+Listen to a conversation between Theo Brook and Luna Reed about webcams.
+What are they used for? Do all computers or laptops need a webcam?
+
+CONVERSATION
+------------
+Theo Brook: Hey Luna Reed! What is that in your hand?
+Luna Reed:  Oh hey Theo Brook! It's my new webcam!
+Theo Brook: Why do you need a webcam?
+Luna Reed:  I recently purchased a desktop computer! I can connect it via USB
+            to my computer and video chat with my friends. I can also record
+            myself cooking in my pot to show everyone my recipes!
+Theo Brook: That's really cool! I have a laptop with a built-in camera, so I
+            don't need a webcam. Let's video chat sometime!
+Luna Reed:  Let's do it! I'm gonna take my webcam home. I'll call you Theo Brook!
+
+QUIZ
+----
+Q1: What are webcams used for?
+    ✓  To video chat and record videos
+    ✗  To listen to music
+    ✗  To print documents
+    ✗  To tell the time
+
+Q2: Do all computers or laptops need a webcam?
+    ✓  No, laptops already have a built-in camera
+    ✗  Yes, all computers need one
+    ✗  Yes, to connect to the internet
+    ✗  Yes, to type documents
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 2 — HEADPHONES
+Participants: Jasper Fern
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Alright, superstar. See that person over there? Jasper Fern.
+Player: (a) What about them?
+        (b) They look like they're in their own world.
+        (c) Are those things on their ears?
+Bob:    Exactly! They've got something on their ears and haven't heard a single
+        word I've said to them all morning.
+Player: (a) That's kind of rude.
+        (b) Honestly, goals.
+        (c) Maybe they just don't like you, Bob.
+Bob:    Ha! Probably! But I need you to go find out what that gadget is and
+        what it does. Good luck getting their attention!
+
+MISSION PROMPT
+--------------
+Try to talk with Jasper Fern. Why weren't they able to hear you initially?
+What are headphones used for?
+
+CONVERSATION
+------------
+Player:       Oh hello Jasper Fern!
+Jasper Fern:  ...
+              [Doesn't answer — Jasper Fern is listening to music through
+               headphones, facing the opposite way]
+Player:       Hello? Can you hear me?
+              [Player taps Jasper Fern on the shoulder]
+Jasper Fern:  Oh hi! You scared me!
+              [Jumps startled and turns around]
+Player:       I'm sorry, I greeted you but you didn't hear me.
+Jasper Fern:  Don't worry, it's because of my brand new headphones!
+Player:       Oh cool! I'm sorry I don't know what headphones are or what
+              they do.
+Jasper Fern:  I can explain it to you! Headphones are used to listen to music,
+              podcasts and take calls!
+Player:       Really!? Headphones can do all of that? Can I call my mom
+              from them?
+Jasper Fern:  *Chuckles* Well not exactly, you need another gadget like a
+              computer, MP3 player or a phone to connect your headphones and
+              choose what you want to listen to through them.
+Player:       I understand now. Can I borrow your headphones to listen to
+              some music?
+Jasper Fern:  Sure!
+              [Music starts playing]
+
+QUIZ
+----
+Q1: Why weren't they able to hear you initially?
+    ✓  They were listening to music through their headphones
+    ✗  They were asleep
+    ✗  They were talking to someone else
+    ✗  They were watching a video
+
+Q2: What are headphones used for?
+    ✓  To listen to music, podcasts and take calls
+    ✗  To record sounds and amplify voices
+    ✗  To watch videos on a screen
+    ✗  To send voice messages
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 3 — SMART WATCH
+Participants: Roy Ashwood
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Quick question — do you know what time it is?
+Player: (a) I have no idea.
+        (b) Time for you to get a watch?
+        (c) Why, are you late for something?
+Bob:    Well Roy Ashwood always knows! And I've never seen them pull out a
+        phone. Go ask them and pay attention to how they check the time.
+Player: (a) Ooh, mysterious.
+        (b) Maybe they just have really good instincts.
+        (c) I'll go find out!
+Bob:    It's not instincts — it's on their wrist! Now go find out what it is.
+        You've got this.
+
+MISSION PROMPT
+--------------
+Talk to Roy Ashwood, ask for the time. What gadget did Roy Ashwood use to
+tell the time? Why does Roy Ashwood prefer a smart watch over a classical watch?
+
+CONVERSATION
+------------
+Player:      Excuse me, do you know what time it is?
+Roy Ashwood: It is 2 o'clock in the afternoon.
+Player:      How are you able to always know the time?
+Roy Ashwood: I check my smart watch on my wrist!
+Player:      Can it only tell time?
+Roy Ashwood: No, it also shows text messages I receive on my phone and the
+             number of my steps during the day!
+Player:      Very interesting, thank you for telling me the time!
+
+QUIZ
+----
+Q1: What gadget did Roy Ashwood use to tell the time?
+    ✓  A smart watch
+    ✗  A cell phone
+    ✗  A wall clock
+    ✗  A computer
+
+Q2: Why does Roy Ashwood prefer a smart watch over a classical watch?
+    ✓  It also shows text messages and counts daily steps
+    ✗  It is cheaper to buy
+    ✗  It looks more fashionable
+    ✗  It can make phone calls
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 4 — PRINTER
+Participants: Eli Carter & Ivy Grant
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Okay, so. Eli Carter's dog ate their homework last night.
+Player: (a) Classic excuse... wait, it's real?
+        (b) Oh no! Poor Eli.
+        (c) That dog has great taste.
+Bob:    Very real! Eli is talking to Ivy Grant about how to fix the situation.
+        There's a gadget that can save the day.
+Player: (a) A gadget that reverses dog digestion?
+        (b) I think I know where this is going.
+        (c) I'm listening...
+Bob:    Go eavesdrop — I mean, go listen in on their conversation and find out
+        what gadget comes to the rescue!
+
+MISSION PROMPT
+--------------
+Listen to a conversation between Eli Carter and Ivy Grant. What technological
+gadget were they talking about? What are two things a printer can do?
+
+CONVERSATION
+------------
+Eli Carter: My dog ate my homework last night.
+Ivy Grant:  That sounds funny, but is also not good. What are you going to
+            do now?
+Eli Carter: My dad says I need to print my homework again before class starts.
+Ivy Grant:  You need to use a printer then.
+Eli Carter: What does a printer do exactly? It prints documents and photos from
+            your computer or phone onto paper. You can also scan papers to make
+            more copies of them!
+Ivy Grant:  I've heard my dad use the printer at home. It's really loud!
+Eli Carter: Yes, it makes some noise, but it works very well.
+
+QUIZ
+----
+Q1: What technological gadget were they talking about?
+    ✓  A printer
+    ✗  A scanner
+    ✗  A photocopier
+    ✗  A desktop computer
+
+Q2: What are two things a printer can do?
+    ✓  Print documents and scan papers
+    ✗  Send emails and take photos
+    ✗  Store files and play music
+    ✗  Connect to the internet and record videos
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 5 — DIGITAL CAMERA
+Participants: Amara Bennet & Zoe Porter
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    I just spotted Amara Bennet pointing something at Zoe Porter and
+        yelling 'say cheese!'
+Player: (a) Are they okay?
+        (b) Is that a threat?
+        (c) Ooh, are they taking pictures?
+Bob:    Pictures, yes! But with what exactly? Go check it out — and see if
+        that gadget can do anything besides snap photos!
+Player: (a) I love a good mystery.
+        (b) What's in it for me?
+        (c) Already gone!
+Bob:    The thrill of knowledge! That's what's in it for you. Now scoot!
+
+MISSION PROMPT
+--------------
+Listen to what Amara Bennet and Zoe Porter are doing. What gadget are they
+using? Does a digital camera have another function?
+
+CONVERSATION
+------------
+Amara Bennet: Smile and don't move!
+Zoe Porter:   My hair looks messy, I feel nervous.
+Amara Bennet: Don't worry you look great! Now say cheese!
+Zoe Porter:   Cheese!
+Amara Bennet: The picture turned out great thanks to my digital camera!
+Zoe Porter:   You're right I look great! What else can the digital camera do?
+Amara Bennet: I can also record videos with it.
+Zoe Porter:   Oh no! The battery on my phone is almost empty.
+Amara Bennet: That's okay, my camera still has power.
+
+QUIZ
+----
+Q1: What gadget are they using to take pictures?
+    ✓  A digital camera
+    ✗  A smartphone
+    ✗  A tablet
+    ✗  A webcam
+
+Q2: What else can you do with a digital camera?
+    ✓  Record videos
+    ✗  Send messages
+    ✗  Browse the internet
+    ✗  Make phone calls
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 6 — COMPUTER MOUSE
+Participants: Hazel Pike & Talia Carter
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Okay, this one is personal. My nephew just got a brand new desktop
+        computer.
+Player: (a) Nice! Lucky kid.
+        (b) Let me guess — something's missing?
+        (c) Is it a good one?
+Bob:    Something IS missing! He can't even use it. Go listen to Hazel Pike
+        and Talia Carter — they're talking about the exact same problem.
+Player: (a) What a coincidence!
+        (b) Is your nephew Hazel or Talia?
+        (c) I'll go find out what's missing!
+Bob:    Not a coincidence — I planned this whole mission! Now go find out what
+        gadget my nephew is desperately missing!
+
+MISSION PROMPT
+--------------
+Listen to what Hazel Pike and Talia Carter are talking about. What is the
+gadget Bob's nephew is missing to work their desktop computer?
+What is the mouse used for?
+
+CONVERSATION
+------------
+Hazel Pike:   My sister recently bought a desktop computer! She bought a webcam
+              but forgot to buy a mouse and keyboard!
+Talia Carter: Why does she need a mouse and keyboard?
+Hazel Pike:   Without the mouse she can't use her computer! She needs it to
+              move the cursor and click things on the screen. Without a keyboard
+              she can't type letters or numbers into her computer.
+Player:       *Inside head* One of these gadgets is what Bob's nephew is missing.
+              [Bob will say what the device his nephew is missing does — that's
+               how the player determines the missing gadget]
+
+QUIZ
+----
+Q1: What gadget is Bob's nephew missing to work their desktop computer?
+    ✓  A mouse
+    ✗  A keyboard
+    ✗  A monitor
+    ✗  A webcam
+
+Q2: What is the mouse used for?
+    ✓  To move the cursor and click things on the screen
+    ✗  To type letters and numbers
+    ✗  To display images on screen
+    ✗  To connect to the internet
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 7 — TABLET
+Participants: Lisa Frost & Archer Solen
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    You know what I find fascinating? Some gadgets can do like five
+        different things.
+Player: (a) Like a Swiss Army knife?
+        (b) Sounds suspicious.
+        (c) I can also do five things!
+Bob:    Ha! Go talk to Lisa Frost and Archer Solen. Archer has one of those
+        multi-tasking gadgets and uses it for everything.
+Player: (a) Everything? Like cooking?
+        (b) I'm on it!
+        (c) What are they using it for right now?
+Bob:    Find out for yourself — that's the whole point of the mission!
+        Go, go, go!
+
+MISSION PROMPT
+--------------
+Listen to what Lisa Frost and Archer Solen are talking about. What gadget
+are they talking about? What are two things a tablet can be used for?
+
+CONVERSATION
+------------
+Lisa Frost:    Hello Archer Solen! Are you reading something or watching a
+               video right now?
+Archer Solen:  Hi, no I'm playing video games with my tablet. I already read
+               and watched videos with it!
+Lisa Frost:    Is it heavy to carry in your bag?
+Archer Solen:  No, it is very light, I take it to school everyday.
+Lisa Frost:    I feel a little hungry.
+Archer Solen:  Let's use my tablet to navigate the internet and find some ideas
+               for snacks we can make!
+
+QUIZ
+----
+Q1: What gadget are they talking about?
+    ✓  A tablet
+    ✗  A laptop
+    ✗  A smartphone
+    ✗  A portable monitor
+
+Q2: What are two things a tablet can be used for?
+    ✓  Playing video games and reading
+    ✗  Printing documents and scanning photos
+    ✗  Making phone calls and sending faxes
+    ✗  Recording music and editing videos
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 8 — MICROPHONE
+Participants: Jax Knox & Nolan Lock
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Did you hear that? Someone's testing something over there.
+Player: (a) Testing... 1, 2, 3?
+        (b) Testing what exactly?
+        (c) I didn't hear anything.
+Bob:    That's Jax Knox! He's got some gadget that makes his voice super loud.
+        Go find out what it is!
+Player: (a) A megaphone?
+        (b) I could use one of those.
+        (c) On my way!
+Bob:    Maybe! Only one way to find out. Go talk to Jax and Nolan Lock and
+        get the full story!
+
+MISSION PROMPT
+--------------
+Listen to a conversation between Jax Knox and Nolan Lock. What gadget are
+they using to record or amplify sound? Does the microphone have another function?
+
+CONVERSATION
+------------
+Jax Knox:    Testing… 1, 2, 3! Can you hear me clearly Nolan Lock?
+Nolan Lock:  Yes, your voice sounds loud and clear.
+Jax Knox:    It's all thanks to my new microphone!
+Nolan Lock:  What does it do exactly?
+Jax Knox:    It records sounds and makes voices louder for everyone to hear.
+Nolan Lock:  I like singing in the shower at home.
+Jax Knox:    You can also use a microphone for singing. Not in the shower though!
+
+QUIZ
+----
+Q1: What gadget are they using to record or amplify sound?
+    ✓  A microphone
+    ✗  Headphones
+    ✗  Speakers
+    ✗  Earphones
+
+Q2: Does the microphone have another function?
+    ✓  Yes, it can also be used for singing
+    ✗  No, it can only record sounds
+    ✗  Yes, it can also take pictures
+    ✗  Yes, it can also connect to the internet
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 9 — MONITOR
+Participants: Corin Crest & Sylas Star
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    I walked past Sylas Star's desk today and thought they had a TV
+        sitting on it.
+Player: (a) A TV on a desk? Fancy.
+        (b) Was it playing cartoons?
+        (c) Maybe they do?
+Bob:    Corin Crest thought the exact same thing! Go listen to them figure it
+        out together. Turns out it's a different gadget entirely.
+Player: (a) A very small TV?
+        (b) Ooh, I wonder what it is.
+        (c) I'll go check it out!
+Bob:    Bigger than small, smaller than a TV! Now go — your curiosity awaits.
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Corin Crest and Sylas Star. What device
+are they talking about? What do they see on this screen?
+
+CONVERSATION
+------------
+Corin Crest: Your desk is very organized today.
+Sylas Star:  Thanks! I just cleaned it.
+Corin Crest: Why is there a TV on your desk?
+Sylas Star:  It's not a TV, it's a monitor for my computer.
+Corin Crest: What do you see on it?
+Sylas Star:  I see video games, videos and school work!
+Corin Crest: I think I prefer TV's to see my shows, and bigger desks!
+
+QUIZ
+----
+Q1: What device are they talking about?
+    ✓  A monitor
+    ✗  A television
+    ✗  A tablet
+    ✗  A projector
+
+Q2: What do they see on this screen?
+    ✓  Video games, videos and school work
+    ✗  Only TV shows and movies
+    ✗  Text messages and emails
+    ✗  Photos and social media
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 10 — SMART TV
+Participants: Lucas Miles & Sofia Ford
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    It's raining outside today. Perfect day to stay in and watch something,
+        right?
+Player: (a) Agreed, 100%.
+        (b) I'd rather go splash in puddles.
+        (c) What does this have to do with a mission?
+Bob:    Lucas Miles and Sofia Ford had the same idea! They're turning on some
+        kind of TV. But it's not just any TV...
+Player: (a) A 3D TV?
+        (b) A TV with feelings?
+        (c) A smart TV?
+Bob:    Go find out exactly what makes it so special! I'd check myself but...
+        I'm very busy. Extremely busy.
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Lucas Miles and Sofia Ford. What type of
+TV are they using? Select one thing they can watch on it.
+
+CONVERSATION
+------------
+Lucas Miles: It's raining, so staying inside is nice.
+Sofia Ford:  Yes, let's turn on the smart TV!
+Lucas Miles: Why is it called a smart TV?
+Sofia Ford:  Because it is connected to the internet!
+Lucas Miles: Netflix shows and movies and YouTube videos!
+Sofia Ford:  How about we make some popcorn?
+Lucas Miles: That is a great idea!
+
+QUIZ
+----
+Q1: What type of TV are they using?
+    ✓  A smart TV
+    ✗  A regular TV
+    ✗  A computer monitor
+    ✗  A projector
+
+Q2: Select one thing they can watch on it.
+    ✓  Netflix shows and movies
+    ✗  Live sports only
+    ✗  The local news only
+    ✗  Video game streams only
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 11 — CALCULATOR
+Participants: Layla Kim & Hannah Blue
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Quick, what's 347 multiplied by 82?
+Player: (a) ...28,454?
+        (b) My brain just crashed.
+        (c) Can I use a calculator?
+Bob:    Layla Kim had the same problem with her math homework! Go listen to
+        her and Hannah Blue figure it out.
+Player: (a) I feel Layla's pain deeply.
+        (b) Is the answer a calculator?
+        (c) On my way!
+Bob:    Find out what gadget saves the day — and whether it ever makes
+        mistakes. Numbers don't lie!
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Layla Kim and Hannah Blue. What device
+helps them with numbers? Why do they use it?
+
+CONVERSATION
+------------
+Layla Kim:   This math homework is taking forever. I don't have enough fingers
+             to count!
+Hannah Blue: The teacher let us use a calculator!
+Layla Kim:   Cool! What is a calculator?
+Hannah Blue: It can help us with numbers and calculations!
+Layla Kim:   Does it ever make a mistake?
+Hannah Blue: No, it is very accurate.
+
+QUIZ
+----
+Q1: What device helps them with numbers?
+    ✓  A calculator
+    ✗  A computer
+    ✗  A tablet
+    ✗  A smartphone
+
+Q2: Why do they use it?
+    ✓  Because it helps with numbers and is very accurate
+    ✗  Because they forgot their textbook
+    ✗  Because it checks spelling and grammar
+    ✗  Because the teacher always requires it
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 12 — MP3 PLAYER & EARPHONES
+Participants: Chloe Green & Aria Price
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    I keep hearing music but I can't find the speakers anywhere. Am I
+        going crazy?
+Player: (a) Probably a little, yeah.
+        (b) Maybe it's all in your head, Bob.
+        (c) It's coming from over there!
+Bob:    It's coming from Aria Price! She's got some gadget playing music and
+        things in her ears too. Go investigate!
+Player: (a) A tiny private concert?
+        (b) I love a music mystery.
+        (c) I'll track it down!
+Bob:    Two gadgets for the price of one today! The one playing the music AND
+        the things in her ears. Go find out what both do!
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Chloe Green and Aria Price. What device
+do they use to select the music? What device do they use to listen to the
+music? Are earphones only used with an MP3 player?
+
+CONVERSATION
+------------
+Chloe Green: I hear music, but I don't see speakers anywhere!
+Aria Price:  I'm using my MP3 player!
+Chloe Green: Could you turn it down a little?
+Aria Price:  I will use my earphones, I'll be able to hear it even louder
+             without disturbing you.
+Chloe Green: Can earphones work with other devices?
+Aria Price:  Yes, phones, tablets and computers too.
+Chloe Green: I prefer quiet places, like the library!
+
+QUIZ
+----
+Q1: What device do they use to select the music?
+    ✓  An MP3 player
+    ✗  A smartphone
+    ✗  A tablet
+    ✗  A computer
+
+Q2: What device do they use to listen to the music?
+    ✓  Earphones
+    ✗  Headphones
+    ✗  Speakers
+    ✗  A microphone
+
+Q3: Are earphones only used with an MP3 player?
+    ✓  No, they also work with phones, tablets and computers
+    ✗  Yes, only with MP3 players
+    ✗  Yes, only with music devices
+    ✗  No, but only with smartphones
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 13 — ROUTER
+Participants: Nixi Spark & John Bolt
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Have you ever had the internet just... stop? Right in the middle of
+        something important?
+Player: (a) Once during a really good video. Devastating.
+        (b) Never, I'm very lucky.
+        (c) Every single day, Bob.
+Bob:    Nixi Spark is going through that right now! And John Bolt seems to
+        know exactly which gadget is responsible.
+Player: (a) The villain of the household!
+        (b) Is it a secret gadget?
+        (c) I'll go find out what it is!
+Bob:    Go listen in! This gadget affects every device in the building.
+        Very important stuff — don't let Nixi down!
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Nixi Spark and John Bolt. What device
+gives the internet to other devices? What happens when it is off?
+
+CONVERSATION
+------------
+Nixi Spark: Oh no! The internet stopped working while I was watching a video.
+John Bolt:  Let me check the router in the corner.
+Nixi Spark: You should restart it! Always works and it sends internet to all
+            our devices again.
+John Bolt:  Let's hope it does, if not we're going to be really bored.
+Nixi Spark: We could go to the park!
+John Bolt:  *grunts*
+
+QUIZ
+----
+Q1: What device gives the internet to other devices?
+    ✓  A router
+    ✗  A modem
+    ✗  A smart TV
+    ✗  A desktop computer
+
+Q2: What happens when it is off?
+    ✓  The internet stops working on all devices
+    ✗  All devices turn off too
+    ✗  The TV stops showing channels
+    ✗  You can no longer charge your phone
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 14 — LAPTOP
+Participants: Taro Ember & Fenn Lux
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Can you type an essay without a desk?
+Player: (a) Sounds very uncomfortable.
+        (b) Challenge accepted.
+        (c) Is that a riddle, Bob?
+Bob:    Fenn Lux can! They brought a gadget to the library that lets them do
+        computer stuff from anywhere. Go find out what it is!
+Player: (a) A magic typewriter?
+        (b) Ooh, I think I know!
+        (c) I'm heading there now!
+Bob:    Go confirm your hunch with Taro Ember and Fenn Lux. And no peeking
+        at what Fenn is typing!
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Taro Ember and Fenn Lux. What computer
+do they use? Why is it easy to carry?
+
+CONVERSATION
+------------
+Taro Ember: Are you studying in the library again?
+Fenn Lux:   Yes, I have to type up an essay.
+Taro Ember: How are you going to do that if your desktop computer is at home?
+Fenn Lux:   I brought my laptop! It is easy to carry because it's so light.
+Taro Ember: I don't like reading books, I prefer the arcade!
+Fenn Lux:   Me too, but I need to do my homework.
+
+QUIZ
+----
+Q1: What computer do they use?
+    ✓  A laptop
+    ✗  A desktop computer
+    ✗  A tablet
+    ✗  A smartphone
+
+Q2: Why is it easy to carry?
+    ✓  Because it is very light
+    ✗  Because it fits in a pocket
+    ✗  Because it has a carrying handle
+    ✗  Because it works without electricity
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 15 — SMART PHONE
+Participants: Kiko Flux & Priya Flux
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    You ever notice how some people are always looking down at something
+        in their hand?
+Player: (a) Are you talking about me?
+        (b) I thought they were checking for ants.
+        (c) Yeah, what are they always looking at?
+Bob:    That's Priya Flux! Always got that device with them. Go talk to Kiko
+        Flux and Priya — find out what it is and everything it can do.
+Player: (a) A magic rectangle?
+        (b) I'll go ask them!
+        (c) Is it more than just calling people?
+Bob:    Much, much more! That's exactly what you need to find out. Off you go!
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Kiko Flux and Priya Flux. What device is
+in their hand? Name two things they do with it.
+
+CONVERSATION
+------------
+Kiko Flux:  You always have that device with you.
+Priya Flux: Yes, it's my smartphone.
+Kiko Flux:  What do you use it for most?
+Priya Flux: I message my friends and watch videos.
+Kiko Flux:  Can you also search the internet?
+Priya Flux: Yes, I use it for many things.
+
+QUIZ
+----
+Q1: What device is in their hand?
+    ✓  A smartphone
+    ✗  A tablet
+    ✗  A cell phone
+    ✗  An MP3 player
+
+Q2: Name two things they do with it.
+    ✓  Message friends and watch videos
+    ✗  Print documents and scan photos
+    ✗  Play video games and read books
+    ✗  Listen to music and take pictures
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MISSION 16 — CELL PHONE
+Participants: Daniel Moon & Fernanda Valle
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOB'S BRIEFING
+--------------
+Bob:    Not every gadget has to be brand new to be useful, you know.
+Player: (a) Like you, Bob?
+        (b) Deep thought for a Tuesday.
+        (c) What are you getting at?
+Bob:    Ha! Fernanda Valle travels a lot and uses a very old, simple gadget
+        to stay in touch. Daniel Moon just asked them about it.
+Player: (a) Old school! I respect it.
+        (b) How old are we talking?
+        (c) What does it do?
+Bob:    Go find out! Sometimes the simplest tools do exactly what you need —
+        nothing more, nothing less.
+
+MISSION PROMPT
+--------------
+Listen to the conversation between Daniel Moon and Fernanda Vale. What device
+do they use to call people? Is it new or old?
+
+CONVERSATION
+------------
+Daniel Moon:     How do you contact people when you travel?
+Fernanda Valle:  I use my old cell phone.
+Daniel Moon:     Is it a smartphone?
+Fernanda Valle:  No, it's very simple and old.
+Daniel Moon:     What can it do?
+Fernanda Valle:  It can call and send messages only.
+Daniel Moon:     Simple things still work well.
+
+QUIZ
+----
+Q1: What device do they use to call people?
+    ✓  A cell phone
+    ✗  A smartphone
+    ✗  A landline phone
+    ✗  A tablet
+
+Q2: Is it new or old?
+    ✓  It is old and simple
+    ✗  It is new and modern
+    ✗  It is a smartphone
+    ✗  It is a smart device with many features
+
+
+================================================================================
+                              END OF MISSIONS
+================================================================================
