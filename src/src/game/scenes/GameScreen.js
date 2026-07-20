@@ -5,6 +5,8 @@ import { NPC } from "../characters/NPC.js"
 import { InteractionManager } from "../InteractionManager.js"
 import { MissionManager } from '../MissionManager.js';
 import { MissionHud } from '../MissionHud.js';
+import { ControlsHud } from '../ControlsHud.js';
+import { MenuButton } from '../MenuButton.js';
 import { EventBus } from '../EventBus.js';
 import Phaser from 'phaser';
 
@@ -189,9 +191,13 @@ export class GameScreen extends Scene {
     this.escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
     this.MissionHud = new MissionHud(this, this.missionManager, missions);
+    this.controlsHud = new ControlsHud(this);
+    this.menuButton = new MenuButton(this, () => this.openPauseMenu());
 
     this.events.once('shutdown', () => {
       this.MissionHud.destroy();
+      this.controlsHud.destroy();
+      this.menuButton.destroy();
       this.interactionManager.destroy();
     });
 
@@ -215,10 +221,14 @@ export class GameScreen extends Scene {
     }
   }
 
+  openPauseMenu() {
+    this.scene.pause();
+    this.scene.launch('PauseMenu');
+  }
+
   update() {
     if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
-      this.scene.pause();
-      this.scene.launch('PauseMenu');
+      this.openPauseMenu();
       return;
     }
 

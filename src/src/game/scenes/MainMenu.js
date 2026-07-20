@@ -75,6 +75,22 @@ export class MainMenu extends Scene {
             lineSpacing: 4
         }).setOrigin(0.5, 0.5);
 
+        this.add.text(w / 2, panelY + 248, 'CONTROLS', {
+            fontFamily: 'Arial Black',
+            fontSize: '9px',
+            color: '#f5c518',
+            align: 'center'
+        }).setOrigin(0.5, 0.5);
+
+        this.add.text(w / 2, panelY + 276,
+            'WASD / Arrows  —  Move\nE  —  Talk to a  !  character / Close\nESC  —  Menu', {
+            fontFamily: 'Arial',
+            fontSize: '10px',
+            color: '#ccccff',
+            align: 'center',
+            lineSpacing: 4
+        }).setOrigin(0.5, 0.5);
+
         const btnW = 140;
         const btnH = 32;
         const btnX = w / 2 - btnW / 2;

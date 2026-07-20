@@ -127,6 +127,7 @@ export class Dialogue extends Scene {
         this.pauseButton.setVisible(false).setAlpha(0).disableInteractive();
         this.playButton.setVisible(true).setAlpha(1).setInteractive(this.arrowTriangle, Phaser.Geom.Triangle.Contains);
         this.playText.setText('Play Conversation');
+        this.closeHint.setText('Press  E  to close').setColor('#64ca49');
 
         if (this.isMissionGiver) {
             this.pendingEvent = 'mission-accepted';
@@ -668,6 +669,12 @@ export class Dialogue extends Scene {
         this.playerFace = this.add.sprite(336, 180, "characters_face", this.playerSourceIndex);
         this.playerFace.setScale(2);
         this.speakerSpriteMap['player'] = this.playerFace;
+
+        // Always-visible reminder of the keys that get the player back out of here.
+        // Sits below every panel variant (dialogue, choices, player line, quiz).
+        this.closeHint = this.add.text(w / 2, h - 26, 'E  —  Close        ESC  —  Menu', {
+            fontFamily: 'Arial', fontSize: '12px', color: '#cccccc'
+        }).setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(3);
 
         // Subtitle for lines without a voiceline (player's spoken lines, silent beats).
         this.subtitleBg = this.add.graphics().setScrollFactor(0).setDepth(2).setVisible(false);
