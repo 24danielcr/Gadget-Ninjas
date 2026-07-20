@@ -92,6 +92,5 @@ export class MenuButton {
 
     destroy() {
         this.button.destroy();
-        this.label.destroy();
     }
 }
